@@ -1,0 +1,48 @@
+# Node Deployment
+
+This repository enables provisioning and configuration a DigitalOcean VPS.
+
+## Setup Environment
+
+To get bootstrapped you need the following:
+
+- Install Nix: `sh <(curl -L https://nixos.org/nix/install) --no-daemon`
+- Configure Nix to enable flakes: `echo experimental-features = nix-command flakes >> ~/.config/nix/nix.conf`
+- Run `nix develop` or install [direnv](https://direnv.net/) for convenience
+(recommended)
+
+## Provisioning
+
+Creating the basic infrastructure such as VPSs and DNS records, i.e.
+infrastructure provisioning is done using `terraform`.
+
+The most important configuration file is `./main.tf` and the high level
+parameters are in `./terraform.tfvars.json`.
+
+Currently the providers configured are Cloudflare for DNS and Hetzner for VPSs.
+
+To provision run:
+
+```sh
+export DIGITALOCEAN_TOKEN=<hetzner cloud API token>
+export CLOUDFLARE_API_TOKEN=<cloudflare API token>
+terraform init
+terraform apply
+```
+
+## Configuring Each Node
+
+Node configuration is done using NixOS and a CLI tool called `terraflake`.
+
+The root configuration file for the seed nodes is `./nixos/vps1.nix` and follows
+the format of [NixOS's `configuration.nix`](https://nixos.org/manual/nixos/stable/#sec-configuration-file).
+To configure the monitoring node look in `./nixos/monitor.nix`.
+
+To push the configuration to all nodes after they have been provisioned run:
+
+```sh
+terraflake push
+```
+
+This will "infect" any non-NixOS VPS and install NixOS on it making sure the
+final state of a node matches the configuration of this repo.
