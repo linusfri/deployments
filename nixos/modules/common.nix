@@ -4,7 +4,7 @@
 
   services.openssh.settings.PasswordAuthentication = false;
 
-  security.acme.defaults.email = "chris@randomware.se";
+  security.acme.defaults.email = "linus@bravomedia.se";
   security.acme.acceptTerms = true;
 
   nix = {
