@@ -7,13 +7,13 @@ module "vps1" {
   name          = "vps1"
   label         = "seed"
   ssh_key       = var.ssh_pub
-  domain        = "mjaumjau.se"
+  domain        = "friikod.se"
 }
 
-module "dns_mjaumjau_se" {
+module "dns_friikod_se" {
   source     = "./modules/dns"
   account_id = var.cloudflare_id
-  domain     = "mjaumjau.se"
+  domain     = "friikod.se"
   subdomains = ["www"]
   ip = module.vps1.node.ip
   # ip6 = module.server.nodes.ip6
@@ -22,7 +22,7 @@ module "dns_mjaumjau_se" {
 # Add DNS servers to opentofu output.
 output "ns" {
   value = {
-    "${module.vps1.node.domain}" = module.dns_mjaumjau_se.ns
+    "${module.vps1.node.domain}" = module.dns_friikod_se.ns
   }
 }
 

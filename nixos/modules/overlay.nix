@@ -1,4 +1,4 @@
-{ nixpkgs, mjaumjau-site }:
+{ nixpkgs, lgl-site }:
 
 { ... }: {
   nixpkgs.overlays = [
@@ -10,7 +10,7 @@
       in
       {
         inherit (pkgs) netdata netdataCloud;
-        inherit mjaumjau-site;
+        inherit lgl-site;
       })
   ];
 }

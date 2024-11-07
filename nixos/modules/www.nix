@@ -11,7 +11,7 @@ in
       "${node.domain}" = {
         forceSSL = true;
         enableACME = true;
-        locations."/".root = pkgs.mjaumjau-site;
+        locations."/".root = pkgs.lgl-site;
       };
     };
   };

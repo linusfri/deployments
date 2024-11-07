@@ -30,6 +30,10 @@ terraform {
   }
 }
 
+provider "cloudflare" {
+  api_token = "R38MslTXR2zglabsAxAvEQIPyUqdh1tDvFrQHIaZ"
+}
+
 locals {
   subdomains = concat(var.mx != "" ? [var.mx] : [], var.subdomains)
 }
