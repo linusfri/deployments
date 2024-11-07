@@ -14,8 +14,7 @@
     # NixOS version
     nixos.url = "github:NixOS/nixpkgs/24.05";
 
-    mjaumjau-site.url = "path:///home/icetan/src/icetan/www-mjaumjau";
-    mjaumjau-site.flake = false;
+    lgl-site.url = "git+ssh://git@github.com/linusfri/ladugardLive";
   };
 
   outputs = { self, nixpkgs, nixos, flake-utils, terraflake, agenix, ... }@inputs:
@@ -32,7 +31,7 @@
           inherit system;
           modules = [
             # Add module for local package overlays
-            (import ./nixos/modules/overlay.nix { inherit (inputs) nixpkgs mjaumjau-site; })
+            (import ./nixos/modules/overlay.nix { inherit (inputs) nixpkgs lgl-site; })
             # Add module that configures a generic monitor node
             (import ./nixos/vps1.nix name)
           ];
