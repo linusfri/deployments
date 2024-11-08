@@ -276,11 +276,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1725565921,
-        "narHash": "sha256-Vg2rnwkVoW25VGFYgud7abd419IyMu/MzWxusJS6mqE=",
+        "lastModified": 1730121382,
+        "narHash": "sha256-MpXjvtWumipkAp/Elok6RUtdE3Fv/mjavMkbHrPtjmI=",
         "owner": "icetan",
         "repo": "nixiform",
-        "rev": "bfd0d77583ed6ee65da1caed11ec8b2246cff856",
+        "rev": "1e237a2d806cd303ef308626a6a63ae963bbe056",
         "type": "github"
       },
       "original": {
