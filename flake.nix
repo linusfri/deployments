@@ -1,4 +1,7 @@
 {
+  nixConfig = {
+    warn-dirty = false;
+  };
   description = "Demo Terraflake deployment";
 
   inputs = {
