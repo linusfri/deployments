@@ -7,7 +7,9 @@ module "vps1" {
   name          = "vps1"
   label         = "seed"
   ssh_key       = var.ssh_pub
-  domain        = "friikod.se"
+  domains        = {
+    "friikod" = "friikod.se"
+  }
 }
 
 module "dns_friikod_se" {
@@ -22,7 +24,7 @@ module "dns_friikod_se" {
 # Add DNS servers to opentofu output.
 output "ns" {
   value = {
-    "${module.vps1.node.domain}" = module.dns_friikod_se.ns
+    "${module.vps1.node.domains.friikod}" = module.dns_friikod_se.ns
   }
 }
 
