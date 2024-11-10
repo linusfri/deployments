@@ -1,6 +1,6 @@
 variable "name" {}
 variable "ssh_key" {}
-variable "domain" {}
+variable "domains" {}
 variable "size" {
   default = "s-1vcpu-2gb"
 }
@@ -43,7 +43,7 @@ output "node" {
     name     = var.name
     ip       = digitalocean_droplet.nixos.ipv4_address
     ssh_key  = var.ssh_key
-    domain   = var.domain
+    domains   = var.domains
     label    = var.label
   }
 }

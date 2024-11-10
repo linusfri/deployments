@@ -8,7 +8,7 @@ in
   services.nginx = {
     enable = true;
     virtualHosts = {
-      "${node.domain}" = {
+      "${node.domains.friikod}" = {
         forceSSL = true;
         enableACME = true;
         locations."/".root = pkgs.ladugard-live;

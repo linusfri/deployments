@@ -19,12 +19,12 @@ infrastructure provisioning is done using `terraform`.
 The most important configuration file is `./main.tf` and the high level
 parameters are in `./terraform.tfvars.json`.
 
-Currently the providers configured are Cloudflare for DNS and Hetzner for VPSs.
+Currently the providers configured are Cloudflare for DNS and Digitalocean for VPSs.
 
 To provision run:
 
 ```sh
-export DIGITALOCEAN_TOKEN=<hetzner cloud API token>
+export DIGITALOCEAN_TOKEN=<digitalocean cloud API token>
 export CLOUDFLARE_API_TOKEN=<cloudflare API token>
 terraform init
 terraform apply
