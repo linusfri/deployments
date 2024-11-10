@@ -8,7 +8,8 @@ module "vps1" {
   label         = "seed"
   ssh_key       = var.ssh_pub
   domains        = {
-    "friikod" = "friikod.se"
+    "friikod" = "friikod.se",
+    "ladugardlive" = "ladugardlive.se"
   }
 }
 
@@ -21,10 +22,20 @@ module "dns_friikod_se" {
   # ip6 = module.server.nodes.ip6
 }
 
+module "dns_ladugard_se" {
+  source     = "./modules/dns"
+  account_id = var.cloudflare_id
+  domain     = "ladugardlive.se"
+  subdomains = ["www"]
+  ip = module.vps1.node.ip
+  # ip6 = module.server.nodes.ip6
+}
+
 # Add DNS servers to opentofu output.
 output "ns" {
   value = {
-    "${module.vps1.node.domains.friikod}" = module.dns_friikod_se.ns
+    "${module.vps1.node.domains.friikod}" = module.dns_friikod_se.ns,
+    "${module.vps1.node.domains.ladugardlive}" = module.dns_ladugard_se.ns
   }
 }
 

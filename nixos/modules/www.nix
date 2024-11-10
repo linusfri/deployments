@@ -13,6 +13,12 @@ in
         enableACME = true;
         locations."/".root = pkgs.ladugard-live;
       };
+
+      "${node.domains.ladugardlive}" = {
+        forceSSL = true;
+        enableACME = true;
+        locations."/".root = pkgs.ladugard-live;
+      };
     };
   };
 }
