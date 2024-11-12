@@ -37,6 +37,7 @@
             (import ./nixos/modules/overlay.nix { inherit (inputs) nixpkgs lgl-site; })
             # Add module that configures a generic monitor node
             (import ./nixos/vps1.nix name)
+            agenix.nixosModules.default
           ];
         };
       };
