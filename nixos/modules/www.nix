@@ -1,9 +1,21 @@
 { config, pkgs, ... }:
 let
   inherit (config.terraflake.input) node nodes;
+
+  friikodPlaceholder = pkgs.writeTextFile {
+    name = "index";
+    text = ''
+      <h2>Free</h2>
+    '';
+    executable = false;
+    destination = "/src/index.html";
+  };
 in
 {
-  networking.firewall.allowedTCPPorts = [ 80 443 ];
+  networking.firewall.allowedTCPPorts = [
+    80
+    443
+  ];
 
   services.nginx = {
     enable = true;
@@ -11,7 +23,7 @@ in
       "${node.domains.friikod}" = {
         forceSSL = true;
         enableACME = true;
-        locations."/".root = pkgs.ladugard-live;
+        locations."/".root = "${friikodPlaceholder}/src";
       };
 
       "${node.domains.ladugardlive}" = {
