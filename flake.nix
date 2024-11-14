@@ -95,7 +95,6 @@
         devShells.default = import ./devshell.nix {
           inherit pkgs;
           inherit (terraflake.packages.${system}) terraflake;
-          inherit (agenix.packages.${system}) agenix;
         };
       }
     ));
