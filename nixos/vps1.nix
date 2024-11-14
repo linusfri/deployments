@@ -3,8 +3,10 @@ name:
 { config, pkgs, ... }: {
   imports = [
     (import ../terraflake name)
+
     ./modules/common.nix
     ./modules/www.nix
+    ./vps1/rekey.nix
   ];
 
   # Set the initial NixOS version, don't touch this after first
