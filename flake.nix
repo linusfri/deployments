@@ -48,7 +48,28 @@
       # Setup agenix-rekey
       agenix-rekey = agenix-rekey.configure {
         userFlake = self;
-        nodes = self.nixosConfigurations;
+        nodes = self.nixosConfigurations // {
+          tofuTokens = nixos.lib.nixosSystem {
+            inherit system;
+            modules = [
+              agenix.nixosModules.default
+              agenix-rekey.nixosModules.default
+              ({ config, ... }:
+              let
+                name = "tofu-tokens";
+              in
+              {
+                age.rekey = {
+                  hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAf9Wqvahm9Fm2twattmjSccCLsqpqMHrIft868NWaAd";
+                  masterIdentities = import ./secrets/master-identity.nix;
+                  storageMode = "local";
+                  localStorageDir = ./. + "/secrets/rekeyed/${name}";
+                };
+                age.secrets.tokens.rekeyFile = ./secrets/${name}/tokens.json.age;
+              })
+            ];
+          };
+        };
         # Use age instead of rage
         agePackage = p: p.age;
       };
@@ -74,7 +95,7 @@
         devShells.default = import ./devshell.nix {
           inherit pkgs;
           inherit (terraflake.packages.${system}) terraflake;
-          # inherit (agenix.packages.${system}) agenix;
+          inherit (agenix.packages.${system}) agenix;
         };
       }
     ));
