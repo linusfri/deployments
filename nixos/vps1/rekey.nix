@@ -11,8 +11,4 @@
     # from your flake's root directory and not by a direct path literal like ./secrets
     localStorageDir = ../.. + "/secrets/rekeyed/${config.networking.hostName}";
   };
-  age.secrets.dbpass = {
-    rekeyFile = ./secrets/dbpass.age;
-    generator.script = "passphrase";
-  };
 }

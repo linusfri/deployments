@@ -6,6 +6,7 @@ name:
 
     ./modules/common.nix
     ./modules/www.nix
+    ./modules/db.nix
     ./vps1/rekey.nix
   ];
 
