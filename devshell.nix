@@ -1,26 +1,26 @@
 { pkgs
 , terraflake
-, agenix
+# , agenix
 }:
 
 let
   inherit (pkgs) mkShell;
 
-  terraform = pkgs.terraform.withPlugins
+  tofu = pkgs.opentofu.withPlugins
     (ps: builtins.attrValues {
       inherit (ps) digitalocean cloudflare;
     });
 in
 mkShell rec {
   buildInputs = builtins.attrValues {
-    inherit (pkgs) jq git;
-    inherit terraflake agenix terraform;
+    inherit (pkgs) jq git agenix-rekey age rage;
+    inherit terraflake tofu; #agenix;
 
-    editSecret = pkgs.writeShellScriptBin "editSecret" ''
-      ( cd $(dirname $SECRETS);
-        ${agenix}/bin/agenix ''${1:--e} $(basename $SECRETS) -i "$AGE_KEY"
-      )
-    '';
+    # editSecret = pkgs.writeShellScriptBin "editSecret" ''
+    #   ( cd $(dirname $SECRETS);
+    #     ${agenix}/bin/agenix ''${1:--e} $(basename $SECRETS) -i "$AGE_KEY"
+    #   )
+    # '';
   };
 
   shellHook = ''
@@ -28,10 +28,11 @@ mkShell rec {
     export SECRETS="$ROOT_DIR/secrets/secrets.json.age"
     export AGE_KEY="$ROOT_DIR/secrets/age-key"
 
-    secret() { (editSecret -d | jq -r "$*") || true; }
+    # secret() { (editSecret -d | jq -r "$*") || true; }
 
-    export DIGITALOCEAN_TOKEN="''${DIGITALOCEAN_TOKEN:-$(secret .digitalocean_token)}"
-    export CLOUDFLARE_API_TOKEN="''${CLOUDFLARE_API_TOKEN:-$(secret .cloudflare_token)}"
+    # export DIGITALOCEAN_TOKEN="''${DIGITALOCEAN_TOKEN:-$(secret .digitalocean_token)}"
+    # export CLOUDFLARE_API_TOKEN="''${CLOUDFLARE_API_TOKEN:-$(secret .cloudflare_token)}"
+
     # Parallelize terraflake
     export NF_PAR=10
 

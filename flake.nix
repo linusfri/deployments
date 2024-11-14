@@ -13,6 +13,8 @@
 
     # Encryption for secrets
     agenix.url = "github:ryantm/agenix";
+    agenix-rekey.url = "github:oddlama/agenix-rekey";
+    agenix-rekey.inputs.nixpkgs.follows = "nixpkgs";
 
     # NixOS version
     nixos.url = "github:NixOS/nixpkgs/24.05";
@@ -20,7 +22,7 @@
     lgl-site.url = "git+ssh://git@github.com/linusfri/ladugardLive";
   };
 
-  outputs = { self, nixpkgs, nixos, flake-utils, terraflake, agenix, ... }@inputs:
+  outputs = { self, nixpkgs, nixos, flake-utils, terraflake, agenix, agenix-rekey, ... }@inputs:
     let
       tfvars = nixpkgs.lib.importJSON ./terraform.tfvars.json;
       # Architecture of the nodes
@@ -38,8 +40,17 @@
             # Add module that configures a generic monitor node
             (import ./nixos/vps1.nix name)
             agenix.nixosModules.default
+            agenix-rekey.nixosModules.default
           ];
         };
+      };
+
+      # Setup agenix-rekey
+      agenix-rekey = agenix-rekey.configure {
+        userFlake = self;
+        nodes = self.nixosConfigurations;
+        # Use age instead of rage
+        agePackage = p: p.age;
       };
     }
 
@@ -49,20 +60,21 @@
           inherit system;
           # Some problems with opentofu so need to use `terraform` and it is
           # no longer free as in speach
-          config.allowUnfree = true;
+          # config.allowUnfree = true;
+          overlays = [ agenix-rekey.overlays.default ];
         };
       in
       {
         # Export Nix package set that terraflake should use to bootstrap itself
         terraflake = {
           pkgs = pkgs;
-          provisioner = "terraform-local";
+          # provisioner = "terraform-local";
         };
         # Create development environment from ./devshell.nix
         devShells.default = import ./devshell.nix {
           inherit pkgs;
           inherit (terraflake.packages.${system}) terraflake;
-          inherit (agenix.packages.${system}) agenix;
+          # inherit (agenix.packages.${system}) agenix;
         };
       }
     ));
