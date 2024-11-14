@@ -46,3 +46,29 @@ terraflake push
 
 This will "infect" any non-NixOS VPS and install NixOS on it making sure the
 final state of a node matches the configuration of this repo.
+
+## Agenix
+### Generate age identity
+```sh
+age -p -o keyfile.age <(age-keygen)
+```
+### Create secrets
+Create a secret in the nixos module that will use it.
+```
+age.secrets.NAME_OF_SECRET = {
+    rekeyFile = ./secrets/NAME_OF_SECRET.age;
+    generator.script = "passphrase";
+};
+```
+
+### Generate the actual secret file
+```sh
+agenix generate -a # -a for adding to git
+
+agenix rekey -a # rekey the secrets to specfied host ssh public key
+```
+
+### To edit secrets after generation and rekey
+```sh
+agenix edit
+```

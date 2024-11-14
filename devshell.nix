@@ -1,6 +1,6 @@
 { pkgs
 , terraflake
-# , agenix
+, agenix
 }:
 
 let
@@ -13,25 +13,22 @@ let
 in
 mkShell rec {
   buildInputs = builtins.attrValues {
-    inherit (pkgs) jq git agenix-rekey age rage;
+    inherit (pkgs) jq git agenix-rekey age;
     inherit terraflake tofu; #agenix;
 
-    # editSecret = pkgs.writeShellScriptBin "editSecret" ''
-    #   ( cd $(dirname $SECRETS);
-    #     ${agenix}/bin/agenix ''${1:--e} $(basename $SECRETS) -i "$AGE_KEY"
-    #   )
-    # '';
+    tokens = pkgs.writeShellScriptBin "tokens" ''
+      echo '
+        tokens_json=$(age -d -i $AGE_KEY $SECRETS)
+        export DIGITALOCEAN_TOKEN="''${DIGITALOCEAN_TOKEN:-$(jq -r .digitalocean_token <<<"$tokens_json")}";
+        export CLOUDFLARE_API_TOKEN="''${CLOUDFLARE_API_TOKEN:-$(jq -r .cloudflare_token <<<"$tokens_json")}";
+      '
+    '';
   };
 
   shellHook = ''
     export ROOT_DIR="$PWD";
-    export SECRETS="$ROOT_DIR/secrets/secrets.json.age"
-    export AGE_KEY="$ROOT_DIR/secrets/age-key"
-
-    # secret() { (editSecret -d | jq -r "$*") || true; }
-
-    # export DIGITALOCEAN_TOKEN="''${DIGITALOCEAN_TOKEN:-$(secret .digitalocean_token)}"
-    # export CLOUDFLARE_API_TOKEN="''${CLOUDFLARE_API_TOKEN:-$(secret .cloudflare_token)}"
+    export SECRETS="$ROOT_DIR/secrets/tofu-tokens/tokens.json.age"
+    export AGE_KEY="$ROOT_DIR/secrets/rekeyed/master.age"
 
     # Parallelize terraflake
     export NF_PAR=10
@@ -39,8 +36,9 @@ mkShell rec {
     echo '
     Provision infrastructure:
 
-    $ terraform init
-    $ terraform apply
+    $ source <(tokens)
+    $ tofu init
+    $ tofu apply
 
     Push configuration:
 
@@ -48,7 +46,7 @@ mkShell rec {
 
     To edit encrypted secrets:
 
-    $ editSecret
+    $ agenix edit
     '
   '';
 }
