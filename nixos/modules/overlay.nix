@@ -1,4 +1,4 @@
-{ nixpkgs, lgl-site }:
+{ nixpkgs, lgl-site, uno-api }:
 
 { ... }: {
   nixpkgs.overlays = [
@@ -12,6 +12,7 @@
       {
         inherit (pkgs) netdata netdataCloud;
         inherit (lgl-site.packages.${system}) ladugard-live;
+        inherit (uno-api.packages.${system}) uno-api;
       })
   ];
 }
