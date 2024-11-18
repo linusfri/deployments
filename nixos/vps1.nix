@@ -7,6 +7,7 @@ name:
     ./modules/common.nix
     ./modules/www.nix
     ./modules/db.nix
+    ./clients/uno-api.nix
     ./vps1/rekey.nix
   ];
 

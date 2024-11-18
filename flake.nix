@@ -20,6 +20,7 @@
     nixos.url = "github:NixOS/nixpkgs/24.05";
 
     lgl-site.url = "git+ssh://git@github.com/linusfri/ladugardLive";
+    uno-api.url = "github:linusfri/uno_api";
   };
 
   outputs = { self, nixpkgs, nixos, flake-utils, terraflake, agenix, agenix-rekey, ... }@inputs:
@@ -36,7 +37,7 @@
           inherit system;
           modules = [
             # Add module for local package overlays
-            (import ./nixos/modules/overlay.nix { inherit (inputs) nixpkgs lgl-site; })
+            (import ./nixos/modules/overlay.nix { inherit (inputs) nixpkgs lgl-site uno-api; })
             # Add module that configures a generic monitor node
             (import ./nixos/vps1.nix name)
             agenix.nixosModules.default
