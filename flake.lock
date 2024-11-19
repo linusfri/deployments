@@ -522,11 +522,11 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1731961476,
-        "narHash": "sha256-LIyZXqruOgRtlQ0yFAoQ/VffQ0GiFJIy5qnFt/ZHO0I=",
+        "lastModified": 1732047637,
+        "narHash": "sha256-C1TCc3M7huDpb5YelDnolPmz0XDVFT0/gKAQegfj8Nw=",
         "owner": "linusfri",
         "repo": "uno_api",
-        "rev": "9fad81b3d046d367657a616f50b8398d00b14184",
+        "rev": "acfda7a4f07913d2b2e6be189e6eb7ff916b65eb",
         "type": "github"
       },
       "original": {
