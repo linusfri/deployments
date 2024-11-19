@@ -24,7 +24,7 @@ variable "extra" {
 terraform {
   required_providers {
     cloudflare = {
-      source = "cloudflare/cloudflare"
+      source = "registry.terraform.io/cloudflare/cloudflare"
       version = "~> 4.0"
     }
   }
