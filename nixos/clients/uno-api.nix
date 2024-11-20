@@ -48,4 +48,10 @@ in
     rekeyFile = ../${node.name}/secrets/unoapi-dbpass.age;
     generator.script = "passphrase";
   };
+
+  age.secrets.app-thing = {
+    rekeyFile = ../${node.name}/secrets/app-thing.age;
+    generator.script = "passphrase";
+  };
+
 }
