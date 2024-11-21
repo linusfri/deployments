@@ -16,6 +16,9 @@
     agenix-rekey.url = "github:oddlama/agenix-rekey";
     agenix-rekey.inputs.nixpkgs.follows = "nixpkgs";
 
+    # Bravomedia service templates
+    templates.url = "git+ssh://git@bitbucket.org/bravomedia/templates";
+
     # NixOS version
     nixos.url = "github:NixOS/nixpkgs/24.05";
 
@@ -39,9 +42,9 @@
             # Add module for local package overlays
             (import ./nixos/modules/overlay.nix { inherit (inputs) nixpkgs lgl-site uno-api; })
             # Add module that configures a generic monitor node
-            (import ./nixos/vps1.nix name)
-            agenix.nixosModules.default
-            agenix-rekey.nixosModules.default
+            (import ./nixos/vps1.nix { flake = self; inherit name; })
+            # agenix.nixosModules.default
+            # agenix-rekey.nixosModules.default
           ];
         };
       };
