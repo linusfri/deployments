@@ -8,7 +8,7 @@ let
     PORT=${toString port} ${pkgs.calc-api}/bin/calc_api
   '';
 
-  user = "uno_user";
+  user = "calc_api_user";
   home = "/var/lib/${user}";
 in
 {
