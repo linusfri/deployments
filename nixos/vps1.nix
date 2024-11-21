@@ -10,6 +10,7 @@
     ./modules/www.nix
     ./modules/db.nix
     ./clients/uno-api.nix
+    ./clients/calc-api.nix
     ./vps1/rekey.nix
   ];
 
