@@ -53,5 +53,4 @@ in
     rekeyFile = ../${node.name}/secrets/app-thing.age;
     generator.script = "passphrase";
   };
-
 }
