@@ -400,6 +400,7 @@
         "lgl-site": "lgl-site",
         "nixos": "nixos",
         "nixpkgs": "nixpkgs_3",
+        "templates": "templates",
         "terraflake": "terraflake",
         "uno-api": "uno-api"
       }
@@ -492,6 +493,21 @@
         "owner": "nix-systems",
         "repo": "default",
         "type": "github"
+      }
+    },
+    "templates": {
+      "locked": {
+        "lastModified": 1732192810,
+        "narHash": "sha256-1qFjigPZNBfa5qlhha8AIQHy/l/iwchxbJLV29Vd1OA=",
+        "ref": "refs/heads/main",
+        "rev": "6c432ee654744ed85998b1dd5a55f004bd49f1ba",
+        "revCount": 91,
+        "type": "git",
+        "url": "ssh://git@bitbucket.org/bravomedia/templates"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@bitbucket.org/bravomedia/templates"
       }
     },
     "terraflake": {

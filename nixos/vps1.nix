@@ -1,9 +1,11 @@
-name:
+{ flake, name }:
 
 { config, pkgs, ... }: {
   imports = [
     (import ../terraflake name)
-
+    flake.inputs.agenix.nixosModules.default
+    flake.inputs.agenix-rekey.nixosModules.default
+    # flake.inputs.templates.nixosModules.mysql // Common services not yet compatible
     ./modules/common.nix
     ./modules/www.nix
     ./modules/db.nix

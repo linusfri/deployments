@@ -5,8 +5,23 @@ let
   startApp = pkgs.writeShellScriptBin "start-app" ''
     DATABASE_URL=$(cat ${config.age.secrets.database-url.path}) ${pkgs.uno-api}/bin/uno_api
   '';
+
+  user = "uno_user";
+  home = "/var/lib/${user}";
 in
 {
+  users.extraUsers.${user} = {
+    name = user;
+    group = user;
+    home = home;
+    createHome = true;
+    isSystemUser = true;
+  };
+
+  users.extraGroups."${user}" = {
+    name = user;
+  };
+  
   services.mysql = {
     initialDatabases = [{ name = "uno"; }];
     ensureDatabases = ["uno"];
