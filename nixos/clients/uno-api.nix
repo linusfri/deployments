@@ -27,7 +27,7 @@ in
     ensureDatabases = ["uno"];
     ensureUsers = [
       {
-        name = "uno_user";
+        name = user;
         ensurePermissions = {
           "uno.*" = "ALL PRIVILEGES";
         };
