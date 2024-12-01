@@ -2,6 +2,7 @@
   nixConfig = {
     warn-dirty = false;
   };
+
   description = "Demo Terraflake deployment";
 
   inputs = {
@@ -20,7 +21,7 @@
     templates.url = "git+ssh://git@bitbucket.org/bravomedia/templates";
 
     # NixOS version
-    nixos.url = "github:NixOS/nixpkgs/24.05";
+    nixos.url = "github:NixOS/nixpkgs/release-24.11";
 
     lgl-site.url = "git+ssh://git@github.com/linusfri/ladugardLive";
     uno-api.url = "github:linusfri/uno_api";
@@ -44,8 +45,6 @@
             (import ./nixos/modules/overlay.nix { inherit (inputs) nixpkgs lgl-site uno-api calc-api; })
             # Add module that configures a generic monitor node
             (import ./nixos/vps1.nix { flake = self; inherit name; })
-            # agenix.nixosModules.default
-            # agenix-rekey.nixosModules.default
           ];
         };
       };
@@ -84,9 +83,6 @@
       let
         pkgs = import nixpkgs {
           inherit system;
-          # Some problems with opentofu so need to use `terraform` and it is
-          # no longer free as in speach
-          # config.allowUnfree = true;
           overlays = [ agenix-rekey.overlays.default ];
         };
       in
