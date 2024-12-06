@@ -25,6 +25,7 @@
 
     lgl-site.url = "git+ssh://git@github.com/linusfri/ladugardLive";
     uno-api.url = "github:linusfri/uno_api";
+    weland-wp.url = "git+ssh://git@bitbucket.org/bravomedia/weland-wp?rev=a6644b229151fc7b400ec8ad0f0a48d40d325f62";
     calc-api.url = "git+ssh://git@github.com/linusfri/calc_api";
   };
 
@@ -42,7 +43,7 @@
           inherit system;
           modules = [
             # Add module for local package overlays
-            (import ./nixos/modules/overlay.nix { inherit (inputs) nixpkgs lgl-site uno-api calc-api; })
+            (import ./nixos/modules/overlay.nix { inherit (inputs) nixpkgs lgl-site uno-api calc-api weland-wp; })
             # Add module that configures a generic monitor node
             (import ./nixos/vps1.nix { flake = self; inherit name; })
           ];
