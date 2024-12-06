@@ -1,4 +1,4 @@
-{ nixpkgs, lgl-site, uno-api, calc-api }:
+{ nixpkgs, lgl-site, uno-api, calc-api, weland-wp }:
 
 { ... }: {
   nixpkgs.overlays = [
