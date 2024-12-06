@@ -417,6 +417,22 @@
         "type": "github"
       }
     },
+    "nixpkgs_6": {
+      "locked": {
+        "lastModified": 1733392399,
+        "narHash": "sha256-kEsTJTUQfQFIJOcLYFt/RvNxIK653ZkTBIs4DG+cBns=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "d0797a04b81caeae77bcff10a9dde78bc17f5661",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "pre-commit-hooks": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -456,7 +472,8 @@
         "nixpkgs": "nixpkgs_4",
         "templates": "templates",
         "terraflake": "terraflake",
-        "uno-api": "uno-api"
+        "uno-api": "uno-api",
+        "weland-wp": "weland-wp"
       }
     },
     "systems": {
@@ -564,6 +581,21 @@
         "type": "github"
       }
     },
+    "systems_8": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
     "templates": {
       "locked": {
         "lastModified": 1732192810,
@@ -618,6 +650,44 @@
         "owner": "linusfri",
         "repo": "uno_api",
         "type": "github"
+      }
+    },
+    "utils": {
+      "inputs": {
+        "systems": "systems_8"
+      },
+      "locked": {
+        "lastModified": 1731533236,
+        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "weland-wp": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_6",
+        "utils": "utils"
+      },
+      "locked": {
+        "lastModified": 1733492624,
+        "narHash": "sha256-azZ4wehzG1BJH76WB3O8eASW4qc5yuUJTiq9ffqCis0=",
+        "ref": "refs/heads/master",
+        "rev": "a6644b229151fc7b400ec8ad0f0a48d40d325f62",
+        "revCount": 700,
+        "type": "git",
+        "url": "ssh://git@bitbucket.org/bravomedia/weland-wp"
+      },
+      "original": {
+        "rev": "a6644b229151fc7b400ec8ad0f0a48d40d325f62",
+        "type": "git",
+        "url": "ssh://git@bitbucket.org/bravomedia/weland-wp"
       }
     }
   },
