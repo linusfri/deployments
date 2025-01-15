@@ -1,6 +1,7 @@
 {
   nixConfig = {
     warn-dirty = false;
+    sandbox = "relaxed";
   };
 
   description = "Demo Terraflake deployment";
@@ -25,7 +26,7 @@
 
     lgl-site.url = "git+ssh://git@github.com/linusfri/ladugardLive";
     uno-api.url = "github:linusfri/uno_api";
-    weland-wp.url = "git+ssh://git@bitbucket.org/bravomedia/weland-wp?rev=a6644b229151fc7b400ec8ad0f0a48d40d325f62";
+    weland-wp.url = "git+ssh://git@bitbucket.org/bravomedia/weland-wp?rev=471d338d2f4584a9c31ed8c8fcc61b529d95a7e8";
     calc-api.url = "git+ssh://git@github.com/linusfri/calc_api";
   };
 

@@ -16,6 +16,7 @@ in
   users.users.${user} = {
     name = user;
     group = user;
+    extraGroups = [ "wheel" ];
     home = home;
     createHome = true;
     isSystemUser = true;
@@ -49,7 +50,9 @@ in
       "pm.min_spare_servers" = 1;
       "pm.max_spare_servers" = 10;
       "request_terminate_timeout" = 360;
-      "access.log" = "/dev/stderr";
+      "access.log" = "/var/log/${user}-phpfpm-access.log";
+      "php_admin_value[error_log]" = "/var/log/${user}-phpfpm-error.log";
+      "php_admin_flag[log_errors]" = true;
       "php_value[memory_limit]" = "512M";
     };
     phpEnv."PATH" = lib.makeBinPath [ pkgs.php ];
@@ -61,9 +64,10 @@ in
     virtualHosts."${node.domains.weland-wp}" = {
       enableACME = true;
       forceSSL = true;
-      root = "${pkgs.weland-wp}/public";
+      root = "${pkgs.weland-wp}/share/php/weland-wp/public";
 
       locations."/".extraConfig = ''
+        index index.php
         try_files $uri $uri/ /index.php$is_args$args;
       '';
 
