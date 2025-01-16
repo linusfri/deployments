@@ -11,6 +11,14 @@ let
   port = 80;
   sslPort = 443;
   home = "/var/lib/${user}";
+
+  createEnv = pkgs.writeShellScriptBin "create-env" ''
+    if [[ ! -d /var/lib/${appName} ]]; then
+      mkdir -p /var/lib/${appName}
+    fi
+  
+    cat ${config.age.secrets.weland-env.path} > /var/lib/${appName}/.env
+  '';
 in
 {
   users.users.${user} = {
@@ -51,12 +59,37 @@ in
       "pm.max_spare_servers" = 10;
       "request_terminate_timeout" = 360;
       "access.log" = "/var/log/${user}-phpfpm-access.log";
-      "php_admin_value[error_log]" = "/var/log/${user}-phpfpm-error.log";
+      "php_flag[display_errors]" = true;
+      "php_admin_value[error_log]" = "/var/log/phpfpm-error.log";
       "php_admin_flag[log_errors]" = true;
       "php_value[memory_limit]" = "512M";
+      "catch_workers_output" = true;
     };
-    phpEnv."PATH" = lib.makeBinPath [ pkgs.php ];
+    phpOptions = ''
+      display_errors = on
+      error_log = /var/log/phpfpm-error.log
+      error_reporting = E_ALL
+    '';
+    phpEnv = {
+      PATH = lib.makeBinPath [ pkgs.php ];
+      ENV_FILE = "/var/lib/${appName}";
+      WP_DEBUG = "true";
+      WP_ENV = "production";
+      WP_DEBUG_DISPLAY = "true";
+      DB_USER = "weland";
+      DB_NAME = "weland";
+      WP_DEBUG_LOG = "/var/log/debug-wp.log";
+      WP_HOME = "https://weland.friikod.se";
+      WP_SITEURL = "https://weland.friikod.se/wp";
+      UPLOADS = "/var/lib/${user}/uploads";
+      FS_METHOD = "direct";
+    };
   };
+
+  services.phpfpm.phpOptions = ''
+    display_errors = on;
+    error_log = /var/log/phpfpm-error.log
+  '';
 
   services.nginx = {
     enable = true;
@@ -71,7 +104,7 @@ in
         try_files $uri $uri/ /index.php$is_args$args;
       '';
 
-      locations."~ \\.php$".extraConfig = ''
+      locations."~ \.php$".extraConfig = ''
         fastcgi_pass unix:${config.services.phpfpm.pools.${appName}.socket};
         fastcgi_index index.php;
         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
@@ -100,5 +133,19 @@ in
         fastcgi_param HTTP_HOST $host:${toString sslPort};
       '';
     };
+  };
+
+  systemd.services.weland-env = {
+    description = "Creates an env file";
+    serviceConfig = {
+      ExecStart = "${createEnv}/bin/create-env";
+      Type = "simple";
+    };
+    wantedBy = [ "multi-user.target" ];
+  };
+
+  age.secrets.weland-env = {
+    rekeyFile = ../${node.name}/secrets/weland-env.age;
+    generator.script = "passphrase";
   };
 }

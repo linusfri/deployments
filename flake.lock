@@ -726,16 +726,16 @@
         "weland-wp": "weland-wp_2"
       },
       "locked": {
-        "lastModified": 1736874158,
-        "narHash": "sha256-vCGPtacnRg5ZnUsU+UT1+DYWTWWxMFLd8rZAv+PpOIc=",
-        "ref": "refs/heads/master",
-        "rev": "471d338d2f4584a9c31ed8c8fcc61b529d95a7e8",
-        "revCount": 708,
+        "lastModified": 1737047209,
+        "narHash": "sha256-ifI3OgReoypJq2votctTl61TUz/ICSIodax3lTmmfhk=",
+        "ref": "061fe42387dd1c5433557f00a6daf7d00cdb5745",
+        "rev": "78b203d5a0ee60105a781954b85e19b82ae2ff4f",
+        "revCount": 715,
         "type": "git",
         "url": "ssh://git@bitbucket.org/bravomedia/weland-wp"
       },
       "original": {
-        "rev": "471d338d2f4584a9c31ed8c8fcc61b529d95a7e8",
+        "rev": "78b203d5a0ee60105a781954b85e19b82ae2ff4f",
         "type": "git",
         "url": "ssh://git@bitbucket.org/bravomedia/weland-wp"
       }
