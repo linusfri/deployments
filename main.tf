@@ -7,7 +7,7 @@ module "vps1" {
   name          = "vps1"
   label         = "seed"
   ssh_key       = var.ssh_pub
-  size          = "s-1vcpu-2gb"
+  size          = "s-2vcpu-4gb"
   domains        = {
     "friikod" = "friikod.se",
     "ladugardlive" = "ladugardlive.se",

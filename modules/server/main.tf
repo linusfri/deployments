@@ -11,7 +11,7 @@ variable "label" {
 terraform {
   required_providers {
     digitalocean = {
-      source  = "registry.terraform.io/digitalocean/digitalocean"
+      source  = "digitalocean/digitalocean"
       version = "~> 2.0"
     }
   }
