@@ -26,7 +26,7 @@
 
     lgl-site.url = "git+ssh://git@github.com/linusfri/ladugardLive";
     uno-api.url = "github:linusfri/uno_api";
-    weland-wp.url = "git+ssh://git@bitbucket.org/bravomedia/weland-wp?rev=471d338d2f4584a9c31ed8c8fcc61b529d95a7e8";
+    weland-wp.url = "git+ssh://git@bitbucket.org/bravomedia/weland-wp?rev=78b203d5a0ee60105a781954b85e19b82ae2ff4f";
     calc-api.url = "git+ssh://git@github.com/linusfri/calc_api";
   };
 
