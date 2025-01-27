@@ -3,6 +3,7 @@ let
   inherit (config.terraflake.input) node nodes;
 
   lib = pkgs.lib;
+  rsync = pkgs.rsync;
 
   appName = "weland";
   user = "weland";
@@ -18,6 +19,27 @@ let
     fi
   
     cat ${config.age.secrets.weland-env.path} > /var/lib/${appName}/.env
+  '';
+
+  copyContentDir = pkgs.writeShellScriptBin "copy-content-dir" ''
+    CONTENT_DIR="/var/lib/${appName}/content"
+
+    # Do this only the first deploy
+    if [[ ! -d "$CONTENT_DIR" ]]; then
+      mkdir -p "$CONTENT_DIR"
+
+      ${rsync}/bin/rsync -rv ${pkgs.weland-wp}/share/php/weland-wp/public/content/ "$CONTENT_DIR"
+    fi
+
+    # Do this every following deploy after the first
+    ${rsync}/bin/rsync -rv ${pkgs.weland-wp}/share/php/weland-wp/public/content/plugins/ "$CONTENT_DIR"/plugins
+    ${rsync}/bin/rsync -rv ${pkgs.weland-wp}/share/php/weland-wp/packages/plugins/ "$CONTENT_DIR"/plugins
+    ${rsync}/bin/rsync -rv ${pkgs.weland-wp}/share/php/weland-wp/packages/themes/ "$CONTENT_DIR"/themes
+    ${rsync}/bin/rsync -rv ${pkgs.weland-wp}/share/php/weland-wp/packages/mu-plugins/ "$CONTENT_DIR"/mu-plugins
+    ${rsync}/bin/rsync -rv ${pkgs.weland-wp}/share/php/weland-wp/public/mu-plugins/ "$CONTENT_DIR"/mu-plugins
+    ${rsync}/bin/rsync -rv ${pkgs.weland-wp}/share/php/weland-wp/public/content/languages/ "$CONTENT_DIR"/languages
+
+    chown -R weland:weland "$CONTENT_DIR"
   '';
 in
 {
@@ -81,7 +103,7 @@ in
       WP_DEBUG_LOG = "/var/log/debug-wp.log";
       WP_HOME = "https://weland.friikod.se";
       WP_SITEURL = "https://weland.friikod.se/wp";
-      CONTENT_DIR = "/var/lib/${user}/content";
+      CONTENT_PATH = "/var/lib/${user}";
       FS_METHOD = "direct";
     };
   };
@@ -152,6 +174,15 @@ in
     description = "Creates an env file";
     serviceConfig = {
       ExecStart = "${createEnv}/bin/create-env";
+      Type = "simple";
+    };
+    wantedBy = [ "multi-user.target" ];
+  };
+
+  systemd.services.weland-content-dir = {
+    description = "Copies the project content folder to /var/lib";
+    serviceConfig = {
+      ExecStart = "${copyContentDir}/bin/copy-content-dir";
       Type = "simple";
     };
     wantedBy = [ "multi-user.target" ];
