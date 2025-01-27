@@ -11,6 +11,7 @@
     ./modules/db.nix
     ./clients/uno-api.nix
     ./clients/calc-api.nix
+    ./clients/weland-wp.nix
     ./vps1/rekey.nix
   ];
 

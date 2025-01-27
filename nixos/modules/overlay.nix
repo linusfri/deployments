@@ -1,4 +1,4 @@
-{ nixpkgs, lgl-site, uno-api, calc-api }:
+{ nixpkgs, lgl-site, uno-api, calc-api, weland-wp }:
 
 { ... }: {
   nixpkgs.overlays = [
@@ -14,6 +14,7 @@
         inherit (lgl-site.packages.${system}) ladugard-live;
         inherit (uno-api.packages.${system}) uno-api;
         inherit (calc-api.packages.${system}) calc-api;
+        inherit (weland-wp.packages.${system}) weland-wp;
       })
   ];
 }
