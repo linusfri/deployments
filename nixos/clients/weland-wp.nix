@@ -40,6 +40,7 @@ let
     ${rsync}/bin/rsync -rv ${pkgs.weland-wp}/share/php/weland-wp/public/content/languages/ "$CONTENT_DIR"/languages
 
     chown -R weland:weland "$CONTENT_DIR"
+    chmod -R 755 "$CONTENT_DIR"
   '';
 in
 {
@@ -155,12 +156,17 @@ in
         # fastcgi_param HTTP_HOST $host:${toString sslPort};
       '';
 
-      locations."~* \.(?:jpg|jpeg|gif|pdf|png|webp|ico|cur|gz|svg|mp4|mp3|ogg|ogv|webm|htc)$".extraConfig = ''
-        expires 1y;
-        access_log off;
-        add_header Access-Control-Allow-Origin *;
+      locations."/content/uploads/".extraConfig = ''
+        alias /var/lib/${appName}/content/uploads/;
         try_files $uri @production;
       '';
+
+      # locations."~* \.(?:jpg|jpeg|gif|pdf|png|webp|ico|cur|gz|svg|mp4|mp3|ogg|ogv|webm|htc)$".extraConfig = ''
+      #   expires 1y;
+      #   access_log off;
+      #   add_header Access-Control-Allow-Origin *;
+      #   try_files $uri @production;
+      # '';
 
       locations."@production".extraConfig = ''
         resolver 8.8.8.8;
