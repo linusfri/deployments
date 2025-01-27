@@ -436,22 +436,6 @@
         "type": "github"
       }
     },
-    "nixpkgs_7": {
-      "locked": {
-        "lastModified": 1733392399,
-        "narHash": "sha256-kEsTJTUQfQFIJOcLYFt/RvNxIK653ZkTBIs4DG+cBns=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "d0797a04b81caeae77bcff10a9dde78bc17f5661",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "pre-commit-hooks": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -581,21 +565,6 @@
         "type": "github"
       }
     },
-    "systems_7": {
-      "locked": {
-        "lastModified": 1681028828,
-        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
-        "owner": "nix-systems",
-        "repo": "default",
-        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-systems",
-        "repo": "default",
-        "type": "github"
-      }
-    },
     "templates": {
       "locked": {
         "lastModified": 1732872308,
@@ -691,59 +660,24 @@
         "type": "github"
       }
     },
-    "utils_2": {
-      "inputs": {
-        "systems": "systems_7"
-      },
-      "locked": {
-        "lastModified": 1731533236,
-        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "type": "github"
-      }
-    },
     "weland-wp": {
       "inputs": {
         "nixpkgs": "nixpkgs_6",
-        "utils": "utils",
-        "weland-wp": "weland-wp_2"
+        "utils": "utils"
       },
       "locked": {
-        "lastModified": 1737067047,
-        "narHash": "sha256-iZ5vzXHUgPrTTPGExRow56jLcRlSZyL1mHUNbGvHAmk=",
-        "ref": "refs/heads/master",
-        "rev": "df9a7a81da6e7565997c2920dc2698bf25c13194",
-        "revCount": 718,
+        "lastModified": 1737995798,
+        "narHash": "sha256-TY9Df5leWheCkjI/097eBUjtUh+vPWRFM2EAL/0h/+Y=",
+        "ref": "061fe42387dd1c5433557f00a6daf7d00cdb5745",
+        "rev": "48e6374100073565f7a74a93da4a235117c9a189",
+        "revCount": 723,
         "type": "git",
         "url": "ssh://git@bitbucket.org/bravomedia/weland-wp"
       },
       "original": {
-        "rev": "df9a7a81da6e7565997c2920dc2698bf25c13194",
+        "rev": "48e6374100073565f7a74a93da4a235117c9a189",
         "type": "git",
         "url": "ssh://git@bitbucket.org/bravomedia/weland-wp"
-      }
-    },
-    "weland-wp_2": {
-      "inputs": {
-        "nixpkgs": "nixpkgs_7",
-        "utils": "utils_2"
-      },
-      "locked": {
-        "lastModified": 1736863995,
-        "narHash": "sha256-EroW4yEMMqwRxi6w9B2vFvmKSI25/8G3HTbU7B1pDaE=",
-        "type": "tarball",
-        "url": "https://api.bitbucket.org/2.0/repositories/bravomedia/weland-wp/downloads/weland-wp.zip"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://api.bitbucket.org/2.0/repositories/bravomedia/weland-wp/downloads/weland-wp.zip"
       }
     }
   },
