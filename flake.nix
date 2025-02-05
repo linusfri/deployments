@@ -30,7 +30,7 @@
 
     # Bravo
     weland-wp.url = "git+ssh://git@bitbucket.org/bravomedia/weland-wp?rev=48e6374100073565f7a74a93da4a235117c9a189";
-    caravanclub-wp.url = "git+ssh://git@bitbucket.org/bravomedia/caravanclub?rev=270406a461f142b2e8d4f9d3db866ecb467e9f07";
+    caravanclub-wp.url = "git+ssh://git@bitbucket.org/bravomedia/caravanclub?rev=eb917db102cd66ab2f1f5b9eb072674bbf489f97";
   };
 
   outputs =

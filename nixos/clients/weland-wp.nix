@@ -115,7 +115,6 @@ in
   '';
 
   services.nginx = {
-    inherit user;
     virtualHosts."${node.domains.weland-wp}" = {
       enableACME = true;
       forceSSL = true;

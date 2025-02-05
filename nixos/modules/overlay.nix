@@ -24,7 +24,7 @@
         inherit (uno-api.packages.${system}) uno-api;
         inherit (calc-api.packages.${system}) calc-api;
         inherit (weland-wp.packages.${system}) weland-wp;
-        inherit (caravanclub-wp.packages.${system}) caravanclub;
+        inherit (caravanclub-wp.packages.${system}) caravanclub-wp;
       }
     )
   ];

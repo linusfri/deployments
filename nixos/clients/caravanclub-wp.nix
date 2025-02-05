@@ -96,11 +96,10 @@ in
     phpEnv = {
       PATH = lib.makeBinPath [ pkgs.php ];
       ENV_FILE = "/var/lib/${appName}";
-      WP_DEBUG = "true";
-      WP_ENV = "staging";
-      SAVEQUERIES = true;
-      CC_LOGIN_LOG = false;
-
+      # WP_DEBUG = "true";
+      # WP_ENV = "staging";
+      # SAVEQUERIES = "true";
+      # CC_LOGIN_LOG = "false";
       WP_DEBUG_DISPLAY = "true";
       DB_USER = "caravanclub";
       DB_NAME = "caravanclub";
@@ -119,7 +118,6 @@ in
   '';
 
   services.nginx = {
-    inherit user;
     virtualHosts."${node.domains.caravanclub-wp}" = {
       enableACME = true;
       forceSSL = true;
