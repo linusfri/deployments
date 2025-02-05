@@ -70,16 +70,16 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1738776265,
-        "narHash": "sha256-C+R9ZdJenm2I7zDlbcmx/U2Wt5oA18xQy+ztcweosL4=",
-        "ref": "d213d088e4dffd50b0c20f891f3d656a5b956b5f",
-        "rev": "270406a461f142b2e8d4f9d3db866ecb467e9f07",
-        "revCount": 1950,
+        "lastModified": 1738782930,
+        "narHash": "sha256-SqER2jghAZbvziqBed+zjbXm3p8nP+eveQOvjxQeVPc=",
+        "ref": "270406a461f142b2e8d4f9d3db866ecb467e9f07",
+        "rev": "eb917db102cd66ab2f1f5b9eb072674bbf489f97",
+        "revCount": 1952,
         "type": "git",
         "url": "ssh://git@bitbucket.org/bravomedia/caravanclub"
       },
       "original": {
-        "rev": "270406a461f142b2e8d4f9d3db866ecb467e9f07",
+        "rev": "eb917db102cd66ab2f1f5b9eb072674bbf489f97",
         "type": "git",
         "url": "ssh://git@bitbucket.org/bravomedia/caravanclub"
       }

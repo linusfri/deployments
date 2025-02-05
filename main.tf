@@ -13,7 +13,8 @@ module "vps1" {
     "ladugardlive" = "ladugardlive.se",
     "uno-api" = "unoapi.friikod.se",
     "calc-api" = "calc.friikod.se",
-    "weland-wp" = "weland.friikod.se"
+    "weland-wp" = "weland.friikod.se",
+    "caravanclub-wp" = "caravanclub.friikod.se"
   }
 }
 
@@ -21,7 +22,7 @@ module "dns_friikod_se" {
   source     = "./modules/dns"
   account_id = var.cloudflare_id
   domain     = "friikod.se"
-  subdomains = ["www", "unoapi", "calc", "weland"]
+  subdomains = ["www", "unoapi", "calc", "weland", "caravanclub"]
   ip = module.vps1.node.ip
   # ip6 = module.server.nodes.ip6
 }
