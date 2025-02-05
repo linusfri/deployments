@@ -26,11 +26,24 @@
 
     lgl-site.url = "git+ssh://git@github.com/linusfri/ladugardLive";
     uno-api.url = "github:linusfri/uno_api";
-    weland-wp.url = "git+ssh://git@bitbucket.org/bravomedia/weland-wp?rev=48e6374100073565f7a74a93da4a235117c9a189";
     calc-api.url = "git+ssh://git@github.com/linusfri/calc_api";
+
+    # Bravo
+    weland-wp.url = "git+ssh://git@bitbucket.org/bravomedia/weland-wp?rev=48e6374100073565f7a74a93da4a235117c9a189";
+    caravanclub-wp.url = "git+ssh://git@bitbucket.org/bravomedia/caravanclub?rev=270406a461f142b2e8d4f9d3db866ecb467e9f07";
   };
 
-  outputs = { self, nixpkgs, nixos, flake-utils, terraflake, agenix, agenix-rekey, ... }@inputs:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      nixos,
+      flake-utils,
+      terraflake,
+      agenix,
+      agenix-rekey,
+      ...
+    }@inputs:
     let
       tfvars = nixpkgs.lib.importJSON ./terraform.tfvars.json;
       # Architecture of the nodes
@@ -44,9 +57,21 @@
           inherit system;
           modules = [
             # Add module for local package overlays
-            (import ./nixos/modules/overlay.nix { inherit (inputs) nixpkgs lgl-site uno-api calc-api weland-wp; })
+            (import ./nixos/modules/overlay.nix {
+              inherit (inputs)
+                nixpkgs
+                lgl-site
+                uno-api
+                calc-api
+                weland-wp
+                caravanclub-wp
+                ;
+            })
             # Add module that configures a generic monitor node
-            (import ./nixos/vps1.nix { flake = self; inherit name; })
+            (import ./nixos/vps1.nix {
+              flake = self;
+              inherit name;
+            })
           ];
         };
       };
@@ -60,19 +85,21 @@
             modules = [
               agenix.nixosModules.default
               agenix-rekey.nixosModules.default
-              ({ config, ... }:
-              let
-                name = "tofu-tokens";
-              in
-              {
-                age.rekey = {
-                  hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAf9Wqvahm9Fm2twattmjSccCLsqpqMHrIft868NWaAd";
-                  masterIdentities = import ./secrets/master-identity.nix;
-                  storageMode = "local";
-                  localStorageDir = ./. + "/secrets/rekeyed/${name}";
-                };
-                age.secrets.tokens.rekeyFile = ./secrets/${name}/tokens.json.age;
-              })
+              (
+                { config, ... }:
+                let
+                  name = "tofu-tokens";
+                in
+                {
+                  age.rekey = {
+                    hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAf9Wqvahm9Fm2twattmjSccCLsqpqMHrIft868NWaAd";
+                    masterIdentities = import ./secrets/master-identity.nix;
+                    storageMode = "local";
+                    localStorageDir = ./. + "/secrets/rekeyed/${name}";
+                  };
+                  age.secrets.tokens.rekeyFile = ./secrets/${name}/tokens.json.age;
+                }
+              )
             ];
           };
         };
@@ -81,7 +108,8 @@
       };
     }
 
-    // (flake-utils.lib.eachDefaultSystem (system:
+    // (flake-utils.lib.eachDefaultSystem (
+      system:
       let
         pkgs = import nixpkgs {
           inherit system;
