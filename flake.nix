@@ -29,8 +29,8 @@
     calc-api.url = "git+ssh://git@github.com/linusfri/calc_api";
 
     # Bravo
-    weland-wp.url = "git+ssh://git@bitbucket.org/bravomedia/weland-wp?rev=48e6374100073565f7a74a93da4a235117c9a189";
-    caravanclub-wp.url = "git+ssh://git@bitbucket.org/bravomedia/caravanclub?rev=eb917db102cd66ab2f1f5b9eb072674bbf489f97";
+    weland-wp.url = "git+ssh://git@bitbucket.org/bravomedia/weland-wp?rev=a267d157e3f44521cadac5a94b955449b72aa515";
+    caravanclub-wp.url = "git+ssh://git@bitbucket.org/bravomedia/caravanclub?rev=0b16f64f4ed729bc3af8d4e2fbcfdb79550f8ef7";
   };
 
   outputs =

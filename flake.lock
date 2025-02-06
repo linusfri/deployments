@@ -70,16 +70,16 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1738782930,
-        "narHash": "sha256-SqER2jghAZbvziqBed+zjbXm3p8nP+eveQOvjxQeVPc=",
-        "ref": "270406a461f142b2e8d4f9d3db866ecb467e9f07",
-        "rev": "eb917db102cd66ab2f1f5b9eb072674bbf489f97",
-        "revCount": 1952,
+        "lastModified": 1738839170,
+        "narHash": "sha256-NbTMwe/E3O78g/q6WYlOb+6bBj0o3i1BXU6It5PMy+8=",
+        "ref": "refs/heads/master",
+        "rev": "0b16f64f4ed729bc3af8d4e2fbcfdb79550f8ef7",
+        "revCount": 1954,
         "type": "git",
         "url": "ssh://git@bitbucket.org/bravomedia/caravanclub"
       },
       "original": {
-        "rev": "eb917db102cd66ab2f1f5b9eb072674bbf489f97",
+        "rev": "0b16f64f4ed729bc3af8d4e2fbcfdb79550f8ef7",
         "type": "git",
         "url": "ssh://git@bitbucket.org/bravomedia/caravanclub"
       }
@@ -736,16 +736,16 @@
         "utils": "utils_2"
       },
       "locked": {
-        "lastModified": 1737995798,
-        "narHash": "sha256-TY9Df5leWheCkjI/097eBUjtUh+vPWRFM2EAL/0h/+Y=",
-        "ref": "061fe42387dd1c5433557f00a6daf7d00cdb5745",
-        "rev": "48e6374100073565f7a74a93da4a235117c9a189",
-        "revCount": 723,
+        "lastModified": 1738832419,
+        "narHash": "sha256-4bd58LkhUaIcKX+axuMbeftbfTuOwwRoHe7pl5OpgTY=",
+        "ref": "3fdbfaf2c6ddb77d4665b8e776b03027fa8b1325",
+        "rev": "a267d157e3f44521cadac5a94b955449b72aa515",
+        "revCount": 725,
         "type": "git",
         "url": "ssh://git@bitbucket.org/bravomedia/weland-wp"
       },
       "original": {
-        "rev": "48e6374100073565f7a74a93da4a235117c9a189",
+        "rev": "a267d157e3f44521cadac5a94b955449b72aa515",
         "type": "git",
         "url": "ssh://git@bitbucket.org/bravomedia/weland-wp"
       }

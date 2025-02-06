@@ -95,7 +95,7 @@ in
     '';
     phpEnv = {
       PATH = lib.makeBinPath [ pkgs.php ];
-      ENV_FILE = "/var/lib/${appName}";
+      ENV_FILE_PATH = "/var/lib/${appName}";
       WP_DEBUG = "true";
       WP_ENV = "production";
       WP_DEBUG_DISPLAY = "true";
