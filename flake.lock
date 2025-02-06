@@ -70,16 +70,16 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1738839170,
-        "narHash": "sha256-NbTMwe/E3O78g/q6WYlOb+6bBj0o3i1BXU6It5PMy+8=",
+        "lastModified": 1738851248,
+        "narHash": "sha256-IzCIkIyD9Szp1RegOPIcONukR4tLUupaR8ZcZZxe+Tc=",
         "ref": "refs/heads/master",
-        "rev": "0b16f64f4ed729bc3af8d4e2fbcfdb79550f8ef7",
-        "revCount": 1954,
+        "rev": "61df038faac3861c01bd21ff87a3bfa8aa3880c5",
+        "revCount": 1955,
         "type": "git",
         "url": "ssh://git@bitbucket.org/bravomedia/caravanclub"
       },
       "original": {
-        "rev": "0b16f64f4ed729bc3af8d4e2fbcfdb79550f8ef7",
+        "rev": "61df038faac3861c01bd21ff87a3bfa8aa3880c5",
         "type": "git",
         "url": "ssh://git@bitbucket.org/bravomedia/caravanclub"
       }
@@ -395,16 +395,15 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1738410390,
-        "narHash": "sha256-xvTo0Aw0+veek7hvEVLzErmJyQkEcRk6PSR4zsRQFEc=",
-        "owner": "nixos",
+        "lastModified": 1738850950,
+        "narHash": "sha256-4NpR0VU+20AH7sbDjS3Ib4GMXG1eaBE68rmihEqXpcQ=",
+        "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "3a228057f5b619feb3186e986dbe76278d707b6e",
+        "rev": "807d4c28caa66f2bef133054155e9c367b981e20",
         "type": "github"
       },
       "original": {
-        "owner": "nixos",
-        "ref": "nixos-unstable",
+        "owner": "NixOS",
         "repo": "nixpkgs",
         "type": "github"
       }
