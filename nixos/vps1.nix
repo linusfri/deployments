@@ -6,16 +6,11 @@
     flake.inputs.agenix.nixosModules.default
     flake.inputs.agenix-rekey.nixosModules.default
     flake.inputs.arion.nixosModules.arion
-    # flake.inputs.templates.nixosModules.mysql // Common services not yet compatible
     ./modules/common.nix
     ./modules/www.nix
     ./modules/db.nix
     ./clients/uno-api.nix
     ./clients/calc-api.nix
-    ./clients/weland-wp.nix
-    ./clients/caravanclub-wp.nix
-    ./clients/meilisearch.nix
-    ./clients/verdaccio.nix
     ./vps1/rekey.nix
   ];
 
