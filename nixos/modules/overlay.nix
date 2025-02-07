@@ -5,6 +5,7 @@
   calc-api,
   weland-wp,
   caravanclub-wp,
+  verdaccio-config
 }:
 
 { ... }:
@@ -25,6 +26,7 @@
         inherit (calc-api.packages.${system}) calc-api;
         inherit (weland-wp.packages.${system}) weland-wp;
         inherit (caravanclub-wp.packages.${system}) caravanclub-wp;
+        inherit verdaccio-config;
       }
     )
   ];

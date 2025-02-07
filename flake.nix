@@ -10,13 +10,16 @@
     nixpkgs.url = "github:NixOS/nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
 
-    terraflake.url = "github:icetan/nixiform/terraflake";
+    terraflake.url = "github:icetan/nixiform/terraflake-darwin-input-drv-fix";
     terraflake.inputs.nixpkgs.follows = "nixpkgs";
 
     # Encryption for secrets
     agenix.url = "github:ryantm/agenix";
     agenix-rekey.url = "github:oddlama/agenix-rekey";
     agenix-rekey.inputs.nixpkgs.follows = "nixpkgs";
+
+    # Arion
+    arion.url = "github:hercules-ci/arion";
 
     # Bravomedia service templates
     templates.url = "git+ssh://git@bitbucket.org/bravomedia/templates";
@@ -27,6 +30,10 @@
     lgl-site.url = "git+ssh://git@github.com/linusfri/ladugardLive";
     uno-api.url = "github:linusfri/uno_api";
     calc-api.url = "git+ssh://git@github.com/linusfri/calc_api";
+    verdaccio-config = {
+      url = "git+ssh://git@bitbucket.org/bravomedia/verdaccio-config";
+      flake = false;
+    };
 
     # Bravo
     weland-wp.url = "git+ssh://git@bitbucket.org/bravomedia/weland-wp?rev=a267d157e3f44521cadac5a94b955449b72aa515";
@@ -65,6 +72,7 @@
                 calc-api
                 weland-wp
                 caravanclub-wp
+                verdaccio-config
                 ;
             })
             # Add module that configures a generic monitor node
