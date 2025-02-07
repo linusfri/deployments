@@ -5,10 +5,10 @@ let
   lib = pkgs.lib;
   rsync = pkgs.rsync;
 
-  appName = "weland";
-  user = "weland";
-  dbName = "weland";
-  serverName = "weland.friikod.se";
+  appName = "wordpress";
+  user = "wordpress";
+  dbName = "wordpress";
+  serverName = "wordpress.friikod.se";
   port = 80;
   sslPort = 443;
   home = "/var/lib/${user}";
@@ -18,7 +18,7 @@ let
       mkdir -p /var/lib/${appName}
     fi
   
-    cat ${config.age.secrets.weland-env.path} > /var/lib/${appName}/.env
+    cat ${config.age.secrets.wordpress-env.path} > /var/lib/${appName}/.env
   '';
 
   copyContentDir = pkgs.writeShellScriptBin "copy-content-dir" ''
@@ -28,18 +28,18 @@ let
     if [[ ! -d "$CONTENT_DIR" ]]; then
       mkdir -p "$CONTENT_DIR"
 
-      ${rsync}/bin/rsync -rv ${pkgs.weland-wp}/share/php/weland-wp/public/content/ "$CONTENT_DIR"
+      ${rsync}/bin/rsync -rv ${pkgs.wordpress-wp}/share/php/wordpress-wp/public/content/ "$CONTENT_DIR"
     fi
 
     # Do this every following deploy after the first
-    ${rsync}/bin/rsync -rv ${pkgs.weland-wp}/share/php/weland-wp/public/content/plugins/ "$CONTENT_DIR"/plugins
-    ${rsync}/bin/rsync -rv ${pkgs.weland-wp}/share/php/weland-wp/packages/plugins/ "$CONTENT_DIR"/plugins
-    ${rsync}/bin/rsync -rv ${pkgs.weland-wp}/share/php/weland-wp/packages/themes/ "$CONTENT_DIR"/themes
-    ${rsync}/bin/rsync -rv ${pkgs.weland-wp}/share/php/weland-wp/packages/mu-plugins/ "$CONTENT_DIR"/mu-plugins
-    ${rsync}/bin/rsync -rv ${pkgs.weland-wp}/share/php/weland-wp/public/mu-plugins/ "$CONTENT_DIR"/mu-plugins
-    ${rsync}/bin/rsync -rv ${pkgs.weland-wp}/share/php/weland-wp/public/content/languages/ "$CONTENT_DIR"/languages
+    ${rsync}/bin/rsync -rv ${pkgs.wordpress-wp}/share/php/wordpress-wp/public/content/plugins/ "$CONTENT_DIR"/plugins
+    ${rsync}/bin/rsync -rv ${pkgs.wordpress-wp}/share/php/wordpress-wp/packages/plugins/ "$CONTENT_DIR"/plugins
+    ${rsync}/bin/rsync -rv ${pkgs.wordpress-wp}/share/php/wordpress-wp/packages/themes/ "$CONTENT_DIR"/themes
+    ${rsync}/bin/rsync -rv ${pkgs.wordpress-wp}/share/php/wordpress-wp/packages/mu-plugins/ "$CONTENT_DIR"/mu-plugins
+    ${rsync}/bin/rsync -rv ${pkgs.wordpress-wp}/share/php/wordpress-wp/public/mu-plugins/ "$CONTENT_DIR"/mu-plugins
+    ${rsync}/bin/rsync -rv ${pkgs.wordpress-wp}/share/php/wordpress-wp/public/content/languages/ "$CONTENT_DIR"/languages
 
-    chown -R weland:weland "$CONTENT_DIR"
+    chown -R wordpress:wordpress "$CONTENT_DIR"
     chmod -R 755 "$CONTENT_DIR"
   '';
 in
@@ -99,11 +99,11 @@ in
       WP_DEBUG = "true";
       WP_ENV = "production";
       WP_DEBUG_DISPLAY = "true";
-      DB_USER = "weland";
-      DB_NAME = "weland";
+      DB_USER = "wordpress";
+      DB_NAME = "wordpress";
       WP_DEBUG_LOG = "/var/log/debug-wp.log";
-      WP_HOME = "https://weland.friikod.se";
-      WP_SITEURL = "https://weland.friikod.se/wp";
+      WP_HOME = "https://wordpress.friikod.se";
+      WP_SITEURL = "https://wordpress.friikod.se/wp";
       CONTENT_PATH = "/var/lib/${user}";
       FS_METHOD = "direct";
     };
@@ -115,11 +115,11 @@ in
   '';
 
   services.nginx = {
-    virtualHosts."${node.domains.weland-wp}" = {
+    virtualHosts."${node.domains.wordpress-wp}" = {
       enableACME = true;
       forceSSL = true;
-      root = "${pkgs.weland-wp}/share/php/weland-wp/public";
-      basicAuth = { welandstal = "welandstal"; };
+      root = "${pkgs.wordpress-wp}/share/php/wordpress-wp/public";
+      basicAuth = { wordpress = "wordpress"; };
 
       locations."/".extraConfig = ''
         index index.php;
@@ -170,12 +170,12 @@ in
       locations."@production".extraConfig = ''
         resolver 8.8.8.8;
         proxy_ssl_server_name on;
-        proxy_pass https://www.welandstal.se;
+        proxy_pass https://www.wordpress.se;
       '';
     };
   };
 
-  systemd.services.weland-env = {
+  systemd.services.wordpress-env = {
     description = "Creates an env file";
     serviceConfig = {
       ExecStart = "${createEnv}/bin/create-env";
@@ -184,7 +184,7 @@ in
     wantedBy = [ "multi-user.target" ];
   };
 
-  systemd.services.weland-content-dir = {
+  systemd.services.wordpress-content-dir = {
     description = "Copies the project content folder to /var/lib";
     serviceConfig = {
       ExecStart = "${copyContentDir}/bin/copy-content-dir";
@@ -193,8 +193,8 @@ in
     wantedBy = [ "multi-user.target" ];
   };
 
-  age.secrets.weland-env = {
-    rekeyFile = ../${node.name}/secrets/weland-env.age;
+  age.secrets.wordpress-env = {
+    rekeyFile = ../${node.name}/secrets/wordpress-env.age;
     generator.script = "passphrase";
   };
 }

@@ -84,26 +84,6 @@
         "url": "ssh://git@github.com/linusfri/calc_api"
       }
     },
-    "caravanclub-wp": {
-      "inputs": {
-        "nixpkgs": "nixpkgs_4",
-        "utils": "utils"
-      },
-      "locked": {
-        "lastModified": 1738851248,
-        "narHash": "sha256-IzCIkIyD9Szp1RegOPIcONukR4tLUupaR8ZcZZxe+Tc=",
-        "ref": "refs/heads/master",
-        "rev": "61df038faac3861c01bd21ff87a3bfa8aa3880c5",
-        "revCount": 1955,
-        "type": "git",
-        "url": "ssh://git@bitbucket.org/bravomedia/caravanclub"
-      },
-      "original": {
-        "rev": "61df038faac3861c01bd21ff87a3bfa8aa3880c5",
-        "type": "git",
-        "url": "ssh://git@bitbucket.org/bravomedia/caravanclub"
-      }
-    },
     "darwin": {
       "inputs": {
         "nixpkgs": [
@@ -225,7 +205,7 @@
     },
     "flake-utils_2": {
       "inputs": {
-        "systems": "systems_4"
+        "systems": "systems_3"
       },
       "locked": {
         "lastModified": 1731533236,
@@ -243,7 +223,7 @@
     },
     "flake-utils_3": {
       "inputs": {
-        "systems": "systems_5"
+        "systems": "systems_4"
       },
       "locked": {
         "lastModified": 1726560853,
@@ -276,7 +256,7 @@
     },
     "flake-utils_5": {
       "inputs": {
-        "systems": "systems_6"
+        "systems": "systems_5"
       },
       "locked": {
         "lastModified": 1726560853,
@@ -355,7 +335,7 @@
       "inputs": {
         "flake-utils": "flake-utils_3",
         "nix-filter": "nix-filter",
-        "nixpkgs": "nixpkgs_5"
+        "nixpkgs": "nixpkgs_4"
       },
       "locked": {
         "lastModified": 1730992496,
@@ -468,21 +448,6 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1738850950,
-        "narHash": "sha256-4NpR0VU+20AH7sbDjS3Ib4GMXG1eaBE68rmihEqXpcQ=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "807d4c28caa66f2bef133054155e9c367b981e20",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_5": {
-      "locked": {
         "lastModified": 1729665710,
         "narHash": "sha256-AlcmCXJZPIlO5dmFzV3V2XF6x/OpNWUV8Y/FMPGd8Z4=",
         "owner": "nixos",
@@ -497,7 +462,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_6": {
+    "nixpkgs_5": {
       "locked": {
         "lastModified": 1737056198,
         "narHash": "sha256-beWffI/WQ5uRmsW+0AJElD8Srvv5EeHkBSGkgHlRWvM=",
@@ -512,29 +477,13 @@
         "type": "github"
       }
     },
-    "nixpkgs_7": {
+    "nixpkgs_6": {
       "locked": {
         "lastModified": 1727802920,
         "narHash": "sha256-HP89HZOT0ReIbI7IJZJQoJgxvB2Tn28V6XS3MNKnfLs=",
         "owner": "nixos",
         "repo": "nixpkgs",
         "rev": "27e30d177e57d912d614c88c622dcfdb2e6e6515",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_8": {
-      "locked": {
-        "lastModified": 1733392399,
-        "narHash": "sha256-kEsTJTUQfQFIJOcLYFt/RvNxIK653ZkTBIs4DG+cBns=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "d0797a04b81caeae77bcff10a9dde78bc17f5661",
         "type": "github"
       },
       "original": {
@@ -574,16 +523,13 @@
         "agenix-rekey": "agenix-rekey",
         "arion": "arion",
         "calc-api": "calc-api",
-        "caravanclub-wp": "caravanclub-wp",
         "flake-utils": "flake-utils_2",
         "lgl-site": "lgl-site",
         "nixos": "nixos",
-        "nixpkgs": "nixpkgs_6",
+        "nixpkgs": "nixpkgs_5",
         "templates": "templates",
         "terraflake": "terraflake",
-        "uno-api": "uno-api",
-        "verdaccio-config": "verdaccio-config",
-        "weland-wp": "weland-wp"
+        "uno-api": "uno-api"
       }
     },
     "systems": {
@@ -661,36 +607,6 @@
         "type": "github"
       }
     },
-    "systems_6": {
-      "locked": {
-        "lastModified": 1681028828,
-        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
-        "owner": "nix-systems",
-        "repo": "default",
-        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-systems",
-        "repo": "default",
-        "type": "github"
-      }
-    },
-    "systems_7": {
-      "locked": {
-        "lastModified": 1681028828,
-        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
-        "owner": "nix-systems",
-        "repo": "default",
-        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-systems",
-        "repo": "default",
-        "type": "github"
-      }
-    },
     "templates": {
       "locked": {
         "lastModified": 1732872308,
@@ -714,17 +630,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1738932505,
-        "narHash": "sha256-OFqUkWc0lMZ7THpqbu7k9jgoMfh80QV/GszbvS9nye8=",
+        "lastModified": 1730121382,
+        "narHash": "sha256-MpXjvtWumipkAp/Elok6RUtdE3Fv/mjavMkbHrPtjmI=",
         "owner": "icetan",
         "repo": "nixiform",
-        "rev": "2d0c1819d7baf4ec8dd46a61c7362c676ec54819",
+        "rev": "1e237a2d806cd303ef308626a6a63ae963bbe056",
         "type": "github"
       },
       "original": {
         "owner": "icetan",
-        "ref": "terraflake-darwin-input-drv-fix",
         "repo": "nixiform",
+        "rev": "1e237a2d806cd303ef308626a6a63ae963bbe056",
         "type": "github"
       }
     },
@@ -752,7 +668,7 @@
     "uno-api": {
       "inputs": {
         "flake-utils": "flake-utils_5",
-        "nixpkgs": "nixpkgs_7"
+        "nixpkgs": "nixpkgs_6"
       },
       "locked": {
         "lastModified": 1732047637,
@@ -766,78 +682,6 @@
         "owner": "linusfri",
         "repo": "uno_api",
         "type": "github"
-      }
-    },
-    "utils": {
-      "inputs": {
-        "systems": "systems_3"
-      },
-      "locked": {
-        "lastModified": 1731533236,
-        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "type": "github"
-      }
-    },
-    "utils_2": {
-      "inputs": {
-        "systems": "systems_7"
-      },
-      "locked": {
-        "lastModified": 1731533236,
-        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "type": "github"
-      }
-    },
-    "verdaccio-config": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1738932052,
-        "narHash": "sha256-wWHwkT3bA6ojVjMzMNLclK72PVQ7zg0zRdbksKFEy1c=",
-        "ref": "refs/heads/master",
-        "rev": "6104ae6018dd44c17b36d8edaae72707ceb62545",
-        "revCount": 3,
-        "type": "git",
-        "url": "ssh://git@bitbucket.org/bravomedia/verdaccio-config"
-      },
-      "original": {
-        "type": "git",
-        "url": "ssh://git@bitbucket.org/bravomedia/verdaccio-config"
-      }
-    },
-    "weland-wp": {
-      "inputs": {
-        "nixpkgs": "nixpkgs_8",
-        "utils": "utils_2"
-      },
-      "locked": {
-        "lastModified": 1738832419,
-        "narHash": "sha256-4bd58LkhUaIcKX+axuMbeftbfTuOwwRoHe7pl5OpgTY=",
-        "ref": "3fdbfaf2c6ddb77d4665b8e776b03027fa8b1325",
-        "rev": "a267d157e3f44521cadac5a94b955449b72aa515",
-        "revCount": 725,
-        "type": "git",
-        "url": "ssh://git@bitbucket.org/bravomedia/weland-wp"
-      },
-      "original": {
-        "rev": "a267d157e3f44521cadac5a94b955449b72aa515",
-        "type": "git",
-        "url": "ssh://git@bitbucket.org/bravomedia/weland-wp"
       }
     }
   },
