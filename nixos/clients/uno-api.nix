@@ -39,9 +39,12 @@ in
     virtualHosts."${node.domains.uno-api}" = {
       enableACME = true;
       forceSSL = true;
-      locations."/" = {
-        proxyPass = "http://localhost:8080";
+      locations = {
+        "/" = {
+          proxyPass = "http://localhost:8080";
+        };
       };
+
     };
   };
 
