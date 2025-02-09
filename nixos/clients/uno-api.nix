@@ -35,19 +35,6 @@ in
     ];
   };
 
-  services.nginx = {
-    virtualHosts."${node.domains.uno-api}" = {
-      enableACME = true;
-      forceSSL = true;
-      locations = {
-        "/" = {
-          proxyPass = "http://localhost:8080";
-        };
-      };
-
-    };
-  };
-
   systemd.services.uno-api = {
     enable = true;
     description = "uno-api";

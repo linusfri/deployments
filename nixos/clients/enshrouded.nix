@@ -47,9 +47,4 @@ in
     };
     wantedBy = [ "multi-user.target" ];
   };
-
-  networking.firewall.allowedUDPPorts = [
-    15636
-    15637
-  ];
 }
