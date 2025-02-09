@@ -32,11 +32,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1736429053,
-        "narHash": "sha256-luGqUO7XJKGMO65+xD2xWxr4bsHWATbdFo6JUQIEzrI=",
+        "lastModified": 1738758381,
+        "narHash": "sha256-cNEfY2a6amDIMHNcgiBDqwUHg+vA2C9evIeLHb+AVDI=",
         "owner": "oddlama",
         "repo": "agenix-rekey",
-        "rev": "8cd512cc5324de73de9bd47d85c15afb4fee3d9c",
+        "rev": "2df379f6fec3ecc4190e1778b29a3eceef86d546",
         "type": "github"
       },
       "original": {
@@ -338,11 +338,11 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1730992496,
-        "narHash": "sha256-RLsbU0KGzd7p0nDkjXMkLrfPOEqtMia4Ac0Gs2Ty2bE=",
+        "lastModified": 1739100376,
+        "narHash": "sha256-0xIdylAWCuLTXRGZnQe2q+Od1PdykvmBFBtl9BP2Oe8=",
         "ref": "refs/heads/master",
-        "rev": "5844da508eca6369f2d4f21865877f543ef5ff07",
-        "revCount": 35,
+        "rev": "e8906537eb70ca4b9915d566b328dc918d4db1d7",
+        "revCount": 36,
         "type": "git",
         "url": "ssh://git@github.com/linusfri/ladugardLive"
       },
@@ -368,11 +368,11 @@
     },
     "nixos": {
       "locked": {
-        "lastModified": 1737054156,
-        "narHash": "sha256-d+95MVu/V682Ri1KxCLIV0Ce1YkHT5/PUvp++W3CmdM=",
+        "lastModified": 1739100151,
+        "narHash": "sha256-MRaYu+VbsjQdHih+wC+LCnrIHTpfwsmN4YN7WMeTXwU=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "34c4a7cbc79c8fecbc25fdeeb497323e7b1956ed",
+        "rev": "fbdc0684cb74e3cecec94804b56d06b472d51a41",
         "type": "github"
       },
       "original": {
@@ -394,22 +394,6 @@
       "original": {
         "owner": "NixOS",
         "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs-stable": {
-      "locked": {
-        "lastModified": 1730741070,
-        "narHash": "sha256-edm8WG19kWozJ/GqyYx2VjW99EdhjKwbY3ZwdlPAAlo=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "d063c1dd113c91ab27959ba540c0d9753409edf3",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-24.05",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -464,11 +448,11 @@
     },
     "nixpkgs_5": {
       "locked": {
-        "lastModified": 1737056198,
-        "narHash": "sha256-beWffI/WQ5uRmsW+0AJElD8Srvv5EeHkBSGkgHlRWvM=",
+        "lastModified": 1739100087,
+        "narHash": "sha256-cjahzgKvFIRm9EzREg3qym83huFJLHItBkNC8vZwKso=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "5746bc3f3ab4261c933993c2d9231ec9e9e30da4",
+        "rev": "7a73722146c1b99aecde8220d2b21b4697f0c22e",
         "type": "github"
       },
       "original": {
@@ -500,15 +484,14 @@
         "nixpkgs": [
           "agenix-rekey",
           "nixpkgs"
-        ],
-        "nixpkgs-stable": "nixpkgs-stable"
+        ]
       },
       "locked": {
-        "lastModified": 1734797603,
-        "narHash": "sha256-ulZN7ps8nBV31SE+dwkDvKIzvN6hroRY8sYOT0w+E28=",
+        "lastModified": 1735882644,
+        "narHash": "sha256-3FZAG+pGt3OElQjesCAWeMkQ7C/nB1oTHLRQ8ceP110=",
         "owner": "cachix",
         "repo": "pre-commit-hooks.nix",
-        "rev": "f0f0dc4920a903c3e08f5bdb9246bb572fcae498",
+        "rev": "a5a961387e75ae44cc20f0a57ae463da5e959656",
         "type": "github"
       },
       "original": {
@@ -609,11 +592,11 @@
     },
     "templates": {
       "locked": {
-        "lastModified": 1732872308,
-        "narHash": "sha256-AG9WUl0mbN3M9XOlWBX14taK8vObJKYbXFO2uK6KrnU=",
+        "lastModified": 1737648418,
+        "narHash": "sha256-OMPrFo1jR90QKxtNqDx+6mpe3ioamGqdgMR7OXlklnI=",
         "ref": "refs/heads/main",
-        "rev": "9b0458395a75573c1b8488161df554845965f23d",
-        "revCount": 95,
+        "rev": "f14c0c6a6a3f9f16c4dd9f7cb062a330325f9b05",
+        "revCount": 103,
         "type": "git",
         "url": "ssh://git@bitbucket.org/bravomedia/templates"
       },
