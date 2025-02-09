@@ -11,6 +11,7 @@
     ./modules/db.nix
     ./clients/uno-api.nix
     ./clients/calc-api.nix
+    ./clients/enshrouded.nix
     ./vps1/rekey.nix
   ];
 
