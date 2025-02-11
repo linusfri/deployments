@@ -152,7 +152,7 @@ in
         fastcgi_param HTTP_PROXY  "";
         fastcgi_buffer_size 512k;
         fastcgi_buffers 16 512k;
-        # fastcgi_param HTTP_HOST $host:${toString sslPort};
+        fastcgi_param HTTP_HOST $host;
       '';
 
       locations."/content/uploads/".extraConfig = ''
