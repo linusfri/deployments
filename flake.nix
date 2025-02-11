@@ -10,7 +10,8 @@
     nixpkgs.url = "github:NixOS/nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
 
-    terraflake.url = "github:icetan/nixiform?rev=1e237a2d806cd303ef308626a6a63ae963bbe056";
+    # terraflake.url = "github:icetan/nixiform?rev=1e237a2d806cd303ef308626a6a63ae963bbe056";
+    terraflake.url = "github:icetan/nixiform";
     terraflake.inputs.nixpkgs.follows = "nixpkgs";
 
     # Encryption for secrets
