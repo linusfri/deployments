@@ -47,5 +47,5 @@ output "ns" {
 # Add all node information to output for `terraflake`.
 output "terraflake" {
   # value = [module.vps1.node, module.node2.node]
-  value = module.vps1.node
+  value = [module.vps1.node]
 }
