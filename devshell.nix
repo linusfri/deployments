@@ -18,8 +18,8 @@ mkShell rec {
     tokens = pkgs.writeShellScriptBin "tokens" ''
       echo '
         tokens_json=$(age -d -i $AGE_KEY $SECRETS)
-        export DIGITALOCEAN_TOKEN="''${DIGITALOCEAN_TOKEN:-$(jq -r .digitalocean_token <<<"$tokens_json")}";
-        export CLOUDFLARE_API_TOKEN="''${CLOUDFLARE_API_TOKEN:-$(jq -r .cloudflare_token <<<"$tokens_json")}";
+        export DIGITALOCEAN_TOKEN="''${$(jq -r .digitalocean_token <<<"$tokens_json"):-""}";
+        export CLOUDFLARE_API_TOKEN="''${$(jq -r .cloudflare_token <<<"$tokens_json"):-""}";
       '
     '';
   };
