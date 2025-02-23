@@ -28,6 +28,8 @@
     # NixOS version
     nixos.url = "github:NixOS/nixpkgs/release-24.11";
 
+    weland.url = "path:/home/linus/Work/weland-wp";
+
     lgl-site.url = "git+ssh://git@github.com/linusfri/ladugardLive";
     uno-api.url = "github:linusfri/uno_api";
     calc-api.url = "git+ssh://git@github.com/linusfri/calc_api";
@@ -42,6 +44,7 @@
       terraflake,
       agenix,
       agenix-rekey,
+      weland,
       ...
     }@inputs:
     let
@@ -73,6 +76,8 @@
           ];
         };
       };
+
+      weland = weland.packages.${system}.weland-wp;
 
       # Setup agenix-rekey
       agenix-rekey = agenix-rekey.configure {
@@ -115,11 +120,6 @@
         };
       in
       {
-        # Export Nix package set that terraflake should use to bootstrap itself
-        terraflake = {
-          pkgs = pkgs;
-          # provisioner = "terraform-local";
-        };
         # Create development environment from ./devshell.nix
         devShells.default = import ./devshell.nix {
           inherit pkgs;
