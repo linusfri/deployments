@@ -8,6 +8,7 @@ let
 
   user = "uno_user";
   home = "/var/lib/${user}";
+  port = 8080;
 in
 {
   users.extraUsers.${user} = {
@@ -33,6 +34,16 @@ in
         };
       }
     ];
+  };
+
+  services.nginx = {
+    virtualHosts."${node.domains.uno-api}" = {
+      enableACME = true;
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "http://localhost:${toString port}";
+      };
+    };
   };
 
   systemd.services.uno-api = {

@@ -33,6 +33,7 @@
     lgl-site.url = "git+ssh://git@github.com/linusfri/ladugardLive";
     uno-api.url = "github:linusfri/uno_api";
     calc-api.url = "git+ssh://git@github.com/linusfri/calc_api";
+    auth-server.url = "git+ssh://git@github.com/linusfri/Gleam-auth-server";
   };
 
   outputs =
@@ -66,6 +67,7 @@
                 lgl-site
                 uno-api
                 calc-api
+                auth-server
                 ;
             })
             # Add module that configures a generic monitor node
