@@ -14,7 +14,8 @@ module "vps1" {
     "uno-api" = "unoapi.friikod.se",
     "calc-api" = "calc.friikod.se",
     "meili" = "meili.friikod.se",
-    "enshrouded" = "enshrouded.friikod.se"
+    "enshrouded" = "enshrouded.friikod.se",
+    "auth-server" = "auth-server.friikod.se"
   }
 }
 
@@ -22,7 +23,7 @@ module "dns_friikod_se" {
   source     = "./modules/dns"
   account_id = var.cloudflare_id
   domain     = "friikod.se"
-  subdomains = ["www", "unoapi", "calc", "meili", "enshrouded"]
+  subdomains = ["www", "unoapi", "calc", "meili", "enshrouded", "auth-server"]
   ip = module.vps1.node.ip
   # ip6 = module.server.nodes.ip6
 }

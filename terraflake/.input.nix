@@ -17,13 +17,13 @@ let
   isNodeOutput = name: name == "terraflake" || name == "nixiform";
   meta = filterAttrs (name: _: !(isNodeOutput name)) outputs;
   nodes' = filterAttrs (name: _: isNodeOutput name) outputs;
+  nodesOutput = nodes'.terraflake or nodes'.nixiform;
   nodes = builtins.listToAttrs
     (builtins.map
       (node: { name = node.name; value = node; })
-      (nodes'.terraflake or nodes'.nixiform));
+      (if builtins.isList nodesOutput then nodesOutput else [ nodesOutput ]));
+  input = { inherit meta nodes; };
 in
 {
-  terraflake.input = {
-    inherit meta nodes;
-  };
+  terraflake.input = input;
 }
