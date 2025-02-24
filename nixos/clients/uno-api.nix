@@ -58,6 +58,7 @@ in
 
   age.secrets.database-url = {
     rekeyFile = ../${node.name}/secrets/unoapi-dburl.age;
+    generator.script = "passphrase";
   };
 
   age.secrets.database-password = {

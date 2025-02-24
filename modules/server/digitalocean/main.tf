@@ -28,7 +28,7 @@ resource "digitalocean_droplet" "nixos" {
 
   lifecycle {
     prevent_destroy = false
-    ignore_changes  = [image, ssh_keys, ]
+    ignore_changes  = [image, ssh_keys]
   }
 
   size = var.size

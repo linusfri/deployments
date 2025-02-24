@@ -5,10 +5,7 @@
 let
   inherit (pkgs) mkShell;
 
-  tofu = pkgs.opentofu.withPlugins
-    (ps: builtins.attrValues {
-      inherit (ps) digitalocean cloudflare;
-    });
+  tofu = pkgs.opentofu;
 in
 mkShell rec {
   buildInputs = builtins.attrValues {
@@ -20,6 +17,7 @@ mkShell rec {
         tokens_json=$(age -d -i $AGE_KEY $SECRETS)
         export DIGITALOCEAN_TOKEN="''${$(jq -r .digitalocean_token <<<"$tokens_json"):-""}";
         export CLOUDFLARE_API_TOKEN="''${$(jq -r .cloudflare_token <<<"$tokens_json"):-""}";
+        export HCLOUD_TOKEN="''${$(jq -r .hcloud_token <<<"$tokens_json"):-""}";
       '
     '';
   };

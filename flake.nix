@@ -52,7 +52,7 @@
       tfvars = nixpkgs.lib.importJSON ./terraform.tfvars.json;
       # Architecture of the nodes
       system = "x86_64-linux";
-      name = "vps1";
+      name = "hetzvps";
     in
     {
       # Attrset of NixOS configurations.
@@ -71,15 +71,13 @@
                 ;
             })
             # Add module that configures a generic monitor node
-            (import ./nixos/vps1.nix {
+            (import ./nixos/hetzvps.nix {
               flake = self;
               inherit name;
             })
           ];
         };
       };
-
-      weland = weland.packages.${system}.weland-wp;
 
       # Setup agenix-rekey
       agenix-rekey = agenix-rekey.configure {
