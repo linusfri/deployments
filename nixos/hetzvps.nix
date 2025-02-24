@@ -9,13 +9,12 @@
     ./modules/common.nix
     ./modules/www.nix
     ./modules/db.nix
-    ./clients/uno-api.nix
     ./clients/calc-api.nix
     ./clients/auth-server.nix
-    ./vps1/rekey.nix
+    ./hetzvps/rekey.nix
   ];
 
   # Set the initial NixOS version, don't touch this after first
   # `$ terraflake push`
-  system.stateVersion = "24.05";
+  system.stateVersion = "24.11";
 }
