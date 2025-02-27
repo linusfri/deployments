@@ -1,23 +1,6 @@
 variable "ssh_pub" {}
 variable "cloudflare_id" {}
 
-# module "vps1" {
-#   source        = "./modules/server/digitalocean"
-#   name          = "vps1"
-#   label         = "seed"
-#   ssh_key       = var.ssh_pub
-#   size          = "s-2vcpu-4gb"
-#   domains        = {
-#     "friikod" = "friikod.se",
-#     "ladugardlive" = "ladugardlive.se",
-#     "uno-api" = "unoapi.friikod.se",
-#     "calc-api" = "calc.friikod.se",
-#     "meili" = "meili.friikod.se",
-#     "enshrouded" = "enshrouded.friikod.se",
-#     "auth-server" = "auth-server.friikod.se"
-#   }
-# }
-
 module "hetzvps" {
   source = "./modules/server/hetzner"
   name = "hetzvps"
@@ -29,10 +12,7 @@ module "hetzvps" {
   domains        = {
     "friikod" = "friikod.se",
     "ladugardlive" = "ladugardlive.se",
-    "calc-api" = "calc.friikod.se",
-    "meili" = "meili.friikod.se",
-    "enshrouded" = "enshrouded.friikod.se",
-    "auth-server" = "auth-server.friikod.se"
+    "calc-api" = "calc.friikod.se"
   }
 }
 
@@ -40,7 +20,11 @@ module "dns_friikod_se" {
   source     = "./modules/dns"
   account_id = var.cloudflare_id
   domain     = "friikod.se"
-  subdomains = ["www", "calc", "meili", "enshrouded", "auth-server"]
+  subdomains = {
+    "www" = module.hetzvps.node.ip
+    "calc" = module.hetzvps.node.ip
+    "auth-server" = module.hetzvps.node.ip
+  }
   ip = module.hetzvps.node.ip
   # ip6 = module.server.nodes.ip6
 }
@@ -49,7 +33,9 @@ module "dns_ladugard_se" {
   source     = "./modules/dns"
   account_id = var.cloudflare_id
   domain     = "ladugardlive.se"
-  subdomains = ["www"]
+  subdomains = {
+    "www" = module.hetzvps.node.ip
+  }
   ip = module.hetzvps.node.ip
   # ip6 = module.server.nodes.ip6
 }

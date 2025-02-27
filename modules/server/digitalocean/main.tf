@@ -47,3 +47,15 @@ output "node" {
     label    = var.label
   }
 }
+
+###########
+# EXAMPLE #
+###########
+# module "vps1" {
+#   source        = "./modules/server/digitalocean"
+#   name          = "vps1"
+#   label         = "seed"
+#   ssh_key       = var.ssh_pub
+#   size          = "s-2vcpu-4gb"
+#   domains        = {}
+# }
