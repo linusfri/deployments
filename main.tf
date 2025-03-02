@@ -2,7 +2,7 @@ variable "ssh_pub" {}
 variable "cloudflare_id" {}
 
 module "hetzvps" {
-  source = "./modules/server/hetzner"
+  source = "./modules/server/hetzner/vps"
   name = "hetzvps"
   ssh_key = var.ssh_pub
   image = "ubuntu-22.04"
