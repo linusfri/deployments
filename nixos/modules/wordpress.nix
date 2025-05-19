@@ -1,39 +1,51 @@
-{ 
+{
   appName,
+  package,
   user,
   dbName,
   dbPrefix,
   home,
-  assetProxy ? "" 
+  enableBasicAuth ? false,
+  projectDir ? appName,
+  bankId ? false,
+  assetProxy ? "",
 }:
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 let
-  phpFpmSettings = import ../modules/phpfpm-settings.nix;
+  # Send this to derivation to use in build step for composer install
+  # caravanclub-wp = pkgs.caravanclub-wp // {
+  #   AUTH_JSON = "${config.age.secrets.caravanclub-composerjson}";
+  # };
+
+  phpFpmSettings = import ../settings/phpfpm-settings.nix;
 
   inherit (config.terraflake.input) node nodes;
 
   nginxUser = config.services.nginx.user;
 
-  createEnv = pkgs.writeShellScriptBin "create-env" ''
-    if [[ ! -d ${home} ]]; then
-      mkdir -p ${home}
-    fi
-
-    cat ${config.age.secrets."${appName}-env".path} > ${home}/.env
+  setPermissions = pkgs.writeShellScriptBin "set-permissions" ''
+    chown -R "${user}:${user}" "$@"
   '';
 
-  copyContentDir = pkgs.writeShellScriptBin "copy-content-dir" ''
+  setupContentDir = pkgs.writeShellScriptBin "setup-content-dir" ''
     PATH=${lib.makeBinPath [ pkgs.rsync ]}:$PATH
     CONTENT_DIR="${home}/content"
 
     mkdir -p "$CONTENT_DIR"
 
-    # Sync persistant content with repo content
-    rsync -rv ${pkgs.${appName}}/share/php/${appName}/public/content/ "$CONTENT_DIR"
-    rsync -rv ${pkgs.${appName}}/share/php/${appName}/packages/themes/ "$CONTENT_DIR"/themes
-    rsync -rv ${pkgs.${appName}}/share/php/${appName}/packages/plugins/ "$CONTENT_DIR"/plugins
+    # Creates .env file
+    cat ${config.age.secrets."${appName}-env".path} > ${home}/.env
 
-    chown -R ${user}:${user} "$CONTENT_DIR"
+    # Sync persistant content with repo content
+    rsync -rv ${package}/share/php/${projectDir}/packages/ "$CONTENT_DIR"
+    rsync -rv ${package}/share/php/${projectDir}/public/content/ "$CONTENT_DIR"
+
+    chown -R ${user}:${user} "${home}"
     chmod -R 755 "$CONTENT_DIR"
   '';
 
@@ -41,7 +53,7 @@ let
     PATH=${lib.makeBinPath [ pkgs.rsync ]}:$PATH
 
     # SET UP OBJECT CACHE
-    PUBLIC_CONTENT=${pkgs.${appName}}/share/php/${appName}/public/content
+    PUBLIC_CONTENT=${package}/share/php/${projectDir}/public/content
 
     # Copy object cache file to make redis work with DISALLOW_FILE_[MODS|EDIT]=true
     # Redis plugin deletes this file if inactivated in Admin. Don't do it.
@@ -66,7 +78,10 @@ in
     extraGroups = [ "wheel" ];
     home = home;
     createHome = true;
-    isSystemUser = true;
+    isNormalUser = true;
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICGavKgHzlln0r9APH/vyVQ5uGB+BXR6ybHoiAdLS+DY linus@nixos"
+    ];
   };
 
   users.groups."${user}" = {
@@ -105,16 +120,20 @@ in
       "access.log" = "/var/log/${user}-phpfpm-access.log";
     };
     phpOptions = ''
-      display_errors = on
-      error_log = /var/log/phpfpm-error.log
-      error_reporting = E_ALL
+      error_log = /var/log/php-error.log
+      error_reporting = -1
+      log_errors = On
+      log_errors_max_len = 0
     '';
     phpEnv = {
       PATH = lib.makeBinPath [ pkgs.php ];
       ENV_FILE_PATH = "/var/lib/${user}";
       WP_DEBUG_DISPLAY = "true";
+      WP_ENV = "production";
+      WP_DEBUG = "true";
+      BANKID_CERTIFICATE_PATH = lib.mkIf (bankId) config.age.secrets."${appName}-bankid-cert".path;
       DB_USER = user;
-      DB_NAME = user;
+      DB_NAME = dbName;
       DB_PREFIX = dbPrefix;
       WP_DEBUG_LOG = "/var/log/debug-wp.log";
       WP_HOME = "https://${node.domains.${appName}}";
@@ -137,9 +156,9 @@ in
     virtualHosts."${node.domains.${appName}}" = {
       enableACME = true;
       forceSSL = true;
-      root = "${pkgs.${appName}}/share/php/${appName}/public";
-      basicAuth = {
-        ${appName} = appName;
+      root = "${package}/share/php/${projectDir}/public";
+      basicAuth = lib.mkIf enableBasicAuth {
+        ${user} = user;
       };
       extraConfig = ''
         set $skip_cache 0;
@@ -158,7 +177,14 @@ in
         }   
 
         # Don't use the cache for logged in users or recent commenters
+        # We should look into adding a seperate cookie for Admin-users, since this will disable page cache for ALL logged in users.
         if ($http_cookie ~* "comment_author|wordpress_[a-f0-9]+|wp-postpass|wordpress_no_cache|wordpress_logged_in") {
+            set $skip_cache 1;
+        }
+
+        # Don't use the cache for users with items in their cart
+        # Should perhaps look at the boolean value instead of only its presence
+        if ($http_cookie ~* "woocommerce_items_in_cart") {
             set $skip_cache 1;
         }
       '';
@@ -224,10 +250,12 @@ in
     };
   };
 
-  systemd.services."${appName}-env" = {
-    description = "Creates an env file";
+  systemd.services."${appName}-bankid-cert-perms" = lib.mkIf (bankId) {
+    description = "Sets permissions.";
     serviceConfig = {
-      ExecStart = "${createEnv}/bin/create-env";
+      ExecStart = ''${setPermissions}/bin/set-permissions ${
+        config.age.secrets."${appName}-bankid-cert".path
+      }'';
       Type = "simple";
     };
     wantedBy = [ "multi-user.target" ];
@@ -245,24 +273,23 @@ in
   systemd.services."${appName}-content-dir" = {
     description = "Copies the project content folder to /var/lib";
     serviceConfig = {
-      ExecStart = "${copyContentDir}/bin/copy-content-dir";
+      ExecStart = "${setupContentDir}/bin/setup-content-dir";
       Type = "simple";
     };
     wantedBy = [ "multi-user.target" ];
   };
 
-  services.borgbackup.jobs.${appName} = {
-    paths = [ "${home}/content/uploads" ];
-    encryption.mode = "none";
-    environment.BORG_RSH = "ssh -i /old-root/etc/ssh/ssh_host_ed25519_key";
-    extraCreateArgs = "--verbose --stats";
-    repo = "root@${nodes.vps1.ip}:/root/backup/${appName}";
-    compression = "auto,zstd";
-    startAt = "daily";
-  };
-
   age.secrets."${appName}-env" = {
     rekeyFile = ../${node.name}/secrets/${appName}-env.age;
+  };
+
+  age.secrets."${appName}-bankid-cert" = lib.mkIf (bankId) {
+    rekeyFile = ../${node.name}/secrets/${appName}-bankid-cert.age;
+    generator.script = "passphrase";
+  };
+
+  age.secrets.caravanclub-bankid-cert = {
+    rekeyFile = ../${node.name}/secrets/caravanclub-bankid-cert.age;
     generator.script = "passphrase";
   };
 }
