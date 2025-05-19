@@ -28,9 +28,11 @@
     # NixOS version
     nixos.url = "github:NixOS/nixpkgs/release-24.11";
 
-    weland.url = "path:/home/linus/Work/weland-wp";
-
     lgl-site.url = "git+ssh://git@github.com/linusfri/ladugardLive";
+    strapi = {
+      url = "git+ssh://git@github.com/linusfri/strapi_docknix";
+      flake = false;
+    };
     uno-api.url = "github:linusfri/uno_api";
     calc-api.url = "git+ssh://git@github.com/linusfri/calc_api";
     auth-server.url = "git+ssh://git@github.com/linusfri/Gleam-auth-server";
@@ -45,7 +47,6 @@
       terraflake,
       agenix,
       agenix-rekey,
-      weland,
       ...
     }@inputs:
     let

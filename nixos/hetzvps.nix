@@ -12,6 +12,7 @@
     ./modules/virtualisation.nix
     ./applications/calc-api.nix
     ./applications/auth-server.nix
+    # (import ./applications/strapi.nix { imageVersion = flake.inputs.strapi.rev; })
     ./hetzvps/rekey.nix
   ];
 
