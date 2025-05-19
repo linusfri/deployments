@@ -9,8 +9,9 @@
     ./modules/common.nix
     ./modules/www.nix
     ./modules/db.nix
-    ./clients/calc-api.nix
-    ./clients/auth-server.nix
+    ./modules/virtualisation.nix
+    ./applications/calc-api.nix
+    ./applications/auth-server.nix
     ./hetzvps/rekey.nix
   ];
 
