@@ -13,6 +13,7 @@ module "hetzvps" {
     "friikod" = "friikod.se",
     "ladugardlive" = "ladugardlive.se",
     "calc-api" = "calc.friikod.se"
+    "auth-server" = "auth-server.friikod.se"
   }
 }
 
