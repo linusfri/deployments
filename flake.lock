@@ -571,11 +571,11 @@
     "strapi": {
       "flake": false,
       "locked": {
-        "lastModified": 1747688105,
-        "narHash": "sha256-e2fmU0e1Npjnbn1Dyj4LFUIJn91IatNXzIhmqEvtCuU=",
+        "lastModified": 1747853946,
+        "narHash": "sha256-7THC1fzfMwFkbA2yQOZ0Nn6vnNIQ5rI/VQdOSOt997Y=",
         "ref": "refs/heads/master",
-        "rev": "525234850b7fe1aae4aeca81d43f70081e1cb232",
-        "revCount": 10,
+        "rev": "1b4659848092983b2972651745b4cd322b8e2f43",
+        "revCount": 12,
         "type": "git",
         "url": "ssh://git@github.com/linusfri/strapi_docknix"
       },

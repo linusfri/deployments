@@ -14,6 +14,7 @@ module "hetzvps" {
     "ladugardlive" = "ladugardlive.se",
     "calc-api" = "calc.friikod.se"
     "auth-server" = "auth-server.friikod.se"
+    "strapi" = "strapi.friikod.se"
   }
 }
 
@@ -25,6 +26,7 @@ module "dns_friikod_se" {
     "www" = module.hetzvps.node.ip
     "calc" = module.hetzvps.node.ip
     "auth-server" = module.hetzvps.node.ip
+    "strapi" = module.hetzvps.node.ip
   }
   ip = module.hetzvps.node.ip
   # ip6 = module.server.nodes.ip6
