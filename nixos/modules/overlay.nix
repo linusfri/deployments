@@ -3,7 +3,8 @@
   lgl-site,
   uno-api,
   calc-api,
-  auth-server
+  auth-server,
+  strapi
 }:
 
 { ... }:
@@ -23,6 +24,7 @@
         inherit (uno-api.packages.${system}) uno-api;
         inherit (calc-api.packages.${system}) calc-api;
         inherit (auth-server.packages.${system}) auth-server;
+        inherit (strapi.packages.${system}) next;
       }
     )
   ];
