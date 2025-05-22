@@ -82,9 +82,9 @@ in
       "${node.domains.strapi}" = {
         enableACME = true;
         forceSSL = true;
-        basicAuth = {
-          strapi = "strapi";
-        };
+        # basicAuth = {
+        #   strapi = "strapi";
+        # };
         locations."/" = {
           proxyPass = "http://127.0.0.1:${toString 1337}";
         };
