@@ -22,6 +22,12 @@ let
   generateEnv = pkgs.writeShellScriptBin "generate-env" ''
     cat ${config.age.secrets.strapiEnv.path} > /var/lib/strapi_user/.env
   '';
+
+  startNextApp = pkgs.writeShellScriptBin "start-next-app" ''
+    PATH="${pkgs.lib.makeBinPath [ pkgs.nodejs_22 ]}:$PATH"
+  
+    ${pkgs.next}/lib/node_modules/frontend/node_modules/.bin/next start ${pkgs.next}/lib/node_modules/frontend
+  '';
 in
 {
   users.users.${user} = {
@@ -72,11 +78,27 @@ in
   };
 
   services.nginx = {
-    virtualHosts."${node.domains.strapi}" = {
-      enableACME = true;
-      forceSSL = true;
-      locations."/" = {
-        proxyPass = "http://127.0.0.1:${toString 1337}";
+    virtualHosts = {
+      "${node.domains.strapi}" = {
+        enableACME = true;
+        forceSSL = true;
+        basicAuth = {
+          strapi = "strapi";
+        };
+        locations."/" = {
+          proxyPass = "http://127.0.0.1:${toString 1337}";
+        };
+      };
+
+      "${node.domains.next}" = {
+        enableACME = true;
+        forceSSL = true;
+        basicAuth = {
+          next = "next";
+        };
+        locations."/" = {
+          proxyPass = "http://127.0.0.1:${toString 3000}";
+        };
       };
     };
   };
@@ -86,6 +108,16 @@ in
     description = "Log in to ghcr.io";
     serviceConfig = {
       ExecStart = "${dockerLogin}/bin/docker-login";
+      Type = "simple";
+    };
+    wantedBy = [ "multi-user.target" ];
+  };
+
+  systemd.services.next = {
+    enable = true;
+    description = "Start next app";
+    serviceConfig = {
+      ExecStart = "${startNextApp}/bin/start-next-app";
       Type = "simple";
     };
     wantedBy = [ "multi-user.target" ];

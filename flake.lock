@@ -276,7 +276,7 @@
     },
     "flake-utils_5": {
       "inputs": {
-        "systems": "systems_6"
+        "systems": "systems_7"
       },
       "locked": {
         "lastModified": 1726560853,
@@ -514,6 +514,22 @@
     },
     "nixpkgs_7": {
       "locked": {
+        "lastModified": 1747744144,
+        "narHash": "sha256-W7lqHp0qZiENCDwUZ5EX/lNhxjMdNapFnbErcbnP11Q=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "2795c506fe8fb7b03c36ccb51f75b6df0ab2553f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_8": {
+      "locked": {
         "lastModified": 1727802920,
         "narHash": "sha256-HP89HZOT0ReIbI7IJZJQoJgxvB2Tn28V6XS3MNKnfLs=",
         "owner": "nixos",
@@ -569,13 +585,16 @@
       }
     },
     "strapi": {
-      "flake": false,
+      "inputs": {
+        "nixpkgs": "nixpkgs_7",
+        "utils": "utils_2"
+      },
       "locked": {
-        "lastModified": 1747933425,
-        "narHash": "sha256-lT0N1IAU0X86TdzBqFB41bZOUUaQHEdQe1xyvQF1nYg=",
+        "lastModified": 1747949459,
+        "narHash": "sha256-6jYqE+unLRYH2CQNTIDxFQz+21kwB9KuSpjA6B6I8J8=",
         "ref": "refs/heads/master",
-        "rev": "54e902815085bf1bec17f7b9b6911e51dcfbf5da",
-        "revCount": 17,
+        "rev": "c28184af305fd449962ee2669eff84638c3ebd90",
+        "revCount": 22,
         "type": "git",
         "url": "ssh://git@github.com/linusfri/strapi_docknix"
       },
@@ -674,6 +693,21 @@
         "type": "github"
       }
     },
+    "systems_7": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
     "templates": {
       "locked": {
         "lastModified": 1737648418,
@@ -734,7 +768,7 @@
     "uno-api": {
       "inputs": {
         "flake-utils": "flake-utils_5",
-        "nixpkgs": "nixpkgs_7"
+        "nixpkgs": "nixpkgs_8"
       },
       "locked": {
         "lastModified": 1732047637,
@@ -753,6 +787,24 @@
     "utils": {
       "inputs": {
         "systems": "systems_2"
+      },
+      "locked": {
+        "lastModified": 1731533236,
+        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "utils_2": {
+      "inputs": {
+        "systems": "systems_6"
       },
       "locked": {
         "lastModified": 1731533236,

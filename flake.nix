@@ -31,7 +31,6 @@
     lgl-site.url = "git+ssh://git@github.com/linusfri/ladugardLive";
     strapi = {
       url = "git+ssh://git@github.com/linusfri/strapi_docknix";
-      flake = false;
     };
     uno-api.url = "github:linusfri/uno_api";
     calc-api.url = "git+ssh://git@github.com/linusfri/calc_api";
@@ -69,6 +68,7 @@
                 uno-api
                 calc-api
                 auth-server
+                strapi
                 ;
             })
             # Add module that configures a generic monitor node

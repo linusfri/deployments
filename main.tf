@@ -15,6 +15,7 @@ module "hetzvps" {
     "calc-api" = "calc.friikod.se"
     "auth-server" = "auth-server.friikod.se"
     "strapi" = "strapi.friikod.se"
+    "next" = "next.friikod.se"
   }
 }
 
@@ -27,6 +28,7 @@ module "dns_friikod_se" {
     "calc" = module.hetzvps.node.ip
     "auth-server" = module.hetzvps.node.ip
     "strapi" = module.hetzvps.node.ip
+    "next" = module.hetzvps.node.ip
   }
   ip = module.hetzvps.node.ip
   # ip6 = module.server.nodes.ip6
