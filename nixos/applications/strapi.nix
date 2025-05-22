@@ -18,6 +18,10 @@ let
       exit 0
     fi
   '';
+
+  generateEnv = pkgs.writeShellScriptBin "generate-env" ''
+    cat ${config.age.secrets.strapiEnv.path} > /var/lib/strapi_user/.env
+  '';
 in
 {
   users.users.${user} = {
@@ -42,15 +46,9 @@ in
         "strapi".service = {
           image = "ghcr.io/linusfri/strapi:${imageVersion}";
           restart = "unless-stopped";
-          environment = {
-            DATABASE_CLIENT = "postgres";
-            DATABASE_HOST = "localhost";
-            DATABASE_PORT = "5432";
-            DATABASE_NAME = "strapi";
-            DATABASE_USERNAME = "${user}";
-            DATABASE_SSL = "false";
-            DATABASE_FILENAME = "";
-          };
+          volumes = [
+            "/var/lib/strapi_user/.env:/opt/app/.env"
+          ];
           network_mode = "host";
         };
       };
@@ -76,7 +74,7 @@ in
     '';
   };
 
-   services.nginx = {
+  services.nginx = {
     virtualHosts."${node.domains.strapi}" = {
       enableACME = true;
       forceSSL = true;
@@ -96,13 +94,23 @@ in
     wantedBy = [ "multi-user.target" ];
   };
 
+  systemd.services.generate-env = {
+    enable = true;
+    description = "Generates .env";
+    serviceConfig = {
+      ExecStart = "${generateEnv}/bin/generate-env";
+      Type = "simple";
+    };
+    wantedBy = [ "multi-user.target" ];
+  };
+
   age.secrets.ghcrPass = {
     rekeyFile = ../${node.name}/secrets/ghcr_pass.age;
     generator.script = "passphrase";
   };
 
-  age.secrets.dbPass = {
-    rekeyFile = ../${node.name}/secrets/db_pass.age;
+  age.secrets.strapiEnv = {
+    rekeyFile = ../${node.name}/secrets/strapi_env.age;
     generator.script = "passphrase";
   };
 }
