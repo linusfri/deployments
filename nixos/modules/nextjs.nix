@@ -35,7 +35,6 @@ in
 
       startScript = lib.mkOption {
         type = types.package;
-        
       };
     };
   };
