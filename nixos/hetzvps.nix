@@ -2,6 +2,7 @@
 
 { config, pkgs, ... }: {
   imports = [
+    ./services
     (import ../terraflake name)
     flake.inputs.agenix.nixosModules.default
     flake.inputs.agenix-rekey.nixosModules.default
