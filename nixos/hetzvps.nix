@@ -2,7 +2,6 @@
 
 { config, pkgs, ... }: {
   imports = [
-    ./services
     (import ../terraflake name)
     flake.inputs.agenix.nixosModules.default
     flake.inputs.agenix-rekey.nixosModules.default
@@ -11,10 +10,13 @@
     ./modules/www.nix
     ./modules/db.nix
     ./modules/virtualisation.nix
+    ./modules/strapi.nix
+    ./modules/nextjs.nix
+    ./hetzvps/rekey.nix
     ./applications/calc-api.nix
     ./applications/auth-server.nix
     (import ./applications/strapi.nix { imageVersion = flake.inputs.strapi.rev; })
-    ./hetzvps/rekey.nix
+    ./applications/next.nix
   ];
 
   # Set the initial NixOS version, don't touch this after first

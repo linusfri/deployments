@@ -20,126 +20,31 @@ let
   '';
 
   generateEnv = pkgs.writeShellScriptBin "generate-env" ''
-    cat ${config.age.secrets.strapiEnv.path} > /var/lib/strapi_user/.env
-  '';
-
-  startNextApp = pkgs.writeShellScriptBin "start-next-app" ''
-    PATH="${pkgs.lib.makeBinPath [ pkgs.nodejs_22 ]}:$PATH"
-  
-    ${pkgs.next}/lib/node_modules/frontend/node_modules/.bin/next start ${pkgs.next}/lib/node_modules/frontend
+    cat ${config.age.secrets.strapiEnv.path} > /var/lib/${user}/.env
   '';
 in
 {
-  users.users.${user} = {
-    name = user;
-    group = user;
-    home = home;
-    extraGroups = [
-      "wheel"
-      "docker"
-    ];
-    createHome = true;
-    isSystemUser = true;
-  };
-
-  users.groups."${user}" = {
-    name = user;
-  };
-
-  virtualisation.arion = {
-    projects = {
-      "app".settings.services = {
-        "strapi".service = {
-          image = "ghcr.io/linusfri/strapi:${imageVersion}";
-          restart = "unless-stopped";
-          volumes = [
-            "/var/lib/strapi_user/.env:/opt/app/.env"
-          ];
-          network_mode = "host";
-        };
-      };
+  config = {
+    services.linusfri.strapi = {
+      enable = true;
+      inherit user;
+      inherit home;
+      inherit imageVersion;
+      databaseName = "strapi";
+      domainName = node.domains.strapi;
+      port = 1337;
+      inherit dockerLogin;
+      inherit generateEnv;
     };
-  };
 
-  services.postgresql = {
-    enable = true;
-    ensureDatabases = [ "strapi" ];
-    ensureUsers = [
-      {
-        name = user;
-      }
-    ];
-    authentication = pkgs.lib.mkOverride 10 ''
-      #type database  DBuser                 auth-method
-      local all       all                    trust
-      host  strapi    ${user}  ::1/128       trust
-      host  strapi    ${user}  127.0.0.1/32  trust
-    '';
-  };
-
-  services.nginx = {
-    virtualHosts = {
-      "${node.domains.strapi}" = {
-        enableACME = true;
-        forceSSL = true;
-        # basicAuth = {
-        #   strapi = "strapi";
-        # };
-        locations."/" = {
-          proxyPass = "http://127.0.0.1:${toString 1337}";
-        };
-      };
-
-      "${node.domains.next}" = {
-        enableACME = true;
-        forceSSL = true;
-        basicAuth = {
-          next = "next";
-        };
-        locations."/" = {
-          proxyPass = "http://127.0.0.1:${toString 3000}";
-        };
-      };
+    age.secrets.ghcrPass = {
+      rekeyFile = ../${node.name}/secrets/ghcr_pass.age;
+      generator.script = "passphrase";
     };
-  };
 
-  systemd.services.docker-login = {
-    enable = true;
-    description = "Log in to ghcr.io";
-    serviceConfig = {
-      ExecStart = "${dockerLogin}/bin/docker-login";
-      Type = "simple";
+    age.secrets.strapiEnv = {
+      rekeyFile = ../${node.name}/secrets/strapi_env.age;
+      generator.script = "passphrase";
     };
-    wantedBy = [ "multi-user.target" ];
-  };
-
-  systemd.services.next = {
-    enable = true;
-    description = "Start next app";
-    serviceConfig = {
-      ExecStart = "${startNextApp}/bin/start-next-app";
-      Type = "simple";
-    };
-    wantedBy = [ "multi-user.target" ];
-  };
-
-  systemd.services.generate-env = {
-    enable = true;
-    description = "Generates .env";
-    serviceConfig = {
-      ExecStart = "${generateEnv}/bin/generate-env";
-      Type = "simple";
-    };
-    wantedBy = [ "multi-user.target" ];
-  };
-
-  age.secrets.ghcrPass = {
-    rekeyFile = ../${node.name}/secrets/ghcr_pass.age;
-    generator.script = "passphrase";
-  };
-
-  age.secrets.strapiEnv = {
-    rekeyFile = ../${node.name}/secrets/strapi_env.age;
-    generator.script = "passphrase";
   };
 }
