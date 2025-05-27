@@ -52,6 +52,11 @@ in
         type = types.nullOr types.package;
         default = null;
       };
+
+      containerMountPath = lib.mkOption {
+        type = types.str;
+        default = "/opt/app";
+      };
     };
   };
 
@@ -79,7 +84,7 @@ in
             image = "ghcr.io/linusfri/strapi:${cfg.imageVersion}";
             restart = "unless-stopped";
             volumes = [
-              "/var/lib/${cfg.user}/.env:/opt/app/.env"
+              "/var/lib/${cfg.user}/.env:${cfg.containerMountPath}/.env"
             ];
             network_mode = "host";
           };
