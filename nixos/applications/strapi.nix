@@ -35,6 +35,7 @@ in
       port = 1337;
       inherit dockerLogin;
       inherit generateEnv;
+      containerMountPath = "/opt/app";
     };
 
     age.secrets.ghcrPass = {
