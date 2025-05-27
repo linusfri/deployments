@@ -22,11 +22,8 @@
     # Arion
     arion.url = "github:hercules-ci/arion";
 
-    # Bravomedia service templates
-    templates.url = "git+ssh://git@bitbucket.org/bravomedia/templates";
-
     # NixOS version
-    nixos.url = "github:NixOS/nixpkgs/release-24.11";
+    nixos.url = "github:NixOS/nixpkgs/release-25.05";
 
     lgl-site.url = "git+ssh://git@github.com/linusfri/ladugardLive";
     strapi = {
