@@ -25,7 +25,7 @@
         inherit (calc-api.packages.${system}) calc-api;
         inherit (auth-server.packages.${system}) auth-server;
         inherit (strapi.packages.${system}) next;
-        strapiHash = strapi.strapiHash.${system};
+        strapiHashProd = strapi.strapiHash.${system};
       }
     )
   ];
