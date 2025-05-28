@@ -15,7 +15,7 @@
     ./hetzvps/rekey.nix
     ./applications/calc-api.nix
     ./applications/auth-server.nix
-    (import ./applications/strapi.nix { imageVersion = flake.inputs.strapi.rev; })
+    (import ./applications/strapi.nix { imageVersion = pkgs.strapiHash; })
     ./applications/next.nix
   ];
 
