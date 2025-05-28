@@ -514,16 +514,16 @@
     },
     "nixpkgs_7": {
       "locked": {
-        "lastModified": 1748370509,
-        "narHash": "sha256-QlL8slIgc16W5UaI3w7xHQEP+Qmv/6vSNTpoZrrSlbk=",
+        "lastModified": 1748443479,
+        "narHash": "sha256-FQF9ZSzW2KYOJmmmHd554A3BNO1xt5pe6MbohSC2454=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "4faa5f5321320e49a78ae7848582f684d64783e9",
+        "rev": "265df80a8c6cfe3e9012788d8d7f95b98850267e",
         "type": "github"
       },
       "original": {
         "owner": "nixos",
-        "ref": "nixos-unstable",
+        "ref": "release-25.05",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -589,11 +589,11 @@
         "utils": "utils_2"
       },
       "locked": {
-        "lastModified": 1748450117,
-        "narHash": "sha256-76f6DzYZaGPu8GHm853widUCUtX8zenoDKgKUKZsDes=",
+        "lastModified": 1748451672,
+        "narHash": "sha256-+z50TsXmSGj7YViT5q0MtvZBuyD9SAVgQU8kjmyVdfw=",
         "ref": "refs/heads/master",
-        "rev": "28600e32fc4d0e1186ed9194aedb0fb9c4b5ef74",
-        "revCount": 40,
+        "rev": "c59ae949ee11d697eed09a0b57ecbb8a2cc3bc3e",
+        "revCount": 44,
         "type": "git",
         "url": "ssh://git@github.com/linusfri/strapi_docknix"
       },
