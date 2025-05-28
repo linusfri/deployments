@@ -94,17 +94,17 @@ in
 
     services.postgresql = {
       enable = true;
-      ensureDatabases = [ "strapi" ];
+      ensureDatabases = [ cfg.databaseName ];
       ensureUsers = [
         {
           name = cfg.user;
         }
       ];
       authentication = pkgs.lib.mkOverride 10 ''
-        #type database  DBuser                     auth-method
-        local all       all                        trust
-        host  strapi    ${cfg.user}  ::1/128       trust
-        host  strapi    ${cfg.user}  127.0.0.1/32  trust
+        #type database               DBuser                     auth-method
+        local all                    all                        trust
+        host  ${cfg.databaseName}    ${cfg.user}  ::1/128       trust
+        host  ${cfg.databaseName}    ${cfg.user}  127.0.0.1/32  trust
       '';
     };
 
