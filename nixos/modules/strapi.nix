@@ -23,7 +23,7 @@ in
         default = "/var/lib/strapiuser";
       };
 
-      imageVersion = lib.mkOption {
+      imageName = lib.mkOption {
         type = types.str;
         default = "latest";
       };
@@ -81,7 +81,7 @@ in
       projects = {
         "app".settings.services = {
           "strapi".service = {
-            image = "ghcr.io/linusfri/strapi:${cfg.imageVersion}";
+            image = cfg.imageName;
             restart = "unless-stopped";
             volumes = [
               "/var/lib/${cfg.user}/.env:${cfg.containerMountPath}/.env"

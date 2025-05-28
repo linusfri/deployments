@@ -15,7 +15,7 @@
     ./hetzvps/rekey.nix
     ./applications/calc-api.nix
     ./applications/auth-server.nix
-    (import ./applications/strapi.nix { imageVersion = pkgs.strapiHash; })
+    (import ./applications/strapi.nix { imageName = "ghcr.io/linusfri/strapi-master:${pkgs.strapiHashProd}"; })
     ./applications/next.nix
   ];
 

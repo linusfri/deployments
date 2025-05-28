@@ -1,5 +1,5 @@
 {
-  imageVersion ? "latest",
+  imageName ? "ghcr.io/linusfri/strapi-master:latest",
 }:
 { config, pkgs, ... }:
 let
@@ -29,7 +29,7 @@ in
       enable = true;
       inherit user;
       inherit home;
-      inherit imageVersion;
+      inherit imageName;
       databaseName = "strapi";
       domainName = node.domains.strapi;
       port = 1337;
