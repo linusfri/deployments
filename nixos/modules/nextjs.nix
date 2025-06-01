@@ -53,6 +53,7 @@ in
     };
 
     services.nginx = {
+      clientMaxBodySize = "100m";
       virtualHosts = {
         "${cfg.domainName}" = {
           enableACME = true;
