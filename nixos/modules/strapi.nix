@@ -85,6 +85,7 @@ in
             restart = "unless-stopped";
             volumes = [
               "/var/lib/${cfg.user}/.env:${cfg.containerMountPath}/.env"
+              "/var/lib/${cfg.user}/uploads:${cfg.containerMountPath}/public/uploads"
             ];
             network_mode = "host";
           };
