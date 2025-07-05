@@ -12,13 +12,15 @@ let
 in
 {
   config = {
-    time.timeZone = "UTC";
+    time.timeZone = "CET";
     i18n.defaultLocale = "en_US.UTF-8";
 
     services.openssh.settings.PasswordAuthentication = false;
 
     security.acme.defaults.email = "linus.f@protonmail.ch";
     security.acme.acceptTerms = true;
+
+    nixpkgs.config.allowUnfree = true;
 
     users = {
       defaultUserShell = pkgs.zsh;

@@ -16,6 +16,7 @@ module "hetzvps" {
     "auth-server" = "auth-server.friikod.se"
     "strapi" = "strapi.friikod.se"
     "next" = "next.friikod.se"
+    "plex" = "plex.friikod.se"
   }
 }
 
@@ -29,6 +30,7 @@ module "dns_friikod_se" {
     "auth-server" = module.hetzvps.node.ip
     "strapi" = module.hetzvps.node.ip
     "next" = module.hetzvps.node.ip
+    "plex" = module.hetzvps.node.ip
   }
   ip = module.hetzvps.node.ip
   # ip6 = module.server.nodes.ip6
