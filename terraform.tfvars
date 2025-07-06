@@ -1,0 +1,2 @@
+ssh_pub = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICGavKgHzlln0r9APH/vyVQ5uGB+BXR6ybHoiAdLS+DY linus@nixos"
+cloudflare_id = "912391589165daea759d3cdcea0c7ced"

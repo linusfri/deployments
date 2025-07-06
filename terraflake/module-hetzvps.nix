@@ -66,7 +66,7 @@ in {
         (attrNames config.terraflake.filesIn);
     })
 
-    # Hardware config gernerated by nixos-infect: hetznercloud
+    # Hardware config gernerated by nixos-infect: hcloud
     ({ lib, ... }: {
   # This file was populated at runtime with the networking
   # details gathered from the active system.
