@@ -15,7 +15,7 @@ locals {
 resource "cloudflare_dns_record" "default" {
   zone_id = cloudflare_zone.default.id
   name    = cloudflare_zone.default.name
-  content   = hcloud_server.nixos.ipv4_address
+  content = hcloud_server.nixos.ipv4_address
   type    = "A"
   proxied = true
   ttl     = 1
@@ -24,19 +24,62 @@ resource "cloudflare_dns_record" "default" {
 resource "cloudflare_dns_record" "subdomain-www" {
   zone_id = cloudflare_zone.default.id
   name    = "www.friikod.se"
-  content   = hcloud_server.nixos.ipv4_address
+  content = hcloud_server.nixos.ipv4_address
   type    = "A"
   proxied = true
   ttl     = 1
 }
 
+resource "cloudflare_dns_record" "subdomain-calc" {
+  zone_id = cloudflare_zone.default.id
+  name    = "calc.friikod.se"
+  content = hcloud_server.nixos.ipv4_address
+  type    = "A"
+  proxied = true
+  ttl     = 1
+}
+
+resource "cloudflare_dns_record" "subdomain-authserver" {
+  zone_id = cloudflare_zone.default.id
+  name    = "auth-server.friikod.se"
+  content = hcloud_server.nixos.ipv4_address
+  type    = "A"
+  proxied = true
+  ttl     = 1
+}
+
+resource "cloudflare_dns_record" "subdomain-strapi" {
+  zone_id = cloudflare_zone.default.id
+  name    = "strapi.friikod.se"
+  content = hcloud_server.nixos.ipv4_address
+  type    = "A"
+  proxied = true
+  ttl     = 1
+}
+
+resource "cloudflare_dns_record" "subdomain-next" {
+  zone_id = cloudflare_zone.default.id
+  name    = "next.friikod.se"
+  content = hcloud_server.nixos.ipv4_address
+  type    = "A"
+  proxied = true
+  ttl     = 1
+}
+
+resource "cloudflare_dns_record" "subdomain-plex" {
+  zone_id = cloudflare_zone.default.id
+  name    = "plex.friikod.se"
+  content = hcloud_server.nixos.ipv4_address
+  type    = "A"
+  proxied = true
+  ttl     = 1
+}
 
 # IPV6
 resource "cloudflare_dns_record" "default6" {
-  count   = hcloud_server.friikod.ipv6_address != "" ? 1 : 0
   zone_id = cloudflare_zone.default.id
   name    = cloudflare_zone.default.name
-  content   = hcloud_server.nixos.ipv6_address
+  content = hcloud_server.nixos.ipv6_address
   type    = "AAAA"
   proxied = true
   ttl     = 1
@@ -45,7 +88,7 @@ resource "cloudflare_dns_record" "default6" {
 resource "cloudflare_dns_record" "subdomain6-www" {
   zone_id = cloudflare_zone.default.id
   name    = "www.friikod.se"
-  content   = hcloud_server.nixos.ipv6_address
+  content = hcloud_server.nixos.ipv6_address
   type    = "AAAA"
   proxied = true
   ttl     = 1
@@ -68,7 +111,7 @@ resource "cloudflare_dns_record" "extra" {
   zone_id  = cloudflare_zone.default.id
   name     = local.extra[count.index].name
   type     = local.extra[count.index].type
-  content    = local.extra[count.index].value
+  content  = local.extra[count.index].value
   priority = local.extra[count.index].priority
   ttl      = 1
 }

@@ -16,4 +16,8 @@ resource "hcloud_server" "nixos" {
   labels = {
     "label" : "seed"
   }
+  lifecycle {
+    ignore_changes = [ssh_keys]
+    prevent_destroy = true
+  }
 }

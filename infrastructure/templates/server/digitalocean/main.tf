@@ -1,26 +1,7 @@
-variable "name" {}
-variable "ssh_key" {}
-variable "domains" {}
-variable "size" {
-  default = "s-1vcpu-2gb"
-}
-variable "label" {
-  default = "default"
-}
-
-terraform {
-  required_providers {
-    digitalocean = {
-      source  = "digitalocean/digitalocean"
-      version = "~> 2.0"
-    }
-  }
-}
-
 # SSH key used for auth on all nodes
 resource "digitalocean_ssh_key" "default" {
   name       = "Server SSH key"
-  public_key = var.ssh_key
+  public_key = var.ssh_pub
 }
 
 resource "digitalocean_droplet" "nixos" {
@@ -40,11 +21,11 @@ resource "digitalocean_droplet" "nixos" {
 output "node" {
   value = {
     provider = "digitalocean"
-    name     = var.name
+    name     = digitalocean_droplet.nixos.name
     ip       = digitalocean_droplet.nixos.ipv4_address
-    ssh_key  = var.ssh_key
-    domains   = var.domains
-    label    = var.label
+    ssh_key  = var.pub
+    domains  = var.domains
+    label    = "nixos"
   }
 }
 
