@@ -1,5 +1,6 @@
-{ pkgs
-, terraflake
+{
+  pkgs,
+  terraflake,
 }:
 
 let
@@ -9,7 +10,12 @@ let
 in
 mkShell rec {
   buildInputs = builtins.attrValues {
-    inherit (pkgs) jq git agenix-rekey age;
+    inherit (pkgs)
+      jq
+      git
+      agenix-rekey
+      age
+      ;
     inherit terraflake tofu;
 
     tokens = pkgs.writeShellScriptBin "tokens" ''
