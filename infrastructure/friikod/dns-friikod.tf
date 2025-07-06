@@ -75,6 +75,62 @@ resource "cloudflare_dns_record" "subdomain-plex" {
   ttl     = 1
 }
 
+# Mail
+resource "cloudflare_dns_record" "mx" {
+  zone_id = cloudflare_zone.default.id
+  name    = "mail.friikod.se"
+  content = hcloud_server.nixos.ipv4_address
+  type    = "A"
+  proxied = false
+  ttl     = 10800
+}
+
+resource "cloudflare_dns_record" "mx-6" {
+  zone_id = cloudflare_zone.default.id
+  name    = "mail.friikod.se"
+  content = hcloud_server.nixos.ipv6_address
+  type    = "AAAA"
+  proxied = false
+  ttl     = 10800
+}
+
+resource "cloudflare_dns_record" "default-mx" {
+  zone_id  = cloudflare_zone.default.id
+  content  = "mail.friikod.se"
+  name     = "friikod.se"
+  type     = "MX"
+  priority = 10
+  proxied  = false
+  ttl      = 10800
+}
+
+resource "cloudflare_dns_record" "default-spf" {
+  zone_id = cloudflare_zone.default.id
+  content = "v=spf1 a:mail.friikod.se -all"
+  name    = "friikod.se"
+  type    = "TXT"
+  proxied = false
+  ttl     = 10800
+}
+
+resource "cloudflare_dns_record" "default-dkim" {
+  zone_id = cloudflare_zone.default.id
+  content = "v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDEqsDnRTlJ5xdG3zUOJ3cZlopvwXMJYtILFbHPb5u5YMZoFCC/ZbCYfZaVmPy8sSlTVSAZIXMAjsz2c6RbTMolO5VCuLEvDSrYaNEJRCDtgqvNTy5HjYJNGGTQz5LQ+CAlMsxQYly4nFG/ePjvCr6QH5ZbfPQzbffK0A9V6IKEQwIDAQAB"
+  name    = "mail._domainkey.friikod.se"
+  type    = "TXT"
+  proxied = false
+  ttl     = 10800
+}
+
+resource "cloudflare_dns_record" "default-dmarc" {
+  zone_id = cloudflare_zone.default.id
+  content = "v=DMARC1; p=none"
+  name    = "_dmarc.friikod.se"
+  type    = "TXT"
+  proxied = false
+  ttl     = 10800
+}
+
 # IPV6
 resource "cloudflare_dns_record" "default6" {
   zone_id = cloudflare_zone.default.id

@@ -15,6 +15,8 @@ mkShell rec {
       git
       agenix-rekey
       age
+      mkpasswd
+      bind
       ;
     inherit terraflake tofu;
 

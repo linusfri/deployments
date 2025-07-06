@@ -32,6 +32,9 @@
     uno-api.url = "github:linusfri/uno_api";
     calc-api.url = "git+ssh://git@github.com/linusfri/calc_api";
     auth-server.url = "git+ssh://git@github.com/linusfri/Gleam-auth-server";
+
+    # Mail
+    mailserver.url = "git+https://gitlab.com/simple-nixos-mailserver/nixos-mailserver.git";
   };
 
   outputs =

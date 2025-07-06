@@ -6,6 +6,7 @@
     flake.inputs.agenix.nixosModules.default
     flake.inputs.agenix-rekey.nixosModules.default
     flake.inputs.arion.nixosModules.arion
+    flake.inputs.mailserver.nixosModules.default
     ./modules/common.nix
     ./modules/www.nix
     ./modules/db.nix
@@ -16,7 +17,7 @@
     ./hetzvps/rekey.nix
     ./applications/calc-api.nix
     ./applications/auth-server.nix
-    ./applications/plex.nix
+    ./applications/mailserver.nix
     (import ./applications/strapi.nix { imageName = "ghcr.io/linusfri/strapi-master:${pkgs.strapiHashProd}"; })
     ./applications/next.nix
   ];

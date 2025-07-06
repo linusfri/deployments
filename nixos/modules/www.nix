@@ -16,6 +16,8 @@ in
   networking.firewall.allowedTCPPorts = [
     80
     443
+    25
+    465
   ];
 
   services.nginx = {

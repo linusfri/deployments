@@ -21,3 +21,15 @@ resource "hcloud_server" "nixos" {
     prevent_destroy = true
   }
 }
+
+resource "hcloud_rdns" "rdns4" {
+  server_id  = hcloud_server.nixos.id
+  ip_address = hcloud_server.nixos.ipv4_address
+  dns_ptr    = "mail.friikod.se"
+}
+
+resource "hcloud_rdns" "rdns6" {
+  server_id  = hcloud_server.nixos.id
+  ip_address = hcloud_server.nixos.ipv6_address
+  dns_ptr    = "mail.friikod.se"
+}
