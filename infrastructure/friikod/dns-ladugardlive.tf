@@ -13,18 +13,18 @@ locals {
 
 # IPV4
 resource "cloudflare_dns_record" "ladugardlive" {
-  zone_id = cloudflare_zone.default.id
-  name    = cloudflare_zone.default.name
-  content   = hcloud_server.nixos.ipv4_address
+  zone_id = cloudflare_zone.ladugardlive.id
+  name    = cloudflare_zone.ladugardlive.name
+  content = hcloud_server.nixos.ipv4_address
   type    = "A"
   proxied = true
   ttl     = 1
 }
 
 resource "cloudflare_dns_record" "ladugardlive-subdomain-www" {
-  zone_id = cloudflare_zone.default.id
+  zone_id = cloudflare_zone.ladugardlive.id
   name    = "www.ladugardlive.se"
-  content   = hcloud_server.nixos.ipv4_address
+  content = hcloud_server.nixos.ipv4_address
   type    = "A"
   proxied = true
   ttl     = 1
@@ -33,19 +33,18 @@ resource "cloudflare_dns_record" "ladugardlive-subdomain-www" {
 
 # IPV6
 resource "cloudflare_dns_record" "ladugardlive-default6" {
-  count   = hcloud_server.nixos.ipv6_address != "" ? 1 : 0
-  zone_id = cloudflare_zone.default.id
-  name    = cloudflare_zone.default.name
-  content   = hcloud_server.nixos.ipv6_address
+  zone_id = cloudflare_zone.ladugardlive.id
+  name    = cloudflare_zone.ladugardlive.name
+  content = hcloud_server.nixos.ipv6_address
   type    = "AAAA"
   proxied = true
   ttl     = 1
 }
 
 resource "cloudflare_dns_record" "ladugardlive-subdomain6-www" {
-  zone_id = cloudflare_zone.default.id
+  zone_id = cloudflare_zone.ladugardlive.id
   name    = "www.ladugardlive.se"
-  content   = hcloud_server.nixos.ipv6_address
+  content = hcloud_server.nixos.ipv6_address
   type    = "AAAA"
   proxied = true
   ttl     = 1
@@ -56,7 +55,7 @@ resource "cloudflare_dns_record" "ladugardlive-subdomain6-www" {
 # resource "cloudflare_dns_record" "subdomains6" {
 #   for_each = hetzvps.nixos.ipv6_address != "" ? local.subdomains6 : {}
 
-#   zone_id  = cloudflare_zone.default.id
+#   zone_id  = cloudflare_zone.ladugardlive.id
 #   name     = each.key
 #   content  = each.value
 #   type     = "AAAA"
@@ -65,10 +64,10 @@ resource "cloudflare_dns_record" "ladugardlive-subdomain6-www" {
 
 resource "cloudflare_dns_record" "ladugardlive-extra" {
   count    = length(local.extra)
-  zone_id  = cloudflare_zone.default.id
+  zone_id  = cloudflare_zone.ladugardlive.id
   name     = local.extra[count.index].name
   type     = local.extra[count.index].type
-  content    = local.extra[count.index].value
+  content  = local.extra[count.index].value
   priority = local.extra[count.index].priority
   ttl      = 1
 }
