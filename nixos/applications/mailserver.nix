@@ -20,6 +20,9 @@ in
         "linus@friikod.se" = {
           hashedPasswordFile = config.age.secrets.linusPass.path;
         };
+        "carolin@friikod.se" = {
+          hashedPasswordFile = config.age.secrets.carroPass.path;
+        };
       };
 
       stateVersion = 3;
@@ -31,6 +34,10 @@ in
 
     age.secrets.linusPass = {
       rekeyFile = ../${node.name}/secrets/linus_mail_pass.age;
+      generator.script = "passphrase";
+    };
+    age.secrets.carroPass = {
+      rekeyFile = ../${node.name}/secrets/carro_mail_pass.age;
       generator.script = "passphrase";
     };
   };
