@@ -76,7 +76,7 @@ resource "cloudflare_dns_record" "subdomain-plex" {
 }
 
 # Mail
-resource "cloudflare_dns_record" "mx" {
+resource "cloudflare_dns_record" "mail-ip4" {
   zone_id = cloudflare_zone.default.id
   name    = "mail.friikod.se"
   content = hcloud_server.nixos.ipv4_address
@@ -85,7 +85,7 @@ resource "cloudflare_dns_record" "mx" {
   ttl     = 10800
 }
 
-resource "cloudflare_dns_record" "mx-6" {
+resource "cloudflare_dns_record" "mail-ip6" {
   zone_id = cloudflare_zone.default.id
   name    = "mail.friikod.se"
   content = hcloud_server.nixos.ipv6_address
