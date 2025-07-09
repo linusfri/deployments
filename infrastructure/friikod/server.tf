@@ -22,6 +22,18 @@ resource "hcloud_server" "nixos" {
   }
 }
 
+resource "hcloud_volume" "nextcloud" {
+  name      = "nextcloud"
+  size      = 300
+  server_id = hcloud_server.nixos.id
+  automount = true
+  format    = "ext4"
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
+
 resource "hcloud_rdns" "rdns4" {
   server_id  = hcloud_server.nixos.id
   ip_address = hcloud_server.nixos.ipv4_address
