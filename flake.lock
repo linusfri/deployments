@@ -473,6 +473,22 @@
         "url": "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver.git"
       }
     },
+    "nextcloud-extras": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1730827799,
+        "narHash": "sha256-79sE72rlztvhx37PYh6m2TLE2J6ybVvDRMQBRWaohqc=",
+        "owner": "onny",
+        "repo": "nixos-nextcloud-testumgebung",
+        "rev": "c3fdbf165814d403a8f8e81ff8e15adcbe7eadd0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "onny",
+        "repo": "nixos-nextcloud-testumgebung",
+        "type": "github"
+      }
+    },
     "nix-filter": {
       "locked": {
         "lastModified": 1710156097,
@@ -711,6 +727,7 @@
         "flake-utils": "flake-utils_2",
         "lgl-site": "lgl-site",
         "mailserver": "mailserver",
+        "nextcloud-extras": "nextcloud-extras",
         "nixos": "nixos",
         "nixpkgs": "nixpkgs_7",
         "strapi": "strapi",

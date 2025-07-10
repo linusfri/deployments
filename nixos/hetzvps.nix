@@ -18,6 +18,7 @@
     ./applications/calc-api.nix
     ./applications/auth-server.nix
     ./applications/mailserver.nix
+    ./applications/nextcloud.nix
     (import ./applications/strapi.nix { imageName = "ghcr.io/linusfri/strapi-master:${pkgs.strapiHashProd}"; })
     ./applications/next.nix
   ];

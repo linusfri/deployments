@@ -75,6 +75,15 @@ resource "cloudflare_dns_record" "subdomain-plex" {
   ttl     = 1
 }
 
+resource "cloudflare_dns_record" "subdomain-nextcloud" {
+  zone_id = cloudflare_zone.default.id
+  name    = "nextcloud.friikod.se"
+  content = hcloud_server.nixos.ipv4_address
+  type    = "A"
+  proxied = true
+  ttl     = 1
+}
+
 # Mail
 resource "cloudflare_dns_record" "mail-ip4" {
   zone_id = cloudflare_zone.default.id

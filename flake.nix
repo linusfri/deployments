@@ -35,6 +35,12 @@
 
     # Mail
     mailserver.url = "git+https://gitlab.com/simple-nixos-mailserver/nixos-mailserver.git";
+
+    # Nextcloud extras (for ensureUsers mainly)
+    nextcloud-extras = {
+      url = "github:onny/nixos-nextcloud-testumgebung";
+      flake = false;
+    };
   };
 
   outputs =

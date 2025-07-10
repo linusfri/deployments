@@ -15,6 +15,7 @@ output "nodes" {
         "strapi" = "strapi.friikod.se"
         "next" = "next.friikod.se"
         "plex" = "plex.friikod.se"
+        "nextcloud" = "nextcloud.friikod.se"
       }
     }
   }
