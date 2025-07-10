@@ -47,6 +47,22 @@ in
       "max_input_time" = "3600";
     };
     fastcgiTimeout = 300;
+    extraApps = {
+      inherit (config.services.nextcloud.package.packages.apps)
+        news
+        contacts
+        calendar
+        tasks
+        onlyoffice
+        deck
+        polls
+        ;
+      spreed = pkgs.fetchNextcloudApp {
+        sha256 = "sha256-tumLEoJAGvcFgN8dQbmwxPofOQ825mySOa5qNg6wzgs=";
+        url = "https://github.com/nextcloud-releases/spreed/releases/download/v21.1.1/spreed-v21.1.1.tar.gz";
+        license = "gpl3";
+      };
+    };
     datadir = "/var/lib/nextcloud-data";
     https = true;
     hostName = node.domains.nextcloud;
