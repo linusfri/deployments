@@ -46,7 +46,7 @@ in
       "max_execution_time" = "3600";
       "max_input_time" = "3600";
     };
-    fastcgiTimeout = 3600;
+    fastcgiTimeout = 300;
     datadir = "/var/lib/nextcloud-data";
     https = true;
     hostName = node.domains.nextcloud;

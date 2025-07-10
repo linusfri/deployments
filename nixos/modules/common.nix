@@ -50,6 +50,11 @@ in
       };
     };
 
+    environment.systemPackages = with pkgs; [
+      htop
+      jq
+    ];
+
     nix = {
       gc.automatic = true;
       extraOptions = ''
