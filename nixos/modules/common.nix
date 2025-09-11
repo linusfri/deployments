@@ -42,6 +42,7 @@ in
           extraGroups = [
             "wheel"
             "docker"
+            "nextcloud"
           ];
           createHome = true;
           isNormalUser = true;

@@ -19,6 +19,7 @@
     ./applications/auth-server.nix
     ./applications/mailserver.nix
     ./applications/nextcloud.nix
+    ./applications/jellyfin.nix
     (import ./applications/strapi.nix { imageName = "ghcr.io/linusfri/strapi-master:${pkgs.strapiHashProd}"; })
     ./applications/next.nix
   ];
