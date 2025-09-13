@@ -14,12 +14,14 @@
     ./modules/strapi.nix
     ./modules/nextjs.nix
     ./modules/plex.nix
+    ./modules/valheim.nix
     ./hetzvps/rekey.nix
     ./applications/calc-api.nix
     ./applications/auth-server.nix
     ./applications/mailserver.nix
     ./applications/nextcloud.nix
     ./applications/jellyfin.nix
+    ./applications/valheim.nix
     (import ./applications/strapi.nix { imageName = "ghcr.io/linusfri/strapi-master:${pkgs.strapiHashProd}"; })
     ./applications/next.nix
   ];
