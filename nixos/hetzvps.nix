@@ -22,8 +22,8 @@
     ./applications/nextcloud.nix
     ./applications/jellyfin.nix
     # ./applications/valheim.nix
-    (import ./applications/strapi.nix { imageName = "ghcr.io/linusfri/strapi-master:${pkgs.strapiHashProd}"; })
-    ./applications/next.nix
+    # (import ./applications/strapi.nix { imageName = "ghcr.io/linusfri/strapi-master:${pkgs.strapiHashProd}"; })
+    # ./applications/next.nix
   ];
 
   # Set the initial NixOS version, don't touch this after first

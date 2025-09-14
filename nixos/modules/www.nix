@@ -22,6 +22,8 @@ in
 
   services.nginx = {
     enable = true;
+    enableReload = true;
+    logError = "stderr";
     virtualHosts = {
       "${node.domains.friikod}" = {
         forceSSL = true;
