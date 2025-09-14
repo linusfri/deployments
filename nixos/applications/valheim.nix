@@ -10,7 +10,7 @@ in
 {
   services.linusfri.valheim = {
     enable = true;
-    envFilePath = "${config.age.secrets.valheimEnv.path}";
+    envFilePath = config.age.secrets.valheimEnv.path;
   };
   age.secrets.valheimEnv = {
     rekeyFile = ../${node.name}/secrets/valheim-env.age;
