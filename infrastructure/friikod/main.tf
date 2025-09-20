@@ -17,6 +17,7 @@ output "nodes" {
         "plex" = "plex.friikod.se"
         "nextcloud" = "nextcloud.friikod.se"
         "jellyfin" = "jellyfin.friikod.se"
+        "keycloak" = "keycloak.friikod.se"
       }
     }
   }

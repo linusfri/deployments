@@ -22,6 +22,7 @@
     ./applications/nextcloud.nix
     ./applications/jellyfin.nix
     ./applications/valheim.nix
+    ./applications/keycloak.nix
     # (import ./applications/strapi.nix { imageName = "ghcr.io/linusfri/strapi-master:${pkgs.strapiHashProd}"; })
     # ./applications/next.nix
   ];

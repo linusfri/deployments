@@ -66,15 +66,6 @@ resource "cloudflare_dns_record" "subdomain-next" {
   ttl     = 1
 }
 
-resource "cloudflare_dns_record" "subdomain-plex" {
-  zone_id = cloudflare_zone.default.id
-  name    = "plex.friikod.se"
-  content = hcloud_server.nixos.ipv4_address
-  type    = "A"
-  proxied = true
-  ttl     = 1
-}
-
 resource "cloudflare_dns_record" "subdomain-nextcloud" {
   zone_id = cloudflare_zone.default.id
   name    = "nextcloud.friikod.se"
@@ -87,6 +78,15 @@ resource "cloudflare_dns_record" "subdomain-nextcloud" {
 resource "cloudflare_dns_record" "subdomain-jellyfin" {
   zone_id = cloudflare_zone.default.id
   name    = "jellyfin.friikod.se"
+  content = hcloud_server.nixos.ipv4_address
+  type    = "A"
+  proxied = false
+  ttl     = 3600
+}
+
+resource "cloudflare_dns_record" "subdomain-keycloak" {
+  zone_id = cloudflare_zone.default.id
+  name    = "keycloak.friikod.se"
   content = hcloud_server.nixos.ipv4_address
   type    = "A"
   proxied = false
