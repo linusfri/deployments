@@ -2,7 +2,7 @@
 let
   inherit (config.terraflake.input) node nodes;
 
-  port = 10050;
+  port = 8000;
 
   startApp = pkgs.writeShellScriptBin "start-app" ''
     set -a

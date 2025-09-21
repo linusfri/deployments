@@ -72,11 +72,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1740347243,
-        "narHash": "sha256-KnTdA4629Z15eTe/Xg2oxtk9MllAdCLiutT0ciW6xJI=",
+        "lastModified": 1758472367,
+        "narHash": "sha256-fv/ddyRov2KWGBijjI0LGaVR0IQeKnNHqwqTxT1Qatg=",
         "ref": "refs/heads/master",
-        "rev": "52eb1271e5ff8ce9dc18e53d30012ce6f077d9f2",
-        "revCount": 9,
+        "rev": "0b10f53ccb85d3019ea6a0fba2be39226d104751",
+        "revCount": 11,
         "type": "git",
         "url": "ssh://git@github.com/linusfri/Gleam-auth-server"
       },
@@ -506,11 +506,11 @@
     },
     "nix-gleam": {
       "locked": {
-        "lastModified": 1717670865,
-        "narHash": "sha256-+dAPiKAwCzlKWtx3aIHXfR6jydh1JyangewqZKJx500=",
+        "lastModified": 1756764470,
+        "narHash": "sha256-s7/R8N6fmQvIskvVl1x6hZaVw+/PZOM2A2p+v8qTz+s=",
         "owner": "arnarg",
         "repo": "nix-gleam",
-        "rev": "c69abe0e57a01991654d3de63dcd93a8b91b98ff",
+        "rev": "72f87c8f8cf582784b8007cef9ca4c2dc3d568ed",
         "type": "github"
       },
       "original": {
@@ -585,16 +585,16 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1740335373,
-        "narHash": "sha256-wRpnm3i+J+8VtQMD5ctDaDwUTqxoKsYgGmvImXYV8KY=",
+        "lastModified": 1758470875,
+        "narHash": "sha256-WfCBrjX1CNSAT/ouFvv34iwnqRFsivrK2/rvFYjg/+I=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "414816445a79f836c4b882250472c1094ceafc9d",
+        "rev": "9e16572ad01ffdb39e5b5447ebb23607f1bba5c9",
         "type": "github"
       },
       "original": {
         "owner": "nixos",
-        "ref": "release-24.11",
+        "ref": "release-25.05",
         "repo": "nixpkgs",
         "type": "github"
       }
