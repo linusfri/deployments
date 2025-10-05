@@ -63,8 +63,8 @@ let
 
   setupContentDir = pkgs.writeShellScriptBin "setup-content-dir" ''
     PATH=${lib.makeBinPath [ pkgs.rsync ]}:$PATH
-    CONTENT_DIR="${cfg.home}/content"
-    TMP_CONTENT="/tmp/${cfg.user}-content"
+    CONTENT_DIR="${cfg.home}/app"
+    TMP_CONTENT="/tmp/${cfg.user}-app"
 
     mkdir -p "$CONTENT_DIR"
 
@@ -73,35 +73,35 @@ let
 
     # Creates wp-cli.yml to be able to use wp cli
     cat <<EOF > "${cfg.home}/wp-cli.yml"
-      path: ${cfg.package}/share/php/${cfg.projectDir}/public/wp
+      path: ${cfg.package}/share/php/${cfg.projectDir}/web/wp
     EOF
 
     # Temp folder for intermediate storage
     mkdir -p "$TMP_CONTENT"
-    rsync -r ${cfg.package}/share/php/${cfg.projectDir}/packages/ "$TMP_CONTENT"
-    rsync -r ${cfg.package}/share/php/${cfg.projectDir}/public/content/ "$TMP_CONTENT"
+    rsync -r ${cfg.package}/share/php/${cfg.projectDir}/web/app/ "$TMP_CONTENT"
 
     # Sync persistant content with repo content
     rsync -r --delete --exclude "uploads" "$TMP_CONTENT/" "$CONTENT_DIR"
 
     rm -rf "$TMP_CONTENT"
-    chown -R ${cfg.user}:${cfg.user} "${cfg.home}"
-    chmod -R 755 "$CONTENT_DIR"
+    chown -R ${cfg.user}:${cfg.user} $CONTENT_DIR
+    # chown -R ${cfg.user}:${nginxUser} $CONTENT_DIR/uploads
+    chmod -R 755 ${cfg.home}
   '';
 
   setupCache = pkgs.writeShellScriptBin "set-up-cache" ''
     PATH=${lib.makeBinPath [ pkgs.rsync ]}:$PATH
 
     # SET UP OBJECT CACHE
-    PUBLIC_CONTENT=${cfg.package}/share/php/${cfg.projectDir}/public/content
+    PUBLIC_CONTENT=${cfg.package}/share/php/${cfg.projectDir}/web/app
 
     # Copy object cache file to make redis work with DISALLOW_FILE_[MODS|EDIT]=true
     # Redis plugin deletes this file if inactivated in Admin. Don't do it.
     if [[ -d $PUBLIC_CONTENT/plugins/redis-cache ]]; then
-      rsync -vL $PUBLIC_CONTENT/plugins/redis-cache/includes/object-cache.php ${cfg.home}/content/
+      rsync -vL $PUBLIC_CONTENT/plugins/redis-cache/includes/object-cache.php ${cfg.home}/app/
     fi
 
-    chown ${cfg.user}:${cfg.user} ${cfg.home}/content/object-cache.php
+    chown ${cfg.user}:${cfg.user} ${cfg.home}/app/object-cache.php
 
     # SET UP PAGE CACHE DIRECTORY FOR FASTCGI CACHE
     mkdir -p /var/run/nginx-cache/${cfg.appName}
@@ -209,7 +209,7 @@ in
     users.users.${cfg.user} = {
       name = cfg.user;
       group = cfg.user;
-      extraGroups = [ "wheel" ];
+      extraGroups = [ "nginx" ];
       home = cfg.home;
       createHome = true;
       isNormalUser = true;
@@ -272,7 +272,7 @@ in
       virtualHosts."${cfg.domain}" = {
         enableACME = cfg.ssl.enable;
         forceSSL = cfg.ssl.force;
-        root = "${cfg.package}/share/php/${cfg.projectDir}/public";
+        root = "${cfg.package}/share/php/${cfg.projectDir}/web";
         basicAuth = mkIf cfg.basicAuth.enable {
           ${cfg.user} = cfg.user;
         };
@@ -303,6 +303,8 @@ in
           if ($http_cookie ~* "woocommerce_items_in_cart") {
               set $skip_cache 1;
           }
+
+          client_max_body_size 64m;
         '';
 
         locations."/".extraConfig = ''
@@ -353,16 +355,20 @@ in
           fastcgi_cache_purge ${cfg.appName} "$scheme$request_method$host$1";
         '';
 
-        locations."/content/uploads/".extraConfig = ''
-          alias /var/lib/${cfg.user}/content/uploads/;
-          try_files $uri @production;
-        '';
+        locations."/app/uploads/" = {
+          alias = "/var/lib/${cfg.user}/app/uploads/";
+          extraConfig = mkIf (cfg.assetProxy != "") ''
+            try_files $uri @production;
+          '';
+        };
 
-        locations."@production".extraConfig = ''
-          resolver 8.8.8.8;
-          proxy_ssl_server_name on;
-          proxy_pass ${cfg.assetProxy};
-        '';
+        locations."@production" = mkIf (cfg.assetProxy != "") {
+          extraConfig = ''
+            resolver 8.8.8.8;
+            proxy_ssl_server_name on;
+            proxy_pass ${cfg.assetProxy};
+          '';
+        };
       };
     };
 

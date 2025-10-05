@@ -102,6 +102,15 @@ resource "cloudflare_dns_record" "subdomain-valheim" {
   ttl     = 3600
 }
 
+resource "cloudflare_dns_record" "subdomain-elin" {
+  zone_id = cloudflare_zone.default.id
+  name    = "elin.friikod.se"
+  content = hcloud_server.nixos.ipv4_address
+  type    = "A"
+  proxied = false
+  ttl     = 3600
+}
+
 # Mail
 resource "cloudflare_dns_record" "mail-ip4" {
   zone_id = cloudflare_zone.default.id

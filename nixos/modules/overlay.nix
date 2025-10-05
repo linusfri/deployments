@@ -1,10 +1,10 @@
 {
   nixpkgs,
   lgl-site,
-  uno-api,
   calc-api,
+  website-for-friends,
   auth-server,
-  strapi
+  strapi,
 }:
 
 { ... }:
@@ -21,9 +21,9 @@
       {
         inherit (pkgs) netdata netdataCloud;
         inherit (lgl-site.packages.${system}) ladugard-live;
-        inherit (uno-api.packages.${system}) uno-api;
         inherit (calc-api.packages.${system}) calc-api;
         inherit (auth-server.packages.${system}) auth-server;
+        inherit (website-for-friends.packages.${system}) bedrock-wp;
         inherit (strapi.packages.${system}) next;
         strapiHashProd = strapi.strapiHash.${system};
       }

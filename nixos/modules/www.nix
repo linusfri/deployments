@@ -21,6 +21,9 @@ in
   ];
 
   services.nginx = {
+    package = pkgs.nginx.override {
+      modules = [ pkgs.nginxModules.cache-purge ];
+    };
     enable = true;
     enableReload = true;
     logError = "stderr";

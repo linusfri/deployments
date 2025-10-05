@@ -29,9 +29,9 @@
     strapi = {
       url = "git+ssh://git@github.com/linusfri/strapi_docknix";
     };
-    uno-api.url = "github:linusfri/uno_api";
     calc-api.url = "git+ssh://git@github.com/linusfri/calc_api";
     auth-server.url = "git+ssh://git@github.com/linusfri/Gleam-auth-server";
+    website-for-friends.url = "github:linusfri/website-for-friends";
 
     # Mail
     mailserver.url = "git+https://gitlab.com/simple-nixos-mailserver/nixos-mailserver.git";
@@ -71,8 +71,8 @@
               inherit (inputs)
                 nixpkgs
                 lgl-site
-                uno-api
                 calc-api
+                website-for-friends
                 auth-server
                 strapi
                 ;

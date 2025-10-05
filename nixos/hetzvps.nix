@@ -23,6 +23,7 @@
     ./applications/jellyfin.nix
     ./applications/valheim.nix
     ./applications/keycloak.nix
+    ./applications/wordpress.nix
     # (import ./applications/strapi.nix { imageName = "ghcr.io/linusfri/strapi-master:${pkgs.strapiHashProd}"; })
     # ./applications/next.nix
   ];
