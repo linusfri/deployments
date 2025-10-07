@@ -31,7 +31,7 @@ let
     EOF
 
     # Edits .zshrc add direnv configuration hook only if it doesn't exist
-    if [[ ! -f ${cfg.home}/.zshrc]]; then
+    if [[ ! -f ${cfg.home}/.zshrc ]]; then
       touch ${cfg.home}/.zshrc
     fi
     grep -qxF 'eval "$(direnv hook zsh)"' ${cfg.home}/.zshrc || echo 'eval "$(direnv hook zsh)"' >> ${cfg.home}/.zshrc
