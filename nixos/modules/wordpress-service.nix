@@ -85,7 +85,6 @@ let
 
     rm -rf "$TMP_CONTENT"
     chown -R ${cfg.user}:${cfg.user} $CONTENT_DIR
-    # chown -R ${cfg.user}:${nginxUser} $CONTENT_DIR/uploads
     chmod -R 755 ${cfg.home}
   '';
 
@@ -261,7 +260,7 @@ in
       '';
       phpEnv = {
         PATH = lib.makeBinPath [ pkgs.php ];
-        ENV_FILE_PATH = "/var/lib/${cfg.user}";
+        ENV_FILE_PATH = "${cfg.home}";
       };
     };
 
