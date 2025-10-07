@@ -4,7 +4,6 @@
   lib,
   ...
 }:
-with lib;
 let
   cfg = config.services.linusfri.wordpress;
   
@@ -115,99 +114,99 @@ let
 in
 {
   options.services.linusfri.wordpress = {
-    enable = mkEnableOption "WordPress service";
+    enable = lib.mkEnableOption "WordPress service";
 
-    appName = mkOption {
-      type = types.str;
+    appName = lib.mkOption {
+      type = lib.types.str;
       description = "Application name";
     };
 
-    package = mkOption {
-      type = types.package;
+    package = lib.mkOption {
+      type = lib.types.package;
       description = "WordPress package to use";
     };
 
-    user = mkOption {
-      type = types.str;
+    user = lib.mkOption {
+      type = lib.types.str;
       description = "User to run WordPress as";
     };
 
-    home = mkOption {
-      type = types.path;
+    home = lib.mkOption {
+      type = lib.types.path;
       description = "Home directory for the WordPress user";
     };
 
-    domain = mkOption {
-      type = types.str;
+    domain = lib.mkOption {
+      type = lib.types.str;
       description = "Domain name for the WordPress site";
     };
 
-    dbName = mkOption {
-      type = types.str;
+    dbName = lib.mkOption {
+      type = lib.types.str;
       description = "Database name";
     };
 
-    dbPrefix = mkOption {
-      type = types.str;
+    dbPrefix = lib.mkOption {
+      type = lib.types.str;
       default = "wp_";
       description = "Database table prefix";
     };
 
-    projectDir = mkOption {
-      type = types.str;
+    projectDir = lib.mkOption {
+      type = lib.types.str;
       description = "Project directory name within the package";
     };
 
-    environment = mkOption {
-      type = types.enum [ "development" "staging" "production" ];
+    environment = lib.mkOption {
+      type = lib.types.enum [ "development" "staging" "production" ];
       default = "production";
       description = "WordPress environment";
     };
 
     debug = {
-      enabled = mkOption {
-        type = types.bool;
+      enabled = lib.mkOption {
+        type = lib.types.bool;
         default = false;
         description = "Enable WordPress debugging";
       };
 
-      display = mkOption {
-        type = types.bool;
+      display = lib.mkOption {
+        type = lib.types.bool;
         default = false;
         description = "Display debug output";
       };
     };
 
     ssl = {
-      enable = mkOption {
-        type = types.bool;
+      enable = lib.mkOption {
+        type = lib.types.bool;
         default = true;
         description = "Enable ACME SSL certificates";
       };
 
-      force = mkOption {
-        type = types.bool;
+      force = lib.mkOption {
+        type = lib.types.bool;
         default = true;
         description = "Force SSL redirect";
       };
     };
 
     basicAuth = {
-      enable = mkOption {
-        type = types.bool;
+      enable = lib.mkOption {
+        type = lib.types.bool;
         default = false;
         description = "Enable basic authentication";
       };
     };
 
-    assetProxy = mkOption {
-      type = types.str;
+    assetProxy = lib.mkOption {
+      type = lib.types.str;
       default = "";
       description = "Asset proxy URL for production assets";
     };
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     users.users.${cfg.user} = {
       name = cfg.user;
       group = cfg.user;
@@ -256,7 +255,7 @@ in
         "access.log" = "/var/log/${cfg.user}-phpfpm-access.log";
       };
       phpOptions = ''
-        error_log = /var/log/${cfg.user}/php-error.log
+        error_log = /var/log/php-error.log
         error_reporting = -1
         log_errors = On
         log_errors_max_len = 0
@@ -275,7 +274,7 @@ in
         enableACME = cfg.ssl.enable;
         forceSSL = cfg.ssl.force;
         root = "${cfg.package}/share/php/${cfg.projectDir}/web";
-        basicAuth = mkIf cfg.basicAuth.enable {
+        basicAuth = lib.mkIf cfg.basicAuth.enable {
           ${cfg.user} = cfg.user;
         };
         extraConfig = ''
@@ -359,12 +358,12 @@ in
 
         locations."/app/uploads/" = {
           alias = "/var/lib/${cfg.user}/app/uploads/";
-          extraConfig = mkIf (cfg.assetProxy != "") ''
+          extraConfig = lib.mkIf (cfg.assetProxy != "") ''
             try_files $uri @production;
           '';
         };
 
-        locations."@production" = mkIf (cfg.assetProxy != "") {
+        locations."@production" = lib.mkIf (cfg.assetProxy != "") {
           extraConfig = ''
             resolver 8.8.8.8;
             proxy_ssl_server_name on;

@@ -5,19 +5,14 @@
   ...
 }:
 let
-  cfg = config.services.linusfri.wordpress;
-  
+  # DON'T access config here!
   phpFpmSettings = import ../settings/phpfpm-settings.nix;
 
-  inherit (config.terraflake.input) node;
-
-  nginxUser = config.services.nginx.user;
-
   # Create site-specific helper scripts
-  mkSiteScripts = name: siteCfg: 
+  mkSiteScripts = name: siteCfg: node: nginxUser: secretPath: redisSocket:
     let
       createEnvFile = pkgs.writeShellScriptBin "create-env-file-${name}" ''
-        cat ${config.age.secrets."${name}-env".path} > ${siteCfg.home}/.env
+        cat ${secretPath} > ${siteCfg.home}/.env
 
         # Concatinates public envs to secret part
         cat <<EOF >> ${siteCfg.home}/.env
@@ -33,16 +28,14 @@ let
         WP_SITEURL=https://${siteCfg.domain}/wp
         CONTENT_PATH=${siteCfg.home}
         FS_METHOD=direct
-        WP_REDIS_PATH=${config.services.redis.servers.${siteCfg.user}.unixSocket}
+        WP_REDIS_PATH=${redisSocket}
         WP_REDIS_PORT=0
         WP_REDIS_HOST=localhost
         WP_REDIS_SCHEME=unix
         WP_REDIS_DISABLE_DROPIN_CHECK=true
         WP_REDIS_DISABLE_DROPIN_AUTOUPDATE=true
         EOF
-      '';
-
-      createEnvironment = pkgs.writeShellScriptBin "create-environment-${name}" ''
+      '';      createEnvironment = pkgs.writeShellScriptBin "create-environment-${name}" ''
         ${createEnvFile}/bin/create-env-file-${name}
 
         # Creates a .envrc file for direnv to excecute for correct shell environment
@@ -119,9 +112,9 @@ let
     };
 
   # Create configuration for a single site
-  mkSiteConfig = name: siteCfg: 
+  mkSiteConfig = name: siteCfg: node: nginxUser: secretPath: redisSocket: phpfpmSocket:
     let
-      scripts = mkSiteScripts name siteCfg;
+      scripts = mkSiteScripts name siteCfg node nginxUser secretPath redisSocket;
     in {
       users.users.${siteCfg.user} = {
         name = siteCfg.user;
@@ -163,7 +156,7 @@ let
       services.phpfpm.pools.${siteCfg.user} = {
         user = siteCfg.user;
         settings = phpFpmSettings // {
-          "listen.owner" = config.services.nginx.user;
+          "listen.owner" = nginxUser;
           "access.log" = "/var/log/${siteCfg.user}-phpfpm-access.log";
         };
         phpOptions = ''
@@ -236,7 +229,7 @@ let
             add_header X-Cache-Status $upstream_cache_status;
 
             # PARAMS
-            fastcgi_pass unix:${config.services.phpfpm.pools.${siteCfg.user}.socket};
+            fastcgi_pass unix:${phpfpmSocket};
             fastcgi_index index.php;
             fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
             fastcgi_param QUERY_STRING  $query_string;
@@ -306,10 +299,6 @@ let
         rekeyFile = ../${node.name}/secrets/${name}-env.age;
       };
     };
-
-  # Merge all site configurations
-  allSitesConfig = lib.mkMerge (lib.mapAttrsToList mkSiteConfig cfg.sites);
-
 in
 {
   options.services.linusfri.wordpress = {
@@ -406,5 +395,15 @@ in
     };
   };
 
-  config = lib.mkIf (cfg.sites != {}) allSitesConfig;
+  config = let
+    cfg = config.services.linusfri.wordpress;
+    inherit (config.terraflake.input) node;
+    nginxUser = config.services.nginx.user;
+  in lib.mkMerge (lib.mapAttrsToList (name: siteCfg:
+    let
+      secretPath = "/run/agenix/${name}-env";
+      redisSocket = "/run/redis-${siteCfg.user}/redis.sock";
+      phpfpmSocket = "/run/phpfpm/${siteCfg.user}.sock";
+    in mkSiteConfig name siteCfg node nginxUser secretPath redisSocket phpfpmSocket
+  ) cfg.sites);
 }
