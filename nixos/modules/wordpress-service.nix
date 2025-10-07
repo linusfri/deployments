@@ -256,7 +256,7 @@ in
         "access.log" = "/var/log/${cfg.user}-phpfpm-access.log";
       };
       phpOptions = ''
-        error_log = /var/log/php-error.log
+        error_log = /var/log/${cfg.user}/php-error.log
         error_reporting = -1
         log_errors = On
         log_errors_max_len = 0

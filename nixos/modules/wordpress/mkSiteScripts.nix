@@ -1,0 +1,10 @@
+{ 
+  pkgs,
+  lib,
+  name,
+  siteCfg,
+  nginxUser,
+  secretPath,
+  redisSocket,
+}:
+{}
