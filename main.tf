@@ -3,10 +3,10 @@ variable "cloudflare_token" {}
 variable "ssh_pub" {}
 
 module "friikod" {
-  source = "./infrastructure/friikod"
-  cloudflare_id = var.cloudflare_id
+  source           = "./infrastructure/friikod"
+  cloudflare_id    = var.cloudflare_id
   cloudflare_token = var.cloudflare_token
-  ssh_pub = var.ssh_pub
+  ssh_pub          = var.ssh_pub
 }
 
 # Add all node information to output for `terraflake`.

@@ -880,17 +880,14 @@
         ]
       },
       "locked": {
-        "lastModified": 1739558844,
-        "narHash": "sha256-U2T8y7gI08i7y4F0YhWe0sPdje5vrcAZaylKkb/xMJ4=",
-        "owner": "icetan",
-        "repo": "nixiform",
-        "rev": "b57197b57541d2645c3b1c773ea8a23fe64889b8",
-        "type": "github"
+        "lastModified": 1762096183,
+        "narHash": "sha256-nAl/799hCGAOMGXHt50mj/B6mSK5VZ8CnInPNcDU7g8=",
+        "path": "/home/linus/Projects/nixiform",
+        "type": "path"
       },
       "original": {
-        "owner": "icetan",
-        "repo": "nixiform",
-        "type": "github"
+        "path": "/home/linus/Projects/nixiform",
+        "type": "path"
       }
     },
     "treefmt-nix": {
