@@ -66,7 +66,7 @@ in {
         (attrNames config.terraflake.filesIn);
     })
 
-    # Hardware config gernerated by nixos-infect: hcloud
+    # Hardware config gernerated by nixos-infect: hetznercloud
     ({ lib, ... }: {
   # This file was populated at runtime with the networking
   # details gathered from the active system.
@@ -83,11 +83,11 @@ in {
     interfaces = {
       eth0 = {
         ipv4.addresses = [
-          { address="37.27.186.30"; prefixLength=32; }
+          { address="37.27.30.194"; prefixLength=32; }
         ];
         ipv6.addresses = [
-          { address="2a01:4f9:c012:abe4::1"; prefixLength=64; }
-{ address="fe80::9400:4ff:fe18:7016"; prefixLength=64; }
+          { address="2a01:4f9:c012:1a59::1"; prefixLength=64; }
+{ address="fe80::9000:6ff:feae:7911"; prefixLength=64; }
         ];
         ipv4.routes = [ { address = "172.31.1.1"; prefixLength = 32; } ];
         ipv6.routes = [ { address = "fe80::1"; prefixLength = 128; } ];
@@ -96,14 +96,19 @@ in {
     };
   };
   services.udev.extraRules = ''
-    ATTR{address}=="96:00:04:18:70:16", NAME="eth0"
+    ATTR{address}=="92:00:06:ae:79:11", NAME="eth0"
     
   '';
 })
     ({ modulesPath, ... }:
 {
   imports = [ (modulesPath + "/profiles/qemu-guest.nix") ];
-  boot.loader.grub.device = "/dev/sda";
+  boot.loader.grub = {
+    efiSupport = true;
+    efiInstallAsRemovable = true;
+    device = "nodev";
+  };
+  fileSystems."/boot" = { device = "/dev/disk/by-uuid/1949-8C0B"; fsType = "vfat"; };
   boot.initrd.availableKernelModules = [ "ata_piix" "uhci_hcd" "xen_blkfront" "vmw_pvscsi" ];
   boot.initrd.kernelModules = [ "nvme" ];
   fileSystems."/" = { device = "/dev/sda1"; fsType = "ext4"; };

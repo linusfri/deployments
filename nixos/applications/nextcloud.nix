@@ -13,7 +13,7 @@ let
     else
       "/var/lib/nextcloud-data";
 
-  diskPathAndUuid = "/dev/disk/by-uuid/9930cf1b-b4b5-44f9-8b10-fbb22b14740f";
+  diskPathAndUuid = "/dev/disk/by-uuid/16539207-795b-4ce9-b552-0dd029aedeb2";
 in
 {
   services.nextcloud = {
@@ -63,7 +63,7 @@ in
         license = "gpl3";
       };
     };
-    datadir = "/var/lib/nextcloud-data";
+    datadir = "/var/lib/nextcloud-storage";
     https = true;
     hostName = node.domains.nextcloud;
     maxUploadSize = "50G";

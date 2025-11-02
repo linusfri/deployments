@@ -6,7 +6,7 @@ resource "hcloud_ssh_key" "main" {
 resource "hcloud_server" "nixos" {
   name        = "hetzvps"
   image       = "ubuntu-22.04"
-  server_type = "cpx31"
+  server_type = "cpx32"
   datacenter  = "hel1-dc2"
   public_net {
     ipv4_enabled = true
@@ -16,7 +16,6 @@ resource "hcloud_server" "nixos" {
   labels = {
     "label" : "seed"
   }
-  backups = true
   lifecycle {
     ignore_changes = [ssh_keys]
     prevent_destroy = true

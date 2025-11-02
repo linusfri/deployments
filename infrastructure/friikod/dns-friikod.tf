@@ -72,7 +72,7 @@ resource "cloudflare_dns_record" "subdomain-nextcloud" {
   content = hcloud_server.nixos.ipv4_address
   type    = "A"
   proxied = false
-  ttl     = 3600
+  ttl     = 1
 }
 
 resource "cloudflare_dns_record" "subdomain-jellyfin" {

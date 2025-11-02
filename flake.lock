@@ -880,14 +880,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1762096183,
-        "narHash": "sha256-nAl/799hCGAOMGXHt50mj/B6mSK5VZ8CnInPNcDU7g8=",
-        "path": "/home/linus/Projects/nixiform",
-        "type": "path"
+        "lastModified": 1762103503,
+        "narHash": "sha256-8AeOsukmUYrVVqqppja7Ar4P5YgRl9EFTGSNrZbHUT0=",
+        "owner": "linusfri",
+        "repo": "nixiform",
+        "rev": "2a7159bc7194412567df8c8a9b08d57d315662c6",
+        "type": "github"
       },
       "original": {
-        "path": "/home/linus/Projects/nixiform",
-        "type": "path"
+        "owner": "linusfri",
+        "repo": "nixiform",
+        "type": "github"
       }
     },
     "treefmt-nix": {
