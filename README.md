@@ -14,21 +14,12 @@ To get bootstrapped you need the following:
 ## Provisioning
 
 Creating the basic infrastructure such as VPSs and DNS records, i.e.
-infrastructure provisioning is done using `terraform`.
+infrastructure provisioning is done using `opentofu`.
 
 The most important configuration file is `./main.tf` and the high level
-parameters are in `./terraform.tfvars.json`.
+parameters are in `./terraform.tfvars`.
 
-Currently the providers configured are Cloudflare for DNS and Digitalocean for VPSs.
-
-To provision run:
-
-```sh
-export DIGITALOCEAN_TOKEN=<digitalocean cloud API token>
-export CLOUDFLARE_API_TOKEN=<cloudflare API token>
-terraform init
-terraform apply
-```
+Currently the providers configured are Cloudflare for DNS and Hetzner for VPSs.
 
 ## Configuring Each Node
 
