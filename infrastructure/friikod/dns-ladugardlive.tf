@@ -7,10 +7,6 @@ resource "cloudflare_zone" "ladugardlive" {
   }
 }
 
-locals {
-  ladugardlive-extra = [] 
-}
-
 # IPV4
 resource "cloudflare_dns_record" "ladugardlive" {
   zone_id = cloudflare_zone.ladugardlive.id
@@ -49,29 +45,6 @@ resource "cloudflare_dns_record" "ladugardlive-subdomain6-www" {
   proxied = true
   ttl     = 1
 }
-
-
-# For future reference if the records grow in number
-# resource "cloudflare_dns_record" "subdomains6" {
-#   for_each = hetzvps.nixos.ipv6_address != "" ? local.subdomains6 : {}
-
-#   zone_id  = cloudflare_zone.ladugardlive.id
-#   name     = each.key
-#   content  = each.value
-#   type     = "AAAA"
-#   ttl      = 1
-# }
-
-resource "cloudflare_dns_record" "ladugardlive-extra" {
-  count    = length(local.extra)
-  zone_id  = cloudflare_zone.ladugardlive.id
-  name     = local.extra[count.index].name
-  type     = local.extra[count.index].type
-  content  = local.extra[count.index].value
-  priority = local.extra[count.index].priority
-  ttl      = 1
-}
-
 
 output "ladugardlive-ns" {
   value = cloudflare_zone.ladugardlive.name_servers

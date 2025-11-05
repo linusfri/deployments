@@ -7,10 +7,6 @@ resource "cloudflare_zone" "default" {
   }
 }
 
-locals {
-  extra = [] 
-}
-
 # IPV4
 resource "cloudflare_dns_record" "default" {
   zone_id = cloudflare_zone.default.id
@@ -151,7 +147,7 @@ resource "cloudflare_dns_record" "default-spf" {
 
 resource "cloudflare_dns_record" "default-dkim" {
   zone_id = cloudflare_zone.default.id
-  content = "v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDEqsDnRTlJ5xdG3zUOJ3cZlopvwXMJYtILFbHPb5u5YMZoFCC/ZbCYfZaVmPy8sSlTVSAZIXMAjsz2c6RbTMolO5VCuLEvDSrYaNEJRCDtgqvNTy5HjYJNGGTQz5LQ+CAlMsxQYly4nFG/ePjvCr6QH5ZbfPQzbffK0A9V6IKEQwIDAQAB"
+  content = "v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqW1VD+pGeo05UcbrFeC+kB0Kio/Gr6DrQQJEOqS7szszdo5qyNzvx1JXXblswl8PoBALxihIhgoCU7BR7x8gsyGeXlgauUj8rXa0+XXYpj4BIPlo416L24ywqVX1XZg/kRXk/Naey06x6W9XZfQkVNky6TXCB1oFCt09tIJDrYlZKp2FDdBuKxy+DT2yIPiUCMOChvYB7arBHPpah"
   name    = "mail._domainkey.friikod.se"
   type    = "TXT"
   proxied = false
@@ -184,28 +180,6 @@ resource "cloudflare_dns_record" "subdomain6-www" {
   type    = "AAAA"
   proxied = true
   ttl     = 1
-}
-
-
-# For future reference if the records grow in number
-# resource "cloudflare_dns_record" "subdomains6" {
-#   for_each = hetzvps.nixos.ipv6_address != "" ? local.subdomains6 : {}
-
-#   zone_id  = cloudflare_zone.default.id
-#   name     = each.key
-#   content  = each.value
-#   type     = "AAAA"
-#   ttl      = 1
-# }
-
-resource "cloudflare_dns_record" "extra" {
-  count    = length(local.extra)
-  zone_id  = cloudflare_zone.default.id
-  name     = local.extra[count.index].name
-  type     = local.extra[count.index].type
-  content  = local.extra[count.index].value
-  priority = local.extra[count.index].priority
-  ttl      = 1
 }
 
 
