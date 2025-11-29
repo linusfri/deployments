@@ -274,6 +274,7 @@ in
                 fastcgi_pass unix:${config.services.phpfpm.pools.${site.user}.socket};
                 fastcgi_index index.php;
                 include ${pkgs.nginx}/conf/fastcgi_params;
+                fastcgi_param SCRIPT_FILENAME $request_filename;
                 fastcgi_buffer_size 512k;
                 fastcgi_buffers 16 512k;
               '';
