@@ -18,8 +18,6 @@
     ./applications/nextcloud.nix
     ./applications/jellyfin.nix
     ./applications/keycloak.nix
-    ./applications/wordpress.nix
-    ./applications/ladugardlive.nix
   ];
 
   # Set the initial NixOS version, don't touch this after first
