@@ -23,7 +23,7 @@
     arion.url = "github:hercules-ci/arion";
 
     # NixOS version
-    nixos.url = "github:NixOS/nixpkgs/release-25.05";
+    nixos.url = "github:NixOS/nixpkgs/release-25.11";
 
     lgl-site.url = "git+ssh://git@github.com/linusfri/ladugardLive";
     strapi = {
@@ -34,7 +34,7 @@
     website-for-friends.url = "github:linusfri/website-for-friends";
 
     # Mail
-    mailserver.url = "git+https://gitlab.com/simple-nixos-mailserver/nixos-mailserver.git";
+    mailserver.url = "git+https://gitlab.com/simple-nixos-mailserver/nixos-mailserver.git?ref=nixos-25.11";
 
     # Nextcloud extras (for ensureUsers mainly)
     nextcloud-extras = {

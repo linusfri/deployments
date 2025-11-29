@@ -1,7 +1,6 @@
 {
   pkgs,
   config,
-  lib,
   ...
 }:
 let
@@ -18,7 +17,7 @@ in
 {
   services.nextcloud = {
     enable = true;
-    package = pkgs.nextcloud31;
+    package = pkgs.nextcloud32;
     database = {
       createLocally = true; # Uses socket authentication
     };
@@ -58,8 +57,8 @@ in
         polls
         ;
       spreed = pkgs.fetchNextcloudApp {
-        sha256 = "sha256-tumLEoJAGvcFgN8dQbmwxPofOQ825mySOa5qNg6wzgs=";
-        url = "https://github.com/nextcloud-releases/spreed/releases/download/v21.1.1/spreed-v21.1.1.tar.gz";
+        sha256 = "sha256:fe690208a194a08a91ba65481cbf9f3ca938cb434e91d56f93bd4cce4f3cf413";
+        url = "https://github.com/nextcloud-releases/spreed/releases/download/v22.0.4/spreed-v22.0.4.tar.gz";
         license = "gpl3";
       };
     };
