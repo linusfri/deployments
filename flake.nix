@@ -55,13 +55,10 @@
       ...
     }@inputs:
     let
-      tfvars = nixpkgs.lib.importJSON ./terraform.tfvars.json;
-      # Architecture of the nodes
       system = "x86_64-linux";
       name = "hetzvps";
     in
     {
-      # Attrset of NixOS configurations.
       nixosConfigurations = {
         ${name} = nixos.lib.nixosSystem {
           inherit system;
