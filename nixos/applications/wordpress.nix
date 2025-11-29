@@ -10,7 +10,7 @@ in
   imports = [ ../modules/wordpress/wordpress-service.nix ];
 
   services.linusfri.wordpress.sites = {
-    "elin" = {
+    elin = {
       appName = "elin";
       package = pkgs.bedrock-wp; # Replace with your actual package
       user = "elin";
