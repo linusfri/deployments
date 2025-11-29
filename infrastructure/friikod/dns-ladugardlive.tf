@@ -26,6 +26,15 @@ resource "cloudflare_dns_record" "ladugardlive-subdomain-www" {
   ttl     = 1
 }
 
+resource "cloudflare_dns_record" "ladugardlive-subdomain-web" {
+  zone_id = cloudflare_zone.ladugardlive.id
+  name    = "web.ladugardlive.se"
+  content = hcloud_server.nixos.ipv4_address
+  type    = "A"
+  proxied = false
+  ttl     = 1
+}
+
 
 # IPV6
 resource "cloudflare_dns_record" "ladugardlive-default6" {
