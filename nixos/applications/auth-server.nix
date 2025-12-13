@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 let
-  inherit (config.terraflake.input) node nodes;
+  inherit (config.terraflake.input) node;
 
   port = 8000;
 
@@ -8,7 +8,7 @@ let
     set -a
     PORT=${toString port} 
     SECRET_KEY=THIS_IS_TEST
-    AUTH_ENDPOINT=keycloak.friikod.se/realms/GleamAuth/protocol/openid-connect
+    AUTH_ENDPOINT=keycloak.friikod.se/realms/auth-server/protocol/openid-connect
 
     ${pkgs.auth-server}/bin/auth_server
   '';
