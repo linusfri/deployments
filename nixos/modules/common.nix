@@ -69,12 +69,17 @@ in
     programs.zsh = {
       enable = true;
       ohMyZsh = {
+        enable = true;
         theme = "agnoster";
         plugins = [
           "git"
-          "zsh-syntax-highlighting"
-          "zsh-autosuggestions"
         ];
+      };
+      autosuggestions = {
+        enable = true;
+      };
+      syntaxHighlighting = {
+        enable = true;
       };
     };
 
