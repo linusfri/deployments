@@ -57,7 +57,11 @@ in
     ];
 
     nix = {
-      gc.automatic = true;
+      gc = {
+        automatic = true;
+        dates = "daily";
+        options = "--delete-older-than 2d";
+      };
       extraOptions = ''
         experimental-features = nix-command flakes
       '';
