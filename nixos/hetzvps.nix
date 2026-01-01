@@ -13,7 +13,7 @@
     ./modules/virtualisation.nix
     ./hetzvps/rekey.nix
     ./applications/calc-api.nix
-    ./applications/auth-server.nix
+    # ./applications/auth-server.nix
     ./applications/mailserver.nix
     ./applications/nextcloud.nix
     ./applications/jellyfin.nix

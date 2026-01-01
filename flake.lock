@@ -52,11 +52,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1759632323,
-        "narHash": "sha256-TzLTfXxhOkR/8oOoVEAYQWb81ADGHdKsQXGicC7kR+M=",
+        "lastModified": 1765839957,
+        "narHash": "sha256-c2k30kehMWLEQpO41OhyDruj1S7RsyBlgx4yHlXKVa4=",
         "owner": "hercules-ci",
         "repo": "arion",
-        "rev": "24658a03be2d1a6e1e02c01524775d960a82309c",
+        "rev": "9ff7acc2c00a40ecf24894592ea5019439bb9e13",
         "type": "github"
       },
       "original": {
@@ -73,11 +73,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1765657543,
-        "narHash": "sha256-VrC0Jq/7oY43FPhYKrbcN1hNSZZjHGbvncYsIC0ur/k=",
+        "lastModified": 1767281474,
+        "narHash": "sha256-ElrPoXQXUBglncfn3fnGQxkIfSsW525p7qmTVQLvCio=",
         "ref": "refs/heads/master",
-        "rev": "e268ef28149ee4614dbfcafbde9738ce55a59394",
-        "revCount": 26,
+        "rev": "c68d6010076aac74233169bb36812aed50f6ff0d",
+        "revCount": 91,
         "type": "git",
         "url": "ssh://git@github.com/linusfri/Gleam-auth-server"
       },
@@ -225,11 +225,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1759362264,
-        "narHash": "sha256-wfG0S7pltlYyZTM+qqlhJ7GMw2fTF4mLKCIVhLii/4M=",
+        "lastModified": 1763759067,
+        "narHash": "sha256-LlLt2Jo/gMNYAwOgdRQBrsRoOz7BPRkzvNaI/fzXi2Q=",
         "owner": "hercules-ci",
         "repo": "flake-parts",
-        "rev": "758cf7296bee11f1706a574c77d072b8a7baa881",
+        "rev": "2cccadc7357c0ba201788ae99c4dfa90728ef5e0",
         "type": "github"
       },
       "original": {
@@ -442,11 +442,11 @@
         "nixpkgs": "nixpkgs_7"
       },
       "locked": {
-        "lastModified": 1764185122,
-        "narHash": "sha256-+HUOwSIFLoyett2cvRjuFIbhobpHallfP9J2cia1apo=",
+        "lastModified": 1766537863,
+        "narHash": "sha256-HEt+wbazRgJYeY+lgj65bxhPyVc4x7NEB2bs5NU6DF8=",
         "ref": "nixos-25.11",
-        "rev": "a14fe3b293ec2720e5b7fc72ad136d22967e12ba",
-        "revCount": 840,
+        "rev": "23f0a53ca6e58e61e1ea2b86791c69b79c91656d",
+        "revCount": 841,
         "type": "git",
         "url": "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver.git"
       },
@@ -507,26 +507,26 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1765657470,
-        "narHash": "sha256-K2BfSvGBmlIDWSIB8aBH6OAwECdXTUMpNfp6RwEBOeI=",
-        "owner": "linusfri",
+        "lastModified": 1765663723,
+        "narHash": "sha256-/0xQYAEYpGRlHMOPAuGS5Wh0S2+iVqxKGB1p6UQR4dc=",
+        "owner": "arnarg",
         "repo": "nix-gleam",
-        "rev": "52da16c9386ede9c711193902d9fdf2e64884ea7",
+        "rev": "242258cc33f3f95ae9d9c2f1a504ccb05fb4580b",
         "type": "github"
       },
       "original": {
-        "owner": "linusfri",
+        "owner": "arnarg",
         "repo": "nix-gleam",
         "type": "github"
       }
     },
     "nixos": {
       "locked": {
-        "lastModified": 1764952718,
-        "narHash": "sha256-Gf75RCbeYcfXGNb9hHQ7DsVNsxU+TNWivose3JT53QY=",
+        "lastModified": 1767282684,
+        "narHash": "sha256-91wqTiN4fBhy3T5CiuwWOo6JqdDVq+tsLj+SdZS7rtE=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "d355f89e0014e51c9511298089d7ab55fd6f7056",
+        "rev": "663eca5b4029adf4a75c5107e2da5c84146f6aa3",
         "type": "github"
       },
       "original": {
@@ -585,11 +585,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1759381078,
-        "narHash": "sha256-gTrEEp5gEspIcCOx9PD8kMaF1iEmfBcTbO0Jag2QhQs=",
+        "lastModified": 1764667669,
+        "narHash": "sha256-7WUCZfmqLAssbDqwg9cUDAXrSoXN79eEEq17qhTNM/Y=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "7df7ff7d8e00218376575f0acdcc5d66741351ee",
+        "rev": "418468ac9527e799809c900eda37cbff999199b6",
         "type": "github"
       },
       "original": {
@@ -601,11 +601,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1765472234,
-        "narHash": "sha256-9VvC20PJPsleGMewwcWYKGzDIyjckEz8uWmT0vCDYK0=",
+        "lastModified": 1764950072,
+        "narHash": "sha256-BmPWzogsG2GsXZtlT+MTcAWeDK5hkbGRZTeZNW42fwA=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "2fbfb1d73d239d2402a8fe03963e37aab15abe8b",
+        "rev": "f61125a668a320878494449750330ca58b78c557",
         "type": "github"
       },
       "original": {
@@ -681,11 +681,11 @@
     },
     "nixpkgs_8": {
       "locked": {
-        "lastModified": 1764958862,
-        "narHash": "sha256-piKYqiQkjNSwUhHleBjpcUYnhOuClftvvsJbof30URQ=",
+        "lastModified": 1767283834,
+        "narHash": "sha256-h2r9YZvkEHyPTlLKUK0GLCC7wFTWp/cd6Nt+5rITd4c=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "7fdad4eed1f819055c86cb747873c3d445241833",
+        "rev": "821647d8479ce41cafa8294de5abc081e87151e2",
         "type": "github"
       },
       "original": {

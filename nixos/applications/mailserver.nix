@@ -1,6 +1,4 @@
 {
-  pkgs,
-  lib,
   config,
   ...
 }:
@@ -23,6 +21,9 @@ in
         "carolin@friikod.se" = {
           hashedPasswordFile = config.age.secrets.carroPass.path;
         };
+        "handyman@friikod.se" = {
+          hashedPasswordFile = config.age.secrets.handymanPass.path;
+        };
       };
 
       stateVersion = 3;
@@ -38,6 +39,10 @@ in
     };
     age.secrets.carroPass = {
       rekeyFile = ../${node.name}/secrets/carro_mail_pass.age;
+      generator.script = "passphrase";
+    };
+    age.secrets.handymanPass = {
+      rekeyFile = ../${node.name}/secrets/handyman_mail_pass.age;
       generator.script = "passphrase";
     };
   };
