@@ -147,7 +147,7 @@ resource "cloudflare_dns_record" "default-spf" {
 
 resource "cloudflare_dns_record" "default-dkim" {
   zone_id = cloudflare_zone.default.id
-  content = "v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqW1VD+pGeo05UcbrFeC+kB0Kio/Gr6DrQQJEOqS7szszdo5qyNzvx1JXXblswl8PoBALxihIhgoCU7BR7x8gsyGeXlgauUj8rXa0+XXYpj4BIPlo416L24ywqVX1XZg/kRXk/Naey06x6W9XZfQkVNky6TXCB1oFCt09tIJDrYlZKp2FDdBuKxy+DT2yIPiUCMOChvYB7arBHPpah"
+  content = "p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqW1VD+pGeo05UcbrFeC+kB0Kio/Gr6DrQQJEOqS7szszdo5qyNzvx1JXXblswl8PoBALxihIhgoCU7BR7x8gsyGeXlgauUj8rXa0+XXYpj4BIPlo416L24ywqVX1XZg/kRXk/Naey06x6W9XZfQkVNky6TXCB1oFCt09tIJDrYlZKp2FDdBuKxy+DT2yIPiUCMOChvYB7arBHPpahRwVmNL2l73HAeSLxl2V8YM8W0mfeQVFpUh1+O0Vl9C1g2WEn/7eUB+9/u7jRoyzlCGL6mlwU1EGT1qmxww2W6p6nr1r5wv7aAjCgJvuRkRzGsfhVLtFP19coV4iLsMnzWbj/QIDAQAB"
   name    = "mail._domainkey.friikod.se"
   type    = "TXT"
   proxied = false
