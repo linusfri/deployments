@@ -39,6 +39,22 @@ in
     };
   };
 
+  services.postgresql = {
+    enable = true;
+    ensureDatabases = [ "auth_server" ];
+    ensureUsers = [
+      {
+        name = "auth_server";
+      }
+    ];
+    authentication = pkgs.lib.mkOverride 10 ''
+      #type database         DBuser                           auth-method
+      local all              all                              trust
+      host  "auth_server"    "auth_server"  ::1/128           trust
+      host  "auth_server"    "auth_server" 127.0.0.1/32       trust
+    '';
+  };
+
   systemd.services.auth-server = {
     enable = true;
     description = "auth-server";
@@ -47,5 +63,10 @@ in
       Type = "simple";
     };
     wantedBy = [ "multi-user.target" ];
+  };
+
+  age.secrets."auth_server_environment" = {
+    rekeyFile = ../${node.name}/secrets/auth_server_environment;
+    generator.script = "passphrase";
   };
 }
