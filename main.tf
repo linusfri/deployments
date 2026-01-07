@@ -15,3 +15,7 @@ output "terraflake" {
     module.friikod.nodes.friikod
   ]
 }
+output "cloudflare_tunnel_token_friikod" {
+  value     = module.friikod.tunnel_token
+  sensitive = true
+}
