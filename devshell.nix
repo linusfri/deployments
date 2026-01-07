@@ -8,7 +8,7 @@ let
 
   tofu = pkgs.opentofu;
 in
-mkShell rec {
+mkShell {
   buildInputs = builtins.attrValues {
     inherit (pkgs)
       jq
@@ -28,12 +28,23 @@ mkShell rec {
         export HCLOUD_TOKEN="''${$(jq -r .hcloud_token <<<"$tokens_json"):-""}";
       '
     '';
+
+    decryptTfState = pkgs.writeShellScriptBin "decrypt-tf-state" ''
+      echo '
+        tf_state=$(age -d -i $AGE_KEY $TF_STATE)
+
+        if [[ ! -f terraform.tfstate ]]; then
+          echo "$tf_state" > terraform.tfstate
+        fi
+      '
+    '';
   };
 
   shellHook = ''
     export ROOT_DIR="$PWD";
     export SECRETS="$ROOT_DIR/secrets/tofu-tokens/tokens.json.age"
     export AGE_KEY="$ROOT_DIR/secrets/rekeyed/master.age"
+    export TF_STATE="$ROOT_DIR/secrets/tofu-tokens/tfstate.age"
 
     # Parallelize terraflake
     export NF_PAR=10
@@ -52,6 +63,10 @@ mkShell rec {
     To edit encrypted secrets:
 
     $ agenix edit
+
+    To encrypt terraform state:
+
+    $ source <(decrypt-tf-state)
     '
   '';
 }

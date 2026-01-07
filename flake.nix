@@ -105,6 +105,10 @@
                     localStorageDir = ./. + "/secrets/rekeyed/${name}";
                   };
                   age.secrets.tokens.rekeyFile = ./secrets/${name}/tokens.json.age;
+                  age.secrets."tfstate" = {
+                    rekeyFile = ./secrets/${name}/tfstate.age;
+                    generator.script = "passphrase";
+                  };
                 }
               )
             ];
