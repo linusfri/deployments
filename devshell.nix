@@ -64,7 +64,7 @@ mkShell {
 
     $ agenix edit
 
-    To encrypt terraform state:
+    To decrypt terraform state:
 
     $ source <(decrypt-tf-state)
     '
