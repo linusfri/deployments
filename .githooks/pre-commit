@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT_DIR="$(git rev-parse --show-toplevel)"
+TFSTATE="$ROOT_DIR/terraform.tfstate"
+SECRET="$ROOT_DIR/secrets/tofu-tokens/tfstate.age"
+MASTER_ID="$ROOT_DIR/secrets/master-identity.nix"
+
+if [[ ! -f "$TFSTATE" ]]; then
+  echo "No terraform.tfstate file found; skipping pre-commit hook."
+  exit 0
+fi
+
+if [[ ! -f "$MASTER_ID" ]]; then
+  echo "pre-commit: missing $MASTER_ID; cannot locate age recipient" >&2
+  exit 1
+fi
+
+pubkey="$(sed -nE 's/.*pubkey = "([^"]+)".*/\1/p' "$MASTER_ID" | head -n 1)"
+if [[ -z "$pubkey" ]]; then
+  echo "pre-commit: could not extract pubkey from $MASTER_ID" >&2
+  exit 1
+fi
+
+tmp="$(mktemp "${SECRET}.tmp.XXXXXX")"
+cleanup() { rm -f "$tmp"; }
+trap cleanup EXIT
+
+age -r "$pubkey" -o "$tmp" "$TFSTATE"
+mv "$tmp" "$SECRET"
+git add "$SECRET"

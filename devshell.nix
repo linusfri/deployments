@@ -38,6 +38,15 @@ mkShell {
         fi
       '
     '';
+
+    ensureGitHooks = pkgs.writeShellScriptBin "ensure-git-hooks" ''
+      if git rev-parse --git-dir >/dev/null 2>&1; then
+        current_hooks_path="$(git config --get core.hooksPath || true)"
+        if [[ -z "$current_hooks_path" ]]; then
+          git config core.hooksPath .githooks
+        fi
+      fi
+    '';
   };
 
   shellHook = ''
@@ -45,6 +54,9 @@ mkShell {
     export SECRETS="$ROOT_DIR/secrets/tofu-tokens/tokens.json.age"
     export AGE_KEY="$ROOT_DIR/secrets/rekeyed/master.age"
     export TF_STATE="$ROOT_DIR/secrets/tofu-tokens/tfstate.age"
+
+    # Ensure path to githooks is defined
+    ensure-git-hooks
 
     # Parallelize terraflake
     export NF_PAR=10
