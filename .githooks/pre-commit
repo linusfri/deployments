@@ -29,6 +29,8 @@ if [[ -f "$CHECKSUM" ]]; then
   if [[ -n "$stored_sum" && "$current_sum" == "$stored_sum" ]]; then
     echo "tfstate unchanged; skipping re-encrypt."
     exit 0
+  else
+    echo "tfstate has changed; updating encrypted file and checksum."
   fi
 fi
 
