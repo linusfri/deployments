@@ -41,13 +41,9 @@ mkShell {
 
     ensureGitHooks = pkgs.writeShellScriptBin "ensure-git-hooks" ''
       if git rev-parse --git-dir >/dev/null 2>&1; then
-        repo_root="$(git rev-parse --show-toplevel)"
-        hooks_path="$repo_root/.githooks"
         current_hooks_path="$(git config --get core.hooksPath || true)"
         if [[ -z "$current_hooks_path" ]]; then
-          git config core.hooksPath "$hooks_path"
-        elif [[ "$current_hooks_path" != "$hooks_path" ]]; then
-          git config core.hooksPath "$hooks_path"
+          git config core.hooksPath .githooks
         fi
       fi
     '';

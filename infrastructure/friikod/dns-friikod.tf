@@ -100,7 +100,7 @@ resource "cloudflare_dns_record" "subdomain-valheim" {
 
 resource "cloudflare_dns_record" "subdomain-elin" {
   zone_id = cloudflare_zone.default.id
-  name    = "elin.friikod.se"
+  name    = "elinsvantesson.friikod.se"
   content = hcloud_server.nixos.ipv4_address
   type    = "A"
   proxied = false
