@@ -1,6 +1,7 @@
 { flake, name }:
 
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+{
   imports = [
     (import ../terraflake name)
     flake.inputs.agenix.nixosModules.default
@@ -19,7 +20,7 @@
     ./applications/nextcloud.nix
     ./applications/jellyfin.nix
     ./applications/keycloak.nix
-     ./applications/wordpress.nix
+    ./applications/wordpress.nix
   ];
 
   # Set the initial NixOS version, don't touch this after first
