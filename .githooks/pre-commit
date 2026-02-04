@@ -1,31 +1,23 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-ROOT_DIR="$(git rev-parse --show-toplevel)"
-TFSTATE="$ROOT_DIR/terraform.tfstate"
-SECRET="$ROOT_DIR/secrets/tofu-tokens/tfstate.age"
-CHECKSUM="$ROOT_DIR/.tfstate.sha256"
-MASTER_ID="$ROOT_DIR/secrets/master-identity.nix"
+if [[ -n "${TFSTATE_AMEND_IN_PROGRESS:-}" ]]; then
+  exit 0
+fi
+
+source "$(git rev-parse --show-toplevel)/.githooks/tfstate-common.sh"
+tfstate_setup
 
 if [[ ! -f "$TFSTATE" ]]; then
   echo "No terraform.tfstate file found; skipping pre-commit hook."
   exit 0
 fi
 
-if [[ ! -f "$MASTER_ID" ]]; then
-  echo "pre-commit: missing $MASTER_ID; cannot locate age recipient" >&2
-  exit 1
-fi
-
-pubkey="$(sed -nE 's/.*pubkey = "([^"]+)".*/\1/p' "$MASTER_ID" | head -n 1)"
-if [[ -z "$pubkey" ]]; then
-  echo "pre-commit: could not extract pubkey from $MASTER_ID" >&2
-  exit 1
-fi
+pubkey="$(tfstate_pubkey pre-commit)"
 
 if [[ -f "$CHECKSUM" ]]; then
-  current_sum="$(sha256sum "$TFSTATE" | awk '{print $1}')"
-  stored_sum="$(awk '{print $1}' "$CHECKSUM")"
+  current_sum="$(tfstate_checksum)"
+  stored_sum="$(tfstate_stored_checksum)"
   if [[ -n "$stored_sum" && "$current_sum" == "$stored_sum" ]]; then
     echo "tfstate unchanged; skipping re-encrypt."
     exit 0
@@ -34,12 +26,4 @@ if [[ -f "$CHECKSUM" ]]; then
   fi
 fi
 
-tmp="$(mktemp "${SECRET}.tmp.XXXXXX")"
-cleanup() { rm -f "$tmp"; }
-trap cleanup EXIT
-
-age -r "$pubkey" -o "$tmp" "$TFSTATE"
-mv "$tmp" "$SECRET"
-sha256sum "$TFSTATE" > "$CHECKSUM"
-git add "$SECRET"
-git add "$CHECKSUM"
+tfstate_encrypt_and_stage "$pubkey"

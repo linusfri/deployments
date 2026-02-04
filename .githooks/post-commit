@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [[ -n "${TFSTATE_AMEND_IN_PROGRESS:-}" ]]; then
+  exit 0
+fi
+
+source "$(git rev-parse --show-toplevel)/.githooks/tfstate-common.sh"
+tfstate_setup
+
+if [[ ! -f "$TFSTATE" ]]; then
+  exit 0
+fi
+
+pubkey="$(tfstate_pubkey post-commit)"
+
+current_sum="$(tfstate_checksum)"
+stored_sum="$(tfstate_stored_checksum)"
+
+if [[ -n "$stored_sum" && "$current_sum" == "$stored_sum" ]]; then
+  exit 0
+fi
+
+tfstate_encrypt_and_stage "$pubkey"
+
+TFSTATE_AMEND_IN_PROGRESS=1 git commit --amend --no-edit
