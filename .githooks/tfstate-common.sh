@@ -36,10 +36,14 @@ tfstate_stored_checksum() {
 
 tfstate_encrypt_and_stage() {
   local pubkey="$1"
-  local tmp
-  tmp="$(mktemp "${SECRET}.tmp.XXXXXX")"
-  cleanup() { rm -f "$tmp"; }
+  local tmp=""
+  cleanup() {
+    if [[ -n "${tmp:-}" ]]; then
+      rm -f "$tmp"
+    fi
+  }
   trap cleanup EXIT
+  tmp="$(mktemp "${SECRET}.tmp.XXXXXX")"
 
   age -r "$pubkey" -o "$tmp" "$TFSTATE"
   mv "$tmp" "$SECRET"
