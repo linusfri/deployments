@@ -43,7 +43,7 @@ tfstate_encrypt_and_stage() {
     fi
   }
   trap cleanup EXIT
-  tmp="$(mktemp "${SECRET}.tmp.XXXXXX")"
+  tmp="$(mktemp "${SECRET}.tmp")"
 
   age -r "$pubkey" -o "$tmp" "$TFSTATE"
   mv "$tmp" "$SECRET"
