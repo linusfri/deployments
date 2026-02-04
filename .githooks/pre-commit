@@ -4,6 +4,7 @@ set -euo pipefail
 ROOT_DIR="$(git rev-parse --show-toplevel)"
 TFSTATE="$ROOT_DIR/terraform.tfstate"
 SECRET="$ROOT_DIR/secrets/tofu-tokens/tfstate.age"
+CHECKSUM="$ROOT_DIR/.tfstate.sha256"
 MASTER_ID="$ROOT_DIR/secrets/master-identity.nix"
 
 echo "GIT HOOK RUNNING"
@@ -30,5 +31,6 @@ trap cleanup EXIT
 
 age -r "$pubkey" -o "$tmp" "$TFSTATE"
 mv "$tmp" "$SECRET"
+sha256sum "$TFSTATE" > "$CHECKSUM"
 git add "$SECRET"
-
+git add "$CHECKSUM"
