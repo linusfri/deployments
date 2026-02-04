@@ -6,6 +6,8 @@ TFSTATE="$ROOT_DIR/terraform.tfstate"
 SECRET="$ROOT_DIR/secrets/tofu-tokens/tfstate.age"
 MASTER_ID="$ROOT_DIR/secrets/master-identity.nix"
 
+echo "GIT HOOK RUNNING"
+
 if [[ ! -f "$TFSTATE" ]]; then
   echo "No terraform.tfstate file found; skipping pre-commit hook."
   exit 0
