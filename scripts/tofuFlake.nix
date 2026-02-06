@@ -22,11 +22,6 @@ let
 
     trap cleanup EXIT
 
-    TF_DIR="$ROOT_DIR/opentofu"
-    STATE_FILE="$ROOT_DIR/terraform.tfstate"
-    TMP="$(mktemp)"
-    GIT_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || true)"
-
     if [[ ! -d "$TF_DIR" ]]; then
       echo "Missing OpenTofu dir: $TF_DIR" >&2
       exit 1
