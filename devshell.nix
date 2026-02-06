@@ -45,7 +45,6 @@ mkShell {
     export ROOT_DIR="$PWD";
     export SECRETS="$ROOT_DIR/secrets/tofu-tokens/tokens.json.age"
     export AGE_KEY="$ROOT_DIR/secrets/rekeyed/master.age"
-    export TF_DATA_DIR="$ROOT_DIR/opentofu/.terraform"
 
     # Parallelize tofuflake
     export NF_PAR=10
