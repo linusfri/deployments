@@ -7,6 +7,7 @@ let
   inherit (pkgs) mkShell;
 
   tofu = pkgs.opentofu;
+  scripts = (import ./scripts/tofuFlake.nix { inherit pkgs; });
 in
 mkShell {
   buildInputs = builtins.attrValues {
@@ -19,6 +20,13 @@ mkShell {
       bind
       ;
     inherit terraflake tofu;
+    inherit (scripts)
+      exportVars
+      cleanup
+      fetchTofuState
+      tofuFlake
+      tofuAge
+      ;
 
     tokens = pkgs.writeShellScriptBin "tokens" ''
       echo '
@@ -26,26 +34,10 @@ mkShell {
         export DIGITALOCEAN_TOKEN="''${$(jq -r .digitalocean_token <<<"$tokens_json"):-""}";
         export TF_VAR_cloudflare_token="''${$(jq -r .cloudflare_token <<<"$tokens_json"):-""}";
         export HCLOUD_TOKEN="''${$(jq -r .hcloud_token <<<"$tokens_json"):-""}";
+        export AWS_ACCESS_KEY_ID="''${$(jq -r .aws_access_key_id <<<"$tokens_json"):-""}";
+        export AWS_SECRET_ACCESS_KEY="''${$(jq -r .aws_secret_access_key <<<"$tokens_json"):-""}";
+        export AWS_REGION="''${$(jq -r .aws_region <<<"$tokens_json"):-""}";
       '
-    '';
-
-    decryptTfState = pkgs.writeShellScriptBin "decrypt-tf-state" ''
-      echo '
-        tf_state=$(age -d -i $AGE_KEY $TF_STATE)
-
-        if [[ ! -f terraform.tfstate ]]; then
-          echo "$tf_state" > terraform.tfstate
-        fi
-      '
-    '';
-
-    ensureGitHooks = pkgs.writeShellScriptBin "ensure-git-hooks" ''
-      if git rev-parse --git-dir >/dev/null 2>&1; then
-        current_hooks_path="$(git config --get core.hooksPath || true)"
-        if [[ -z "$current_hooks_path" ]]; then
-          git config core.hooksPath .githooks
-        fi
-      fi
     '';
   };
 
@@ -53,12 +45,9 @@ mkShell {
     export ROOT_DIR="$PWD";
     export SECRETS="$ROOT_DIR/secrets/tofu-tokens/tokens.json.age"
     export AGE_KEY="$ROOT_DIR/secrets/rekeyed/master.age"
-    export TF_STATE="$ROOT_DIR/secrets/tofu-tokens/tfstate.age"
+    export TF_DATA_DIR="$ROOT_DIR/opentofu/.terraform"
 
-    # Ensure path to githooks is defined
-    ensure-git-hooks
-
-    # Parallelize terraflake
+    # Parallelize tofuflake
     export NF_PAR=10
 
     echo '
@@ -70,15 +59,13 @@ mkShell {
 
     Push configuration:
 
-    $ terraflake push -r
+    $ tofuflake push -r
 
     To edit encrypted secrets:
 
-    $ agenix edit
+    $ tofuAge edit
 
-    To decrypt terraform state:
-
-    $ source <(decrypt-tf-state)
+    # Reason for tofuFlake and tofuAge is that we need remote tofu state for terraflake to see.
     '
   '';
 }

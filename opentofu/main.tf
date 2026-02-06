@@ -3,7 +3,7 @@ variable "cloudflare_token" {}
 variable "ssh_pub" {}
 
 module "friikod" {
-  source           = "./infrastructure/friikod"
+  source           = "../infrastructure/friikod"
   cloudflare_id    = var.cloudflare_id
   cloudflare_token = var.cloudflare_token
   ssh_pub          = var.ssh_pub
