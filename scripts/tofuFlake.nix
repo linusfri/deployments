@@ -8,17 +8,17 @@ let
   '';
 
   cleanup = pkgs.writeShellScriptBin "cleanup" ''
-    export-vars
+    source export-vars
 
     if [[ -n "$GIT_ROOT" ]]; then
       git -C "$GIT_ROOT" reset -q -- "$STATE_FILE" >/dev/null 2>&1 || true
     fi
     
-    rm -f "$STATE_FILE" "$TMP"
+    rm -rf "$STATE_FILE" "$TMP"
   '';
 
   fetchTofuState = pkgs.writeShellScriptBin "fetch-tofu-state" ''
-    export-vars
+    source export-vars
 
     trap cleanup EXIT
 
