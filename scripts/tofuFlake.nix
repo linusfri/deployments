@@ -20,8 +20,6 @@ let
   fetchTofuState = pkgs.writeShellScriptBin "fetch-tofu-state" ''
     source export-vars
 
-    trap cleanup EXIT
-
     if [[ ! -d "$TF_DIR" ]]; then
       echo "Missing OpenTofu dir: $TF_DIR" >&2
       exit 1
@@ -38,6 +36,7 @@ let
   tofuFlake = pkgs.writeShellScriptBin "tofuflake" ''
     set -euo pipefail
 
+    trap cleanup EXIT
     fetch-tofu-state
 
     terraflake "$@"
@@ -46,6 +45,7 @@ let
   tofuAge = pkgs.writeShellScriptBin "tofuage" ''
     set -euo pipefail
 
+    trap cleanup EXIT
     fetch-tofu-state
 
     agenix "$@"
