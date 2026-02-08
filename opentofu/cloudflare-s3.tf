@@ -4,3 +4,10 @@ resource "cloudflare_r2_bucket" "tfstatebucket" {
   location      = "eeur"
   storage_class = "Standard"
 }
+
+resource "cloudflare_r2_bucket" "nextcloudbucket" {
+  account_id    = var.cloudflare_id
+  name          = "nextcloudbucket"
+  location      = "eeur"
+  storage_class = "Standard"
+}

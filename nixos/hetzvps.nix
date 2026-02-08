@@ -21,6 +21,7 @@
     ./applications/jellyfin.nix
     ./applications/keycloak.nix
     ./applications/wordpress.nix
+    ./applications/rclone-r2.nix
   ];
 
   # Set the initial NixOS version, don't touch this after first

@@ -66,6 +66,19 @@ in
     https = true;
     hostName = node.domains.nextcloud;
     maxUploadSize = "50G";
+
+    config.objectstore.s3 = {
+      enable = true;
+      bucket = "nextcloudbucket";
+      autocreate = false;
+      key = "4d23100824c5df222d14fc527c4b929a";
+      secretFile = config.age.secrets.cloudflares3SecretKey.path;
+      hostname = "912391589165daea759d3cdcea0c7ced.r2.cloudflarestorage.com";
+      useSsl = true;
+      port = 443;
+      usePathStyle = false;
+      region = "auto";
+    };
   };
 
   services.nginx.virtualHosts.${config.services.nextcloud.hostName} = {
@@ -80,6 +93,11 @@ in
 
   age.secrets.nextcloudAdminPass = {
     rekeyFile = ../${node.name}/secrets/nextcloud_admin_pass.age;
+    generator.script = "passphrase";
+  };
+
+  age.secrets.cloudflares3SecretKey = {
+    rekeyFile = ../${node.name}/secrets/cloudflares3_secret_key.age;
     generator.script = "passphrase";
   };
 }
