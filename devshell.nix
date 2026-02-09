@@ -29,15 +29,43 @@ mkShell {
       ;
 
     tokens = pkgs.writeShellScriptBin "tokens" ''
-      echo '
-        tokens_json=$(age -d -i $AGE_KEY $SECRETS)
-        export DIGITALOCEAN_TOKEN="''${$(jq -r .digitalocean_token <<<"$tokens_json"):-""}";
-        export TF_VAR_cloudflare_token="''${$(jq -r .cloudflare_token <<<"$tokens_json"):-""}";
-        export HCLOUD_TOKEN="''${$(jq -r .hcloud_token <<<"$tokens_json"):-""}";
-        export AWS_ACCESS_KEY_ID="''${$(jq -r .aws_access_key_id <<<"$tokens_json"):-""}";
-        export AWS_SECRET_ACCESS_KEY="''${$(jq -r .aws_secret_access_key <<<"$tokens_json"):-""}";
-        export AWS_REGION="''${$(jq -r .aws_region <<<"$tokens_json"):-""}";
-      '
+      tokens_json=$(age -d -i $AGE_KEY $SECRETS)
+
+      # Format: "json_key:ENV_VAR_NAME"
+      # The selector in the json file comes first
+      # and then the actual variable name to export
+      variable_pairs_to_export=(
+        "cloudflare_token:TF_VAR_cloudflare_token"
+        "hcloud_token:HCLOUD_TOKEN"
+        "aws_access_key_id:AWS_ACCESS_KEY_ID"
+        "aws_secret_access_key:AWS_SECRET_ACCESS_KEY"
+        "aws_region:AWS_REGION"
+      )
+
+      # Overwrite the file each time this is run
+      > .tokens.sh
+
+      for pair in "''${variable_pairs_to_export[@]}"; do
+        json_key="''${pair%%:*}"
+        env_var="''${pair##*:}"
+        value=$(jq -r ".$json_key // \"\"" <<<"$tokens_json")
+        echo "export $env_var=\"$value\"" >> $ROOT_DIR/.tokens.sh
+      done
+
+      echo "Tokens exported to .tokens.sh"
+    '';
+
+    setEnvironment = pkgs.writeShellScriptBin "set-environment" ''
+      GREEN="\033[0;32m"
+      RED="\033[0;31m"
+      RESET="\033[0m"
+
+      if [[ -f "$ROOT_DIR/.tokens.sh" ]]; then
+        echo -e "''${GREEN}.tokens.sh found, setting environment.''${RESET}"
+        source $ROOT_DIR/.tokens.sh
+      else
+        echo -e "''${RED}.tokens.sh not found, run 'tokens''${RESET}"
+      fi
     '';
   };
 
@@ -49,10 +77,13 @@ mkShell {
     # Parallelize tofuflake
     export NF_PAR=10
 
+    # Set environment if .tokens.sh exists
+    source set-environment
+
     echo '
     Provision infrastructure:
 
-    $ source <(tokens)
+    $ tokens
     $ tofu init
     $ tofu apply
 

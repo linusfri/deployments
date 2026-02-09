@@ -4,3 +4,4 @@ terraform.tfstate
 !terraform.tfstate.age
 secrets/age-key
 .direnv
+.tokens.*
