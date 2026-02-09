@@ -98,6 +98,24 @@ resource "cloudflare_dns_record" "subdomain-elin" {
   ttl     = 3600
 }
 
+resource "cloudflare_dns_record" "subdomain-meme" {
+  zone_id = cloudflare_zone.default.id
+  name    = "meme.friikod.se"
+  content = hcloud_server.nixos.ipv4_address
+  type    = "A"
+  proxied = false
+  ttl     = 3600
+}
+
+resource "cloudflare_dns_record" "subdomain-docs" {
+  zone_id = cloudflare_zone.default.id
+  name    = "docs.friikod.se"
+  content = hcloud_server.nixos.ipv4_address
+  type    = "A"
+  proxied = false
+  ttl     = 3600
+}
+
 # Mail
 resource "cloudflare_dns_record" "mail-ip4" {
   zone_id = cloudflare_zone.default.id

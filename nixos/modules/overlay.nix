@@ -5,6 +5,7 @@
   website-for-friends,
   auth-server,
   strapi,
+  github-docs
 }:
 
 { ... }:
@@ -25,6 +26,7 @@
         inherit (auth-server.packages.${system}) auth-server;
         inherit (website-for-friends.packages.${system}) bedrock-wp;
         inherit (strapi.packages.${system}) next;
+        github-doc-sync = github-docs.packages.${system}.default;
         strapiHashProd = strapi.strapiHash.${system};
       }
     )

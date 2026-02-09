@@ -20,6 +20,7 @@ output "nodes" {
         "keycloak"         = "keycloak.friikod.se"
         "elin"             = "elin.friikod.se"
         "ladugardlive-web" = "web.ladugardlive.se"
+        "github-docs"      = "docs.friikod.se"
       }
     }
   }

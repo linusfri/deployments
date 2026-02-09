@@ -32,6 +32,7 @@
     calc-api.url = "git+ssh://git@github.com/linusfri/calc_api";
     auth-server.url = "git+ssh://git@github.com/linusfri/Gleam-auth-server";
     website-for-friends.url = "github:linusfri/website-for-friends";
+    github-docs.url = "git+ssh://git@github.com/linusfri/html";
 
     # Mail
     mailserver.url = "git+https://gitlab.com/simple-nixos-mailserver/nixos-mailserver.git?ref=nixos-25.11";
@@ -72,6 +73,7 @@
                 website-for-friends
                 auth-server
                 strapi
+                github-docs
                 ;
             })
             # Add module that configures a generic monitor node

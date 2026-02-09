@@ -22,6 +22,7 @@
     ./applications/keycloak.nix
     ./applications/wordpress.nix
     ./applications/rclone-r2.nix
+    ./applications/github-docs.nix
   ];
 
   # Set the initial NixOS version, don't touch this after first

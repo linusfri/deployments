@@ -333,6 +333,24 @@
         "type": "github"
       }
     },
+    "github-docs": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_6"
+      },
+      "locked": {
+        "lastModified": 1770633004,
+        "narHash": "sha256-VD3i86aDujr91j98dSU3AcTAkDPlyYlFEQ1Wk+7s74I=",
+        "ref": "refs/heads/master",
+        "rev": "85b919a1e863674a6454c01f6be572f6a7e24f28",
+        "revCount": 3,
+        "type": "git",
+        "url": "ssh://git@github.com/linusfri/html"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@github.com/linusfri/html"
+      }
+    },
     "gitignore": {
       "inputs": {
         "nixpkgs": [
@@ -418,7 +436,7 @@
       "inputs": {
         "flake-utils": "flake-utils_3",
         "nix-filter": "nix-filter",
-        "nixpkgs": "nixpkgs_6"
+        "nixpkgs": "nixpkgs_7"
       },
       "locked": {
         "lastModified": 1740132049,
@@ -439,7 +457,7 @@
         "blobs": "blobs",
         "flake-compat": "flake-compat_2",
         "git-hooks": "git-hooks",
-        "nixpkgs": "nixpkgs_7"
+        "nixpkgs": "nixpkgs_8"
       },
       "locked": {
         "lastModified": 1766537863,
@@ -570,6 +588,22 @@
     },
     "nixpkgs_10": {
       "locked": {
+        "lastModified": 1748443479,
+        "narHash": "sha256-FQF9ZSzW2KYOJmmmHd554A3BNO1xt5pe6MbohSC2454=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "265df80a8c6cfe3e9012788d8d7f95b98850267e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "release-25.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_11": {
+      "locked": {
         "lastModified": 1770235646,
         "narHash": "sha256-aOmDW3TvFabgoUZCPZAPsO+oUJcM+07MpXlx4MXPfco=",
         "owner": "NixOS",
@@ -649,6 +683,22 @@
     },
     "nixpkgs_6": {
       "locked": {
+        "lastModified": 1770562336,
+        "narHash": "sha256-ub1gpAONMFsT/GU2hV6ZWJjur8rJ6kKxdm9IlCT0j84=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "d6c71932130818840fc8fe9509cf50be8c64634f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_7": {
+      "locked": {
         "lastModified": 1729665710,
         "narHash": "sha256-AlcmCXJZPIlO5dmFzV3V2XF6x/OpNWUV8Y/FMPGd8Z4=",
         "owner": "nixos",
@@ -663,7 +713,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_7": {
+    "nixpkgs_8": {
       "locked": {
         "lastModified": 1764020296,
         "narHash": "sha256-6zddwDs2n+n01l+1TG6PlyokDdXzu/oBmEejcH5L5+A=",
@@ -679,7 +729,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_8": {
+    "nixpkgs_9": {
       "locked": {
         "lastModified": 1767283834,
         "narHash": "sha256-h2r9YZvkEHyPTlLKUK0GLCC7wFTWp/cd6Nt+5rITd4c=",
@@ -690,22 +740,6 @@
       },
       "original": {
         "owner": "NixOS",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_9": {
-      "locked": {
-        "lastModified": 1748443479,
-        "narHash": "sha256-FQF9ZSzW2KYOJmmmHd554A3BNO1xt5pe6MbohSC2454=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "265df80a8c6cfe3e9012788d8d7f95b98850267e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "release-25.05",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -741,11 +775,12 @@
         "auth-server": "auth-server",
         "calc-api": "calc-api",
         "flake-utils": "flake-utils_2",
+        "github-docs": "github-docs",
         "lgl-site": "lgl-site",
         "mailserver": "mailserver",
         "nextcloud-extras": "nextcloud-extras",
         "nixos": "nixos",
-        "nixpkgs": "nixpkgs_8",
+        "nixpkgs": "nixpkgs_9",
         "strapi": "strapi",
         "terraflake": "terraflake",
         "website-for-friends": "website-for-friends"
@@ -753,7 +788,7 @@
     },
     "strapi": {
       "inputs": {
-        "nixpkgs": "nixpkgs_9",
+        "nixpkgs": "nixpkgs_10",
         "utils": "utils_2"
       },
       "locked": {
@@ -974,7 +1009,7 @@
     "website-for-friends": {
       "inputs": {
         "nix-filter": "nix-filter_2",
-        "nixpkgs": "nixpkgs_10",
+        "nixpkgs": "nixpkgs_11",
         "utils": "utils_3"
       },
       "locked": {
