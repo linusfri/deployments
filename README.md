@@ -1,6 +1,6 @@
 # Node Deployment
 
-This repository enables provisioning and configuration a DigitalOcean VPS.
+This repository enables provisioning and configuration a Hetzner VPS.
 
 ## Setup Environment
 
