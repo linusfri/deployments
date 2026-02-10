@@ -6,15 +6,13 @@
 let
   inherit (config.terraflake.input) node;
 
-  mountPath =
-    if config.services.nextcloud.enable == true then
-      config.services.nextcloud.datadir
-    else
-      "/var/lib/nextcloud-data";
-
-  diskPathAndUuid = "/dev/disk/by-uuid/16539207-795b-4ce9-b552-0dd029aedeb2";
+  dataDir = "/var/lib/nextcloud-data";
 in
 {
+  systemd.tmpfiles.rules = [
+    "d ${dataDir} 0755 nextcloud nextcloud -"
+  ];
+
   services.nextcloud = {
     enable = true;
     package = pkgs.nextcloud32;
@@ -62,7 +60,7 @@ in
         license = "gpl3";
       };
     };
-    datadir = "/var/lib/nextcloud-storage";
+    datadir = dataDir;
     https = true;
     hostName = node.domains.nextcloud;
     maxUploadSize = "50G";
@@ -84,11 +82,6 @@ in
   services.nginx.virtualHosts.${config.services.nextcloud.hostName} = {
     forceSSL = true;
     enableACME = true;
-  };
-
-  fileSystems."${mountPath}" = {
-    device = diskPathAndUuid;
-    fsType = "ext4";
   };
 
   age.secrets.nextcloudAdminPass = {

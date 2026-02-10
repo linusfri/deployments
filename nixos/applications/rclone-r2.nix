@@ -2,9 +2,9 @@
 let
   inherit (config.terraflake.input) node;
 
-  user = "nextcloud";
-  group = "nextcloud";
-  bucketName = "nextcloudbucket";
+  user = "linus";
+  group = "linus";
+  bucketName = "jellyfinbucket";
 in
 {
   environment.systemPackages = [ pkgs.rclone ];
@@ -16,7 +16,7 @@ in
   ];
 
   systemd.services.rclone-s3-mount = {
-    description = "Rclone Mount for S3 Bucket (cloudflarer2:nextcloudbucket)";
+    description = "Rclone Mount for S3 Bucket (cloudflarer2:jellyfinbucket)";
     after = [ "network-online.target" ];
     wants = [ "network-online.target" ];
     wantedBy = [ "multi-user.target" ];

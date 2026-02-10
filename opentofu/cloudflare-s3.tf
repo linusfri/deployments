@@ -11,3 +11,10 @@ resource "cloudflare_r2_bucket" "nextcloudbucket" {
   location      = "eeur"
   storage_class = "Standard"
 }
+
+resource "cloudflare_r2_bucket" "jellyfinbucket" {
+  account_id    = var.cloudflare_id
+  name          = "jellyfinbucket"
+  location      = "eeur"
+  storage_class = "Standard"
+}
