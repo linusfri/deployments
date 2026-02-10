@@ -43,7 +43,7 @@ mkShell {
       )
 
       # Overwrite the file each time this is run
-      > .tokens.sh
+      > $ROOT_DIR/.tokens.sh
 
       for pair in "''${variable_pairs_to_export[@]}"; do
         json_key="''${pair%%:*}"
