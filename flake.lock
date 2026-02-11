@@ -8,11 +8,11 @@
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1762618334,
-        "narHash": "sha256-wyT7Pl6tMFbFrs8Lk/TlEs81N6L+VSybPfiIgzU8lbQ=",
+        "lastModified": 1770165109,
+        "narHash": "sha256-9VnK6Oqai65puVJ4WYtCTvlJeXxMzAp/69HhQuTdl/I=",
         "owner": "ryantm",
         "repo": "agenix",
-        "rev": "fcdea223397448d35d9b31f798479227e80183f6",
+        "rev": "b027ee29d959fda4b60b57566d64c98a202e0feb",
         "type": "github"
       },
       "original": {
@@ -52,11 +52,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1765839957,
-        "narHash": "sha256-c2k30kehMWLEQpO41OhyDruj1S7RsyBlgx4yHlXKVa4=",
+        "lastModified": 1770259557,
+        "narHash": "sha256-EvZ09k9+mzXAngPzU2K7oLLUDlKoT1numb4bDb3Gtl4=",
         "owner": "hercules-ci",
         "repo": "arion",
-        "rev": "9ff7acc2c00a40ecf24894592ea5019439bb9e13",
+        "rev": "9b24cf65c72cb0e9616e437d55e1ac8e5c6bc715",
         "type": "github"
       },
       "original": {
@@ -73,11 +73,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1767281474,
-        "narHash": "sha256-ElrPoXQXUBglncfn3fnGQxkIfSsW525p7qmTVQLvCio=",
+        "lastModified": 1769455119,
+        "narHash": "sha256-TiO4IJi9qJSZyhYuG/rvsD8Ux/OYol53TbnaFRz2Dxg=",
         "ref": "refs/heads/master",
-        "rev": "c68d6010076aac74233169bb36812aed50f6ff0d",
-        "revCount": 91,
+        "rev": "5a2e513f25f1d814baa0fce46a62f793695426ea",
+        "revCount": 105,
         "type": "git",
         "url": "ssh://git@github.com/linusfri/Gleam-auth-server"
       },
@@ -225,11 +225,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1763759067,
-        "narHash": "sha256-LlLt2Jo/gMNYAwOgdRQBrsRoOz7BPRkzvNaI/fzXi2Q=",
+        "lastModified": 1769996383,
+        "narHash": "sha256-AnYjnFWgS49RlqX7LrC4uA+sCCDBj0Ry/WOJ5XWAsa0=",
         "owner": "hercules-ci",
         "repo": "flake-parts",
-        "rev": "2cccadc7357c0ba201788ae99c4dfa90728ef5e0",
+        "rev": "57928607ea566b5db3ad13af0e57e921e6b12381",
         "type": "github"
       },
       "original": {
@@ -338,11 +338,11 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1770633004,
-        "narHash": "sha256-VD3i86aDujr91j98dSU3AcTAkDPlyYlFEQ1Wk+7s74I=",
+        "lastModified": 1770746389,
+        "narHash": "sha256-Lc9TGDgkQX8bq7N3PytkmmKHyaQuF0OB4WIsH+sPrro=",
         "ref": "refs/heads/master",
-        "rev": "85b919a1e863674a6454c01f6be572f6a7e24f28",
-        "revCount": 3,
+        "rev": "8079b6b96096bf4432e37fe33b7b9beb2dacbb4e",
+        "revCount": 5,
         "type": "git",
         "url": "ssh://git@github.com/linusfri/html"
       },
@@ -540,11 +540,11 @@
     },
     "nixos": {
       "locked": {
-        "lastModified": 1767282684,
-        "narHash": "sha256-91wqTiN4fBhy3T5CiuwWOo6JqdDVq+tsLj+SdZS7rtE=",
+        "lastModified": 1770744378,
+        "narHash": "sha256-FfvgaWMuOFWIH5mbtwIwITPH2r35kR9pvFEfWsecQHM=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "663eca5b4029adf4a75c5107e2da5c84146f6aa3",
+        "rev": "0e9b9fb0c7ebd10b70a1f066d4018b3fa6686307",
         "type": "github"
       },
       "original": {
@@ -619,11 +619,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1764667669,
-        "narHash": "sha256-7WUCZfmqLAssbDqwg9cUDAXrSoXN79eEEq17qhTNM/Y=",
+        "lastModified": 1770181073,
+        "narHash": "sha256-ksTL7P9QC1WfZasNlaAdLOzqD8x5EPyods69YBqxSfk=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "418468ac9527e799809c900eda37cbff999199b6",
+        "rev": "bf922a59c5c9998a6584645f7d0de689512e444c",
         "type": "github"
       },
       "original": {
@@ -731,11 +731,11 @@
     },
     "nixpkgs_9": {
       "locked": {
-        "lastModified": 1767283834,
-        "narHash": "sha256-h2r9YZvkEHyPTlLKUK0GLCC7wFTWp/cd6Nt+5rITd4c=",
+        "lastModified": 1770744528,
+        "narHash": "sha256-M+V87AD+8oljUwpYGpTarnikwVZ3T68sdPEmT4c7naU=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "821647d8479ce41cafa8294de5abc081e87151e2",
+        "rev": "20d148068e415c4a68f4c97ae1856bc000949d10",
         "type": "github"
       },
       "original": {
