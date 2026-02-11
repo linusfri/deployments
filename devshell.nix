@@ -18,6 +18,7 @@ mkShell {
       age
       mkpasswd
       bind
+      rclone
       ;
     inherit terraflake tofu;
     inherit (scripts)
