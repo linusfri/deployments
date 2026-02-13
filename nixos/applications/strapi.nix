@@ -39,12 +39,12 @@ in
     };
 
     age.secrets.ghcrPass = {
-      rekeyFile = ../${node.name}/secrets/ghcr_pass.age;
+      rekeyFile = ../servers/${node.name}/secrets/ghcr_pass.age;
       generator.script = "passphrase";
     };
 
     age.secrets.strapiEnv = {
-      rekeyFile = ../${node.name}/secrets/strapi_env.age;
+      rekeyFile = ../servers/${node.name}/secrets/strapi_env.age;
       generator.script = "passphrase";
     };
   };

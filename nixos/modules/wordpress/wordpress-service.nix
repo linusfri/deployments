@@ -327,7 +327,7 @@ in
       age.secrets = lib.mkMerge (
         lib.mapAttrsToList (name: site: {
           "${site.appName}-env" = {
-            rekeyFile = ../../${node.name}/secrets/${site.appName}-env.age;
+            rekeyFile = ../../servers/${node.name}/secrets/${site.appName}-env.age;
             generator.script = "passphrase";
           };
         }) sites

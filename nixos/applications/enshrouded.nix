@@ -35,7 +35,7 @@ in
   };
 
   age.secrets."${configFile}" = {
-    rekeyFile = ../${node.name}/secrets/${configFile};
+    rekeyFile = ../servers/${node.name}/secrets/${configFile};
     generator.script = "passphrase";
   };
 

@@ -66,7 +66,7 @@ in
   };
 
   age.secrets."auth_server_environment" = {
-    rekeyFile = ../${node.name}/secrets/auth_server_environment;
+    rekeyFile = ../servers/${node.name}/secrets/auth_server_environment;
     generator.script = "passphrase";
   };
 }

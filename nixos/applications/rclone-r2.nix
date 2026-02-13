@@ -49,7 +49,7 @@ in
   };
 
   age.secrets.rcloneConfig = {
-    rekeyFile = ../${node.name}/secrets/rcloneConfig.age;
+    rekeyFile = ../servers/${node.name}/secrets/rcloneConfig.age;
     generator.script = "passphrase";
   };
 }

@@ -34,15 +34,15 @@ in
     };
 
     age.secrets.linusPass = {
-      rekeyFile = ../${node.name}/secrets/linus_mail_pass.age;
+      rekeyFile = ../servers/${node.name}/secrets/linus_mail_pass.age;
       generator.script = "passphrase";
     };
     age.secrets.carroPass = {
-      rekeyFile = ../${node.name}/secrets/carro_mail_pass.age;
+      rekeyFile = ../servers/${node.name}/secrets/carro_mail_pass.age;
       generator.script = "passphrase";
     };
     age.secrets.handymanPass = {
-      rekeyFile = ../${node.name}/secrets/handyman_mail_pass.age;
+      rekeyFile = ../servers/${node.name}/secrets/handyman_mail_pass.age;
       generator.script = "passphrase";
     };
   };
