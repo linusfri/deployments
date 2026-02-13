@@ -77,7 +77,7 @@
                 ;
             })
             # Add module that configures a generic monitor node
-            (import ./nixos/hetzvps.nix {
+            (import ./nixos/servers/hetzvps/hetzvps.nix {
               flake = self;
               inherit name;
             })

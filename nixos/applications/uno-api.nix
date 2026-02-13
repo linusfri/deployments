@@ -57,12 +57,12 @@ in
   };
 
   age.secrets.database-url = {
-    rekeyFile = ../${node.name}/secrets/unoapi-dburl.age;
+    rekeyFile = ../servers/${node.name}/secrets/unoapi-dburl.age;
     generator.script = "passphrase";
   };
 
   age.secrets.database-password = {
-    rekeyFile = ../${node.name}/secrets/unoapi-dbpass.age;
+    rekeyFile = ../servers/${node.name}/secrets/unoapi-dbpass.age;
     generator.script = "passphrase";
   };
 }

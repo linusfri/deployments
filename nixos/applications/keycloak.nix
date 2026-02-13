@@ -42,7 +42,7 @@ in
   };
 
   age.secrets."keycloakDbPassFile" = {
-    rekeyFile = ../${node.name}/secrets/keycloak-db-pass-file.age;
+    rekeyFile = ../servers/${node.name}/secrets/keycloak-db-pass-file.age;
     generator.script = "passphrase";
   };
 }

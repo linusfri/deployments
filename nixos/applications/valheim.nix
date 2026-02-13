@@ -13,7 +13,7 @@ in
     envFilePath = config.age.secrets.valheimEnv.path;
   };
   age.secrets.valheimEnv = {
-    rekeyFile = ../${node.name}/secrets/valheim-env.age;
+    rekeyFile = ../servers/${node.name}/secrets/valheim-env.age;
     generator.script = "passphrase";
   };
 }
