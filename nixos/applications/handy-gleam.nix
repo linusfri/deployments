@@ -1,4 +1,9 @@
-{ config, pkgs, authorizedKeys, ... }:
+{
+  config,
+  pkgs,
+  authorizedKeys,
+  ...
+}:
 let
   inherit (config.terraflake.input) node;
 
@@ -32,11 +37,13 @@ in
     name = appName;
   };
 
+  users.users."nginx".extraGroups = [ "handygleam" ];
+
   services.nginx = {
     virtualHosts."${node.domains.handygleam}" = {
       enableACME = true;
       forceSSL = true;
-      locations."/lib/handygleam/static/" = {
+      locations."/static/" = {
         alias = "${home}/static/";
       };
       locations."/" = {
@@ -65,9 +72,12 @@ in
   systemd.services."${appName}-migrate" = {
     enable = true;
     description = "Run database migrations for ${appName}";
-    after = [ "postgresql.service" "postgresql-setup.service" ];
+    after = [
+      "postgresql.service"
+      "postgresql-setup.service"
+    ];
     requires = [ "postgresql.service" ];
-    
+
     serviceConfig = {
       Type = "oneshot";
       User = appName;
@@ -88,7 +98,7 @@ in
     description = "${appName}";
     after = [ "${appName}-migrate.service" ];
     requires = [ "${appName}-migrate.service" ];
-    
+
     serviceConfig = {
       ExecStart = "${startApp}/bin/start-app";
       Type = "simple";
