@@ -30,7 +30,7 @@
       url = "git+ssh://git@github.com/linusfri/strapi_docknix";
     };
     calc-api.url = "git+ssh://git@github.com/linusfri/calc_api";
-    auth-server.url = "git+ssh://git@github.com/linusfri/Gleam-auth-server";
+    handy-gleam.url = "git+ssh://git@github.com/linusfri/handy-gleam";
     website-for-friends.url = "github:linusfri/website-for-friends";
     github-docs.url = "git+ssh://git@github.com/linusfri/html";
 
@@ -71,7 +71,7 @@
                 lgl-site
                 calc-api
                 website-for-friends
-                auth-server
+                handy-gleam
                 strapi
                 github-docs
                 ;
