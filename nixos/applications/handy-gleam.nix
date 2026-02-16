@@ -5,11 +5,12 @@ let
   port = 8000;
   appName = "handy-gleam";
 
+  envFile = config.age.secrets."${appName}_environment".path;
+
   startApp = pkgs.writeShellScriptBin "start-app" ''
     set -a
-    PORT=${toString port} 
-    SECRET_KEY=THIS_IS_TEST
-    AUTH_ENDPOINT=keycloak.friikod.se/realms/auth-server/protocol/openid-connect
+    source ${envFile}
+    PORT=${toString port}
 
     ${pkgs.auth-server}/bin/${appName}
   '';
@@ -56,12 +57,42 @@ in
     '';
   };
 
-  systemd.services.auth-server = {
+  systemd.services."${appName}-migrate" = {
     enable = true;
-    description = "auth-server";
+    description = "Run database migrations for ${appName}";
+    after = [ "postgresql.service" ];
+    requires = [ "postgresql.service" ];
+    
+    serviceConfig = {
+      Type = "oneshot";
+      User = "${appName}";
+      Group = "${appName}";
+      WorkingDirectory = home;
+    };
+
+    environment = {
+      PGHOST = "/run/postgresql";
+    };
+
+    script = ''
+      export DATABASE_URL="postgres://${appName}@/${appName}?host=/run/postgresql&sslmode=disable"
+      ${pkgs.dbmate}/bin/dbmate up
+    '';
+
+    wantedBy = [ "multi-user.target" ];
+  };
+
+  systemd.services."${appName}" = {
+    enable = true;
+    description = "${appName}";
+    after = [ "${appName}-migrate.service" ];
+    requires = [ "${appName}-migrate.service" ];
+    
     serviceConfig = {
       ExecStart = "${startApp}/bin/start-app";
       Type = "simple";
+      User = user;
+      Group = user;
     };
     wantedBy = [ "multi-user.target" ];
   };
