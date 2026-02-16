@@ -28,6 +28,7 @@ in
     (applications + /rclone-r2.nix)
     (applications + /github-docs.nix)
     (applications + /ladugardlive.nix)
+    (applications + /handy-gleam.nix)
   ];
 
   # Set the initial NixOS version, don't touch this after first
