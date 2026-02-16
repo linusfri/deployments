@@ -35,9 +35,9 @@ resource "cloudflare_dns_record" "subdomain-calc" {
   ttl     = 1
 }
 
-resource "cloudflare_dns_record" "subdomain-authserver" {
+resource "cloudflare_dns_record" "subdomain-handygleam" {
   zone_id = cloudflare_zone.default.id
-  name    = "auth-server.friikod.se"
+  name    = "handy-gleam.friikod.se"
   content = hcloud_server.nixos.ipv4_address
   type    = "A"
   proxied = true

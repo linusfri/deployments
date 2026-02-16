@@ -11,7 +11,7 @@ output "nodes" {
         "friikod"          = "friikod.se"
         "ladugardlive"     = "ladugardlive.se"
         "calc-api"         = "calc.friikod.se"
-        "auth-server"      = "auth-server.friikod.se"
+        "handygleam"       = "handy-gleam.friikod.se"
         "strapi"           = "strapi.friikod.se"
         "next"             = "next.friikod.se"
         "plex"             = "plex.friikod.se"

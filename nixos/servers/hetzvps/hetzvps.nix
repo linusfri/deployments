@@ -18,6 +18,7 @@ in
     (modules + /www.nix)
     (modules + /db.nix)
     (modules + /virtualisation.nix)
+    (modules + /authorized-keys.nix)
     (applications + /calc-api.nix)
     (applications + /privacy.nix)
     (applications + /mailserver.nix)

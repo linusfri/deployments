@@ -65,27 +65,6 @@
         "type": "github"
       }
     },
-    "auth-server": {
-      "inputs": {
-        "nix-gleam": "nix-gleam",
-        "nixpkgs": "nixpkgs_4",
-        "nixpkgs-unstable": "nixpkgs-unstable",
-        "utils": "utils"
-      },
-      "locked": {
-        "lastModified": 1769455119,
-        "narHash": "sha256-TiO4IJi9qJSZyhYuG/rvsD8Ux/OYol53TbnaFRz2Dxg=",
-        "ref": "refs/heads/master",
-        "rev": "5a2e513f25f1d814baa0fce46a62f793695426ea",
-        "revCount": 105,
-        "type": "git",
-        "url": "ssh://git@github.com/linusfri/Gleam-auth-server"
-      },
-      "original": {
-        "type": "git",
-        "url": "ssh://git@github.com/linusfri/Gleam-auth-server"
-      }
-    },
     "blobs": {
       "flake": false,
       "locked": {
@@ -105,7 +84,7 @@
     "calc-api": {
       "inputs": {
         "flake-utils": "flake-utils",
-        "nixpkgs": "nixpkgs_5"
+        "nixpkgs": "nixpkgs_3"
       },
       "locked": {
         "lastModified": 1732222944,
@@ -240,7 +219,7 @@
     },
     "flake-utils": {
       "inputs": {
-        "systems": "systems_3"
+        "systems": "systems_2"
       },
       "locked": {
         "lastModified": 1726560853,
@@ -258,7 +237,7 @@
     },
     "flake-utils_2": {
       "inputs": {
-        "systems": "systems_4"
+        "systems": "systems_3"
       },
       "locked": {
         "lastModified": 1731533236,
@@ -335,7 +314,7 @@
     },
     "github-docs": {
       "inputs": {
-        "nixpkgs": "nixpkgs_6"
+        "nixpkgs": "nixpkgs_4"
       },
       "locked": {
         "lastModified": 1770746389,
@@ -393,6 +372,27 @@
         "owner": "hercules-ci",
         "repo": "gitignore.nix",
         "type": "github"
+      }
+    },
+    "handy-gleam": {
+      "inputs": {
+        "nix-gleam": "nix-gleam",
+        "nixpkgs": "nixpkgs_6",
+        "nixpkgs-unstable": "nixpkgs-unstable",
+        "utils": "utils"
+      },
+      "locked": {
+        "lastModified": 1771262330,
+        "narHash": "sha256-RIakZj7eJO1JyWRFzwS8xW7XEJr+NOsm5Bz5h6GirdY=",
+        "ref": "refs/heads/master",
+        "rev": "5e9bd4520c812dbaf80660d537cd7c83173dbfee",
+        "revCount": 124,
+        "type": "git",
+        "url": "ssh://git@github.com/linusfri/handy-gleam"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@github.com/linusfri/handy-gleam"
       }
     },
     "haskell-flake": {
@@ -522,14 +522,14 @@
     },
     "nix-gleam": {
       "inputs": {
-        "nixpkgs": "nixpkgs_3"
+        "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1765663723,
-        "narHash": "sha256-/0xQYAEYpGRlHMOPAuGS5Wh0S2+iVqxKGB1p6UQR4dc=",
+        "lastModified": 1766688795,
+        "narHash": "sha256-v2ICvF6VzwEzVX5qVUs/KuOfqPqjOq+NpmsI3j1zEF8=",
         "owner": "arnarg",
         "repo": "nix-gleam",
-        "rev": "242258cc33f3f95ae9d9c2f1a504ccb05fb4580b",
+        "rev": "fd6945ed3919b87a0edcc791f3a91b43cf25a371",
         "type": "github"
       },
       "original": {
@@ -572,11 +572,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1765472234,
-        "narHash": "sha256-9VvC20PJPsleGMewwcWYKGzDIyjckEz8uWmT0vCDYK0=",
+        "lastModified": 1771008912,
+        "narHash": "sha256-gf2AmWVTs8lEq7z/3ZAsgnZDhWIckkb+ZnAo5RzSxJg=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "2fbfb1d73d239d2402a8fe03963e37aab15abe8b",
+        "rev": "a82ccc39b39b621151d6732718e3e250109076fa",
         "type": "github"
       },
       "original": {
@@ -635,38 +635,6 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1764950072,
-        "narHash": "sha256-BmPWzogsG2GsXZtlT+MTcAWeDK5hkbGRZTeZNW42fwA=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "f61125a668a320878494449750330ca58b78c557",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_4": {
-      "locked": {
-        "lastModified": 1765642675,
-        "narHash": "sha256-z4JfmnzGlCLkFMkGYoR1ujudZudbsOus86X6Egsn6cY=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "5daac62b13d199f663a61a523910e1d001c6cf83",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "release-25.05",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_5": {
-      "locked": {
         "lastModified": 1727802920,
         "narHash": "sha256-HP89HZOT0ReIbI7IJZJQoJgxvB2Tn28V6XS3MNKnfLs=",
         "owner": "nixos",
@@ -681,7 +649,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_6": {
+    "nixpkgs_4": {
       "locked": {
         "lastModified": 1770562336,
         "narHash": "sha256-ub1gpAONMFsT/GU2hV6ZWJjur8rJ6kKxdm9IlCT0j84=",
@@ -693,6 +661,38 @@
       "original": {
         "owner": "NixOS",
         "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_5": {
+      "locked": {
+        "lastModified": 1764950072,
+        "narHash": "sha256-BmPWzogsG2GsXZtlT+MTcAWeDK5hkbGRZTeZNW42fwA=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "f61125a668a320878494449750330ca58b78c557",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_6": {
+      "locked": {
+        "lastModified": 1771255618,
+        "narHash": "sha256-ecz4kkfh9bGURMgmbgLzCwupE6YjAO8yS9QO+jknMcY=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "66907f6081de2dfeaadbdf617db419b1dfec9fa2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "release-25.11",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -772,10 +772,10 @@
         "agenix": "agenix",
         "agenix-rekey": "agenix-rekey",
         "arion": "arion",
-        "auth-server": "auth-server",
         "calc-api": "calc-api",
         "flake-utils": "flake-utils_2",
         "github-docs": "github-docs",
+        "handy-gleam": "handy-gleam",
         "lgl-site": "lgl-site",
         "mailserver": "mailserver",
         "nextcloud-extras": "nextcloud-extras",
@@ -954,7 +954,7 @@
     },
     "utils": {
       "inputs": {
-        "systems": "systems_2"
+        "systems": "systems_4"
       },
       "locked": {
         "lastModified": 1731533236,

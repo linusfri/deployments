@@ -3,7 +3,7 @@
   lgl-site,
   calc-api,
   website-for-friends,
-  auth-server,
+  handy-gleam,
   strapi,
   github-docs
 }:
@@ -23,7 +23,7 @@
         inherit (pkgs) netdata netdataCloud;
         inherit (lgl-site.packages.${system}) ladugard-live;
         inherit (calc-api.packages.${system}) calc-api;
-        inherit (auth-server.packages.${system}) auth-server;
+        inherit (handy-gleam.packages.${system}) handygleam;
         inherit (website-for-friends.packages.${system}) bedrock-wp;
         inherit (strapi.packages.${system}) next;
         github-doc-sync = github-docs.packages.${system}.default;
