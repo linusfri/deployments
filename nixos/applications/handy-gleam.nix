@@ -3,6 +3,7 @@ let
   inherit (config.terraflake.input) node;
 
   port = 8000;
+  appName = "handy-gleam";
 
   startApp = pkgs.writeShellScriptBin "start-app" ''
     set -a
@@ -10,10 +11,10 @@ let
     SECRET_KEY=THIS_IS_TEST
     AUTH_ENDPOINT=keycloak.friikod.se/realms/auth-server/protocol/openid-connect
 
-    ${pkgs.auth-server}/bin/auth_server
+    ${pkgs.auth-server}/bin/${appName}
   '';
 
-  user = "auth_server_user";
+  user = "${appName}_user";
   home = "/var/lib/${user}";
 in
 {
@@ -41,17 +42,17 @@ in
 
   services.postgresql = {
     enable = true;
-    ensureDatabases = [ "auth_server" ];
+    ensureDatabases = [ "${appName}" ];
     ensureUsers = [
       {
-        name = "auth_server";
+        name = "${appName}";
       }
     ];
     authentication = pkgs.lib.mkOverride 10 ''
-      #type database         DBuser                           auth-method
-      local all              all                              trust
-      host  "auth_server"    "auth_server"  ::1/128           trust
-      host  "auth_server"    "auth_server" 127.0.0.1/32       trust
+      #type  database        DBuser                         auth-method
+      local  all             all                            trust
+      host  "${appName}"    "${appName}"  ::1/128           trust
+      host  "${appName}"    "${appName}" 127.0.0.1/32       trust
     '';
   };
 
@@ -65,8 +66,8 @@ in
     wantedBy = [ "multi-user.target" ];
   };
 
-  age.secrets."auth_server_environment" = {
-    rekeyFile = ../servers/${node.name}/secrets/auth_server_environment;
+  age.secrets."${appName}_environment" = {
+    rekeyFile = ../servers/${node.name}/secrets/${appName};
     generator.script = "passphrase";
   };
 }
