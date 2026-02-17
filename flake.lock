@@ -382,11 +382,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1771262330,
-        "narHash": "sha256-RIakZj7eJO1JyWRFzwS8xW7XEJr+NOsm5Bz5h6GirdY=",
+        "lastModified": 1771322135,
+        "narHash": "sha256-YM54++dt7s9nQ8iAnXWGTDxueElqH40SfdrVhM9MXuQ=",
         "ref": "refs/heads/master",
-        "rev": "5e9bd4520c812dbaf80660d537cd7c83173dbfee",
-        "revCount": 124,
+        "rev": "5a78b0f0682302758597d185ace281d3bac0f2e4",
+        "revCount": 129,
         "type": "git",
         "url": "ssh://git@github.com/linusfri/handy-gleam"
       },

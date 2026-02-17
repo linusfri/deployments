@@ -43,9 +43,9 @@ in
     virtualHosts."${node.domains.handygleam}" = {
       enableACME = true;
       forceSSL = true;
-      locations."/static/" = {
-        alias = "${home}/static/";
-      };
+      # locations."/static/" = {
+      #   alias = "${home}/static/";
+      # };
       locations."/" = {
         proxyPass = "http://localhost:${toString port}";
       };
@@ -109,7 +109,7 @@ in
   };
 
   age.secrets."${appName}_environment" = {
-    rekeyFile = ../servers/${node.name}/secrets/${appName};
+    rekeyFile = (../servers/${node.name}/secrets/${appName} + ".age");
     generator.script = "passphrase";
     owner = appName;
     group = appName;
