@@ -43,9 +43,6 @@ in
     virtualHosts."${node.domains.handygleam}" = {
       enableACME = true;
       forceSSL = true;
-      # locations."/static/" = {
-      #   alias = "${home}/static/";
-      # };
       locations."/" = {
         proxyPass = "http://localhost:${toString port}";
       };
