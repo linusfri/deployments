@@ -12,6 +12,7 @@ output "nodes" {
         "ladugardlive"     = "ladugardlive.se"
         "calc-api"         = "calc.friikod.se"
         "handygleam"       = "handy-gleam.friikod.se"
+        "conversions"      = "conversions.friikod.se"
         "strapi"           = "strapi.friikod.se"
         "next"             = "next.friikod.se"
         "plex"             = "plex.friikod.se"

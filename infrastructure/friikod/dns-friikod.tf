@@ -44,6 +44,15 @@ resource "cloudflare_dns_record" "subdomain-handygleam" {
   ttl     = 1
 }
 
+resource "cloudflare_dns_record" "subdomain-conversions" {
+  zone_id = cloudflare_zone.default.id
+  name    = "conversions.friikod.se"
+  content = hcloud_server.nixos.ipv4_address
+  type    = "A"
+  proxied = true
+  ttl     = 1
+}
+
 resource "cloudflare_dns_record" "subdomain-strapi" {
   zone_id = cloudflare_zone.default.id
   name    = "strapi.friikod.se"

@@ -4,6 +4,7 @@
   calc-api,
   website-for-friends,
   handy-gleam,
+  conversions,
   strapi,
   github-docs
 }:
@@ -24,6 +25,7 @@
         inherit (lgl-site.packages.${system}) ladugard-live;
         inherit (calc-api.packages.${system}) calc-api;
         inherit (handy-gleam.packages.${system}) handygleam;
+        inherit (conversions.packages.${system}) conversions conversions-frontend;
         inherit (website-for-friends.packages.${system}) bedrock-wp;
         inherit (strapi.packages.${system}) next;
         github-doc-sync = github-docs.packages.${system}.default;
