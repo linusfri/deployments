@@ -31,6 +31,7 @@
     };
     calc-api.url = "git+ssh://git@github.com/linusfri/calc_api";
     handy-gleam.url = "git+ssh://git@github.com/linusfri/handy-gleam";
+    conversions.url = "git+ssh://git@github.com/linusfri/conversions";
     website-for-friends.url = "github:linusfri/website-for-friends";
     github-docs.url = "git+ssh://git@github.com/linusfri/html";
 
@@ -72,6 +73,7 @@
                 calc-api
                 website-for-friends
                 handy-gleam
+                conversions
                 strapi
                 github-docs
                 ;
