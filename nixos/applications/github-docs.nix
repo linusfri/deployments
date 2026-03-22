@@ -19,14 +19,5 @@ in
         locations."/".index = "testing-conventions.html";
       };
     };
-    virtualHosts = {
-      "${node.domains.conversions}" = {
-        forceSSL = true;
-        enableACME = true;
-
-        locations."/".root = conversions-frontend;
-        locations."/".index = "index.html";
-      };
-    };
   };
 }
