@@ -12,9 +12,9 @@ let
 
   envFile = config.age.secrets."${appName}_environment".path;
 
-  importDb = pkgs.writeShellScriptBin "import-db" ''
+  conversionsInit = pkgs.writeShellScriptBin "conversions-init" ''
     echo "Importing initial data..."
-  
+
     psql -U postgres -v data_path="${pkgs.conversions}/data" -d ${appName} < ${pkgs.conversions}/db/init/init.sql
   '';
 
@@ -41,7 +41,7 @@ in
     openssh.authorizedKeys.keys = authorizedKeys;
     createHome = true;
     isNormalUser = true;
-    packages = [ importDb ];
+    packages = [ conversionsInit ];
   };
 
   users.extraGroups."${appName}" = {
