@@ -30,6 +30,7 @@ in
     (applications + /github-docs.nix)
     (applications + /ladugardlive.nix)
     (applications + /handy-gleam.nix)
+    (applications + /conversions.nix)
   ];
 
   # Set the initial NixOS version, don't touch this after first
