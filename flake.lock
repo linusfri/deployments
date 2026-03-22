@@ -32,11 +32,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1759699908,
-        "narHash": "sha256-kYVGY8sAfqwpNch706Fy2+/b+xbtfidhXSnzvthAhIQ=",
+        "lastModified": 1772478757,
+        "narHash": "sha256-OZ/rD87JVagLiHCz5M/kfu5n3+32G+kvoZ3F5xmzVng=",
         "owner": "oddlama",
         "repo": "agenix-rekey",
-        "rev": "42362b12f59978aabf3ec3334834ce2f3662013d",
+        "rev": "4b0b511675cc368956a3917f0710dd62ba7b4043",
         "type": "github"
       },
       "original": {
@@ -108,11 +108,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1772222998,
-        "narHash": "sha256-9szSTUz9bWXgpG9OzNqmeNnHC1ca/R3Dp0ycR+ywq4g=",
+        "lastModified": 1774199279,
+        "narHash": "sha256-WHC2WZJxTtjWROmwf9M9yPHRFE88bqKw9j/HwDF30Bg=",
         "ref": "refs/heads/master",
-        "rev": "e3c59ca1def9e78de3f5ebe86457352af2dcfb7b",
-        "revCount": 29,
+        "rev": "c59fc152fe88778e9448ebf949fd83c0a65d54a8",
+        "revCount": 70,
         "type": "git",
         "url": "ssh://git@github.com/linusfri/conversions"
       },
@@ -183,11 +183,11 @@
     "flake-compat_2": {
       "flake": false,
       "locked": {
-        "lastModified": 1761588595,
-        "narHash": "sha256-XKUZz9zewJNUj46b4AJdiRZJAvSZ0Dqj2BNfXvFlJC4=",
+        "lastModified": 1767039857,
+        "narHash": "sha256-vNpUSpF5Nuw8xvDLj2KCwwksIbjua2LZCqhV1LNRDns=",
         "owner": "edolstra",
         "repo": "flake-compat",
-        "rev": "f387cd2afec9419c8ee37694406ca490c3f34ee5",
+        "rev": "5edf11c44bc78a0d334f6334cdaf7d60d732daab",
         "type": "github"
       },
       "original": {
@@ -320,11 +320,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1763319842,
-        "narHash": "sha256-YG19IyrTdnVn0l3DvcUYm85u3PaqBt6tI6VvolcuHnA=",
+        "lastModified": 1772893680,
+        "narHash": "sha256-JDqZMgxUTCq85ObSaFw0HhE+lvdOre1lx9iI6vYyOEs=",
         "owner": "cachix",
         "repo": "git-hooks.nix",
-        "rev": "7275fa67fbbb75891c16d9dee7d88e58aea2d761",
+        "rev": "8baab586afc9c9b57645a734c820e4ac0a604af9",
         "type": "github"
       },
       "original": {
@@ -403,11 +403,11 @@
         "utils": "utils_2"
       },
       "locked": {
-        "lastModified": 1771322135,
-        "narHash": "sha256-YM54++dt7s9nQ8iAnXWGTDxueElqH40SfdrVhM9MXuQ=",
+        "lastModified": 1771356116,
+        "narHash": "sha256-ke4oIV500RWfy3Z+8yA8qCfrtCvVI9yLoEYyb4Uuu5U=",
         "ref": "refs/heads/master",
-        "rev": "5a78b0f0682302758597d185ace281d3bac0f2e4",
-        "revCount": 129,
+        "rev": "d479ea76194c1d773e900ad7fbb421b3998f2401",
+        "revCount": 132,
         "type": "git",
         "url": "ssh://git@github.com/linusfri/handy-gleam"
       },
@@ -481,11 +481,11 @@
         "nixpkgs": "nixpkgs_10"
       },
       "locked": {
-        "lastModified": 1766537863,
-        "narHash": "sha256-HEt+wbazRgJYeY+lgj65bxhPyVc4x7NEB2bs5NU6DF8=",
+        "lastModified": 1773912645,
+        "narHash": "sha256-QHzRqq6gh+t3F/QU9DkP7X63dDDcuIQmaDz12p7ANTg=",
         "ref": "nixos-25.11",
-        "rev": "23f0a53ca6e58e61e1ea2b86791c69b79c91656d",
-        "revCount": 841,
+        "rev": "25e6dbb8fca3b6e779c5a46fd03bd760b2165bb5",
+        "revCount": 843,
         "type": "git",
         "url": "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver.git"
       },
@@ -579,11 +579,11 @@
     },
     "nixos": {
       "locked": {
-        "lastModified": 1770744378,
-        "narHash": "sha256-FfvgaWMuOFWIH5mbtwIwITPH2r35kR9pvFEfWsecQHM=",
+        "lastModified": 1774196068,
+        "narHash": "sha256-8nulUYqHl1DufDdSLAVyv15IhN9KJ3JGnIHxaV0Snxk=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "0e9b9fb0c7ebd10b70a1f066d4018b3fa6686307",
+        "rev": "ea6267b7f7eb8b2fcc5ef35a51c24b2ec351d50c",
         "type": "github"
       },
       "original": {
@@ -643,11 +643,11 @@
     },
     "nixpkgs_10": {
       "locked": {
-        "lastModified": 1764020296,
-        "narHash": "sha256-6zddwDs2n+n01l+1TG6PlyokDdXzu/oBmEejcH5L5+A=",
+        "lastModified": 1773831496,
+        "narHash": "sha256-JW2/QPyCVzmouqEp1H9kNa8JXd7xEhlam9sy3TYfhDY=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "a320ce8e6e2cc6b4397eef214d202a50a4583829",
+        "rev": "826430a188181a750ffa5948daff334039c5d741",
         "type": "github"
       },
       "original": {
@@ -659,11 +659,11 @@
     },
     "nixpkgs_11": {
       "locked": {
-        "lastModified": 1770744528,
-        "narHash": "sha256-M+V87AD+8oljUwpYGpTarnikwVZ3T68sdPEmT4c7naU=",
+        "lastModified": 1774198880,
+        "narHash": "sha256-9dJJrNaMAAUFkc/L5DRRElV1/TXqIrLAT0F9aDYrzf8=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "20d148068e415c4a68f4c97ae1856bc000949d10",
+        "rev": "f8c2dcc0872a2f8a2fad0914df6e9cde87a04475",
         "type": "github"
       },
       "original": {
