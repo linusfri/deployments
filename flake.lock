@@ -108,11 +108,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1775312008,
-        "narHash": "sha256-Xt7GmZQD9Jv7cPbe5jv3cQ3O+E6HQqUQsthv7SdkByg=",
+        "lastModified": 1775313866,
+        "narHash": "sha256-BMU/KF4f7zNt5Tvm40urUIsWWSdZnolBUXqnykDnNIo=",
         "ref": "refs/heads/master",
-        "rev": "99422449eda3ca4cc6d0d318dc77c4999780f34b",
-        "revCount": 77,
+        "rev": "b415cdc6b82782950a90e64322c56d49d3079660",
+        "revCount": 78,
         "type": "git",
         "url": "ssh://git@github.com/linusfri/conversions"
       },
@@ -659,11 +659,11 @@
     },
     "nixpkgs_11": {
       "locked": {
-        "lastModified": 1775311557,
-        "narHash": "sha256-8F5T6q0cpWbz0YKl51a2prevJeXW8pcLfEDSiYaliIY=",
+        "lastModified": 1775313169,
+        "narHash": "sha256-Ys+lmpUViFoQk2WECIozAMNcmkK7/61dYp4zHRFG6mg=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "c42ef2eb2917e14a24949ec361ae166600fda5c6",
+        "rev": "b31b2c147e434b5a8d62cff5ea9dac5dd64c6174",
         "type": "github"
       },
       "original": {
