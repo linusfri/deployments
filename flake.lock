@@ -108,11 +108,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1775313866,
-        "narHash": "sha256-BMU/KF4f7zNt5Tvm40urUIsWWSdZnolBUXqnykDnNIo=",
+        "lastModified": 1775314193,
+        "narHash": "sha256-3j+Gpn3jRGNQHtjU3Ok3NL93h8H41NNc8H57rYeWTZ8=",
         "ref": "refs/heads/master",
-        "rev": "b415cdc6b82782950a90e64322c56d49d3079660",
-        "revCount": 78,
+        "rev": "af06f37756974d9bafb399c00daeeeeb0789b4d7",
+        "revCount": 79,
         "type": "git",
         "url": "ssh://git@github.com/linusfri/conversions"
       },
