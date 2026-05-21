@@ -2,9 +2,36 @@
 
 { config, pkgs, ... }:
 let
-  modules = ../../modules;
+  modulesFolderPath = ../../modules;
   root = ../../..;
-  applications = ../../applications;
+  applicationsFolderPath = ../../applications;
+
+  applicationFileNames = [
+    "calc-api.nix"
+    "privacy.nix"
+    "mailserver.nix"
+    "nextcloud.nix"
+    "jellyfin.nix"
+    "keycloak.nix"
+    "wordpress.nix"
+    "rclone-r2.nix"
+    "github-docs.nix"
+    "ladugardlive.nix"
+    "handy-gleam.nix"
+    "conversions.nix"
+    "plantuml.nix"
+  ];
+
+  moduleFileNames = [
+    "common.nix"
+    "www.nix"
+    "db.nix"
+    "virtualisation.nix"
+    "authorized-keys.nix"
+  ];
+
+  mkFullPaths = folderPath: fileNames: map (fileName: folderPath + "/${fileName}") fileNames;
+
 in
 {
   imports = [
@@ -14,24 +41,9 @@ in
     flake.inputs.arion.nixosModules.arion
     flake.inputs.mailserver.nixosModules.default
     ./rekey.nix
-    (modules + /common.nix)
-    (modules + /www.nix)
-    (modules + /db.nix)
-    (modules + /virtualisation.nix)
-    (modules + /authorized-keys.nix)
-    (applications + /calc-api.nix)
-    (applications + /privacy.nix)
-    (applications + /mailserver.nix)
-    (applications + /nextcloud.nix)
-    (applications + /jellyfin.nix)
-    (applications + /keycloak.nix)
-    (applications + /wordpress.nix)
-    (applications + /rclone-r2.nix)
-    (applications + /github-docs.nix)
-    (applications + /ladugardlive.nix)
-    (applications + /handy-gleam.nix)
-    (applications + /conversions.nix)
-  ];
+  ]
+  ++ mkFullPaths applicationsFolderPath applicationFileNames
+  ++ mkFullPaths modulesFolderPath moduleFileNames;
 
   # Set the initial NixOS version, don't touch this after first
   # `$ terraflake push`

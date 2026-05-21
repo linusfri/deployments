@@ -1,12 +1,25 @@
 { pkgs, config, ... }:
 let
+  inherit (config.terraflake.input) node;
+
   user = "plantuml";
   group = "plantuml";
   home = "/var/lib/plantuml";
+  listenPort = 9090;
 in
 {
   services.plantuml-server = {
     enable = true;
-    inherit group user home;
+    inherit group user home listenPort;
+  };
+
+   services.nginx = {
+    virtualHosts."${node.domains.plantuml}" = {
+      enableACME = true;
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "http://localhost:${toString listenPort}";
+      };
+    };
   };
 }
