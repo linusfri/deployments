@@ -17,19 +17,7 @@ resource "hcloud_server" "nixos" {
     "label" : "seed"
   }
   lifecycle {
-    ignore_changes = [ssh_keys]
-    prevent_destroy = true
-  }
-}
-
-resource "hcloud_volume" "nextcloud" {
-  name      = "nextcloud"
-  size      = 300
-  server_id = hcloud_server.nixos.id
-  automount = true
-  format    = "ext4"
-
-  lifecycle {
+    ignore_changes  = [ssh_keys]
     prevent_destroy = true
   }
 }

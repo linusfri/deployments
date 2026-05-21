@@ -112,8 +112,8 @@ resource "cloudflare_dns_record" "subdomain-meme" {
   name    = "meme.friikod.se"
   content = hcloud_server.nixos.ipv4_address
   type    = "A"
-  proxied = false
-  ttl     = 3600
+  proxied = true
+  ttl     = 1
 }
 
 resource "cloudflare_dns_record" "subdomain-docs" {
@@ -123,6 +123,15 @@ resource "cloudflare_dns_record" "subdomain-docs" {
   type    = "A"
   proxied = false
   ttl     = 3600
+}
+
+resource "cloudflare_dns_record" "subdomain-plantuml" {
+  zone_id = cloudflare_zone.default.id
+  name    = "plantuml.friikod.se"
+  content = hcloud_server.nixos.ipv4_address
+  type    = "A"
+  proxied = true
+  ttl     = 1
 }
 
 # Mail

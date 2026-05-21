@@ -495,22 +495,6 @@
         "url": "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver.git"
       }
     },
-    "nextcloud-extras": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1730827799,
-        "narHash": "sha256-79sE72rlztvhx37PYh6m2TLE2J6ybVvDRMQBRWaohqc=",
-        "owner": "onny",
-        "repo": "nixos-nextcloud-testumgebung",
-        "rev": "c3fdbf165814d403a8f8e81ff8e15adcbe7eadd0",
-        "type": "github"
-      },
-      "original": {
-        "owner": "onny",
-        "repo": "nixos-nextcloud-testumgebung",
-        "type": "github"
-      }
-    },
     "nix-filter": {
       "locked": {
         "lastModified": 1710156097,
@@ -579,11 +563,11 @@
     },
     "nixos": {
       "locked": {
-        "lastModified": 1775305792,
-        "narHash": "sha256-Z/Y6np1kHh5MgroTriXX/QvvI/7dJDXn5E5CuhcRLf4=",
+        "lastModified": 1779349284,
+        "narHash": "sha256-wvnoNyNkM4oa9BigQlrqX9FHGNU9qFH1+HZSx/C7gA8=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "b128e89d9fb61cc316a54763311f3b68581e9153",
+        "rev": "f28a5cbbf8593fa260ef8cb2488d03c5dff23be8",
         "type": "github"
       },
       "original": {
@@ -659,11 +643,11 @@
     },
     "nixpkgs_11": {
       "locked": {
-        "lastModified": 1775313169,
-        "narHash": "sha256-Ys+lmpUViFoQk2WECIozAMNcmkK7/61dYp4zHRFG6mg=",
+        "lastModified": 1779355087,
+        "narHash": "sha256-2ct6d4MOS2lav4V5wAbrdVMB2axatgbItlX0mJlLBQI=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "b31b2c147e434b5a8d62cff5ea9dac5dd64c6174",
+        "rev": "8e90c804da266d483d0b24f00e06c75b91858a87",
         "type": "github"
       },
       "original": {
@@ -866,7 +850,6 @@
         "handy-gleam": "handy-gleam",
         "lgl-site": "lgl-site",
         "mailserver": "mailserver",
-        "nextcloud-extras": "nextcloud-extras",
         "nixos": "nixos",
         "nixpkgs": "nixpkgs_11",
         "strapi": "strapi",
