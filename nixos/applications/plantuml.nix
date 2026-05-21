@@ -18,7 +18,10 @@ in
       enableACME = true;
       forceSSL = true;
       locations."/" = {
-        proxyPass = "http://localhost:${toString listenPort}";
+        return = "301 /plantuml/";
+      };
+      locations."/plantuml/" = {
+        proxyPass = "http://127.0.0.1:${toString listenPort}/plantuml/";
       };
     };
   };
