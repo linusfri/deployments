@@ -20,7 +20,6 @@ mkShell {
       bind
       rclone
       ;
-    inherit (pkgs.nixVersions) nix_2_31;
     inherit terraflake tofu;
     inherit (scripts)
       exportVars

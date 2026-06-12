@@ -1004,11 +1004,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1762103503,
-        "narHash": "sha256-8AeOsukmUYrVVqqppja7Ar4P5YgRl9EFTGSNrZbHUT0=",
+        "lastModified": 1781277485,
+        "narHash": "sha256-/kMk2XUZPXsKNODh3HzQYwQZyUeRvAQQS3QBhzkxyas=",
         "owner": "linusfri",
         "repo": "nixiform",
-        "rev": "2a7159bc7194412567df8c8a9b08d57d315662c6",
+        "rev": "d6752f521a30ad24a2fa1184fc5092b7f95329ee",
         "type": "github"
       },
       "original": {
