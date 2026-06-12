@@ -25,5 +25,15 @@ output "nodes" {
         "plantuml"         = "plantuml.friikod.se"
       }
     }
+
+    friikodstage = {
+      provider = "hetznercloud"
+      name     = hcloud_server.nixos_stage.name
+      ip       = hcloud_server.nixos_stage.ipv4_address
+      ip6      = hcloud_server.nixos_stage.ipv6_address
+      ssh_key  = var.ssh_pub
+      label    = "friikodstage"
+      domains = {}
+    }
   }
 }

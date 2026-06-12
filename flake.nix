@@ -52,15 +52,16 @@
     }@inputs:
     let
       system = "x86_64-linux";
-      name = "hetzvps";
+      prodName = "hetzvps";
+      stageName = "hetzvpsstage";
     in
     {
       nixosConfigurations = {
-        ${name} = nixos.lib.nixosSystem {
+        ${prodName} = nixos.lib.nixosSystem {
           inherit system;
           modules = [
             # Add module for local package overlays
-            (import ./nixos/modules/overlay.nix {
+            (import ./nixos/servers/hetzvps/overlay.nix {
               inherit (inputs)
                 nixpkgs
                 lgl-site
@@ -72,10 +73,27 @@
                 github-docs
                 ;
             })
-            # Add module that configures a generic monitor node
+            # Module that configures a node
             (import ./nixos/servers/hetzvps/hetzvps.nix {
               flake = self;
-              inherit name;
+              name = prodName;
+            })
+          ];
+        };
+
+        ${stageName} = nixos.lib.nixosSystem {
+          inherit system;
+          modules = [
+            # Add module for local package overlays
+            (import ./nixos/servers/hetzvpsstage/overlay.nix {
+              inherit (inputs)
+                nixpkgs
+                ;
+            })
+            # Module that configures a node
+            (import ./nixos/servers/hetzvpsstage/hetzvpsstage.nix {
+              flake = self;
+              name = stageName;
             })
           ];
         };
