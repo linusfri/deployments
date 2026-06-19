@@ -22,6 +22,9 @@ in
     security.acme.acceptTerms = true;
 
     nixpkgs.config.allowUnfree = true;
+    nixpkgs.config.permittedInsecurePackages = [
+      "docker-28.5.2"
+    ];
 
     users = {
       defaultUserShell = pkgs.zsh;

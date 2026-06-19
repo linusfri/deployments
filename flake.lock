@@ -108,11 +108,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1775314193,
-        "narHash": "sha256-3j+Gpn3jRGNQHtjU3Ok3NL93h8H41NNc8H57rYeWTZ8=",
+        "lastModified": 1780248919,
+        "narHash": "sha256-THygPV5s8Hps2uazxAP1+tPzXm7GtwNFJ7dtaJXh0tk=",
         "ref": "refs/heads/master",
-        "rev": "af06f37756974d9bafb399c00daeeeeb0789b4d7",
-        "revCount": 79,
+        "rev": "fad2905c81ad8060d98f42471be5de83c667f549",
+        "revCount": 80,
         "type": "git",
         "url": "ssh://git@github.com/linusfri/conversions"
       },
@@ -403,11 +403,11 @@
         "utils": "utils_2"
       },
       "locked": {
-        "lastModified": 1781201147,
-        "narHash": "sha256-lMtCvP+i/lZq9jC0Rv2hjT6nqDKImMsWUt7kG3trXtU=",
+        "lastModified": 1781720865,
+        "narHash": "sha256-A7SpN3SBTO78gvTUEJvexRy2X+DFCGq7MtclqKuvIog=",
         "ref": "refs/heads/master",
-        "rev": "382a9339a9f077051949696db267ae7e492bc737",
-        "revCount": 136,
+        "rev": "6f1f03193e32c9d873e270129ea64707ae42bd6d",
+        "revCount": 137,
         "type": "git",
         "url": "ssh://git@github.com/linusfri/handy-gleam"
       },
@@ -563,11 +563,11 @@
     },
     "nixos": {
       "locked": {
-        "lastModified": 1779349284,
-        "narHash": "sha256-wvnoNyNkM4oa9BigQlrqX9FHGNU9qFH1+HZSx/C7gA8=",
+        "lastModified": 1781862833,
+        "narHash": "sha256-UVPZw2sM2Rdhc+1xdvScPNhXTX98Cw89YsYs1UKrKxA=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "f28a5cbbf8593fa260ef8cb2488d03c5dff23be8",
+        "rev": "eac0bfd25014817d0dca9e6a6dcc028d887cc0e5",
         "type": "github"
       },
       "original": {
@@ -643,15 +643,16 @@
     },
     "nixpkgs_11": {
       "locked": {
-        "lastModified": 1779355087,
-        "narHash": "sha256-2ct6d4MOS2lav4V5wAbrdVMB2axatgbItlX0mJlLBQI=",
+        "lastModified": 1781865360,
+        "narHash": "sha256-uFyVK59Mv3eO7QIueP4CRGrGU1/p7zdUj7rbGCUi48w=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "8e90c804da266d483d0b24f00e06c75b91858a87",
+        "rev": "c8bdb1df347e5d930588f068c108de119f903b94",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
+        "ref": "release-26.05",
         "repo": "nixpkgs",
         "type": "github"
       }

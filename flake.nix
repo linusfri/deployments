@@ -7,7 +7,7 @@
   description = "Demo Terraflake deployment";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs";
+    nixpkgs.url = "github:NixOS/nixpkgs/release-26.05";
     flake-utils.url = "github:numtide/flake-utils";
 
     # terraflake.url = "github:icetan/nixiform?rev=1e237a2d806cd303ef308626a6a63ae963bbe056";
