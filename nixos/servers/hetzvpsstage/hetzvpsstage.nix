@@ -32,5 +32,5 @@ in
 
   # Set the initial NixOS version, don't touch this after first
   # `$ terraflake push`
-  system.stateVersion = "26.05";
+  system.stateVersion = "25.11";
 }

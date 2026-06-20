@@ -81,22 +81,22 @@
           ];
         };
 
-        ${stageName} = nixos.lib.nixosSystem {
-          inherit system;
-          modules = [
-            # Add module for local package overlays
-            (import ./nixos/servers/hetzvpsstage/overlay.nix {
-              inherit (inputs)
-                nixpkgs
-                ;
-            })
-            # Module that configures a node
-            (import ./nixos/servers/hetzvpsstage/hetzvpsstage.nix {
-              flake = self;
-              name = stageName;
-            })
-          ];
-        };
+        # ${stageName} = nixos.lib.nixosSystem {
+        #   inherit system;
+        #   modules = [
+        #     # Add module for local package overlays
+        #     (import ./nixos/servers/hetzvpsstage/overlay.nix {
+        #       inherit (inputs)
+        #         nixpkgs
+        #         ;
+        #     })
+        #     # Module that configures a node
+        #     (import ./nixos/servers/hetzvpsstage/hetzvpsstage.nix {
+        #       flake = self;
+        #       name = stageName;
+        #     })
+        #   ];
+        # };
       };
 
       # Setup agenix-rekey
