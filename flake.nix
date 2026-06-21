@@ -4,7 +4,7 @@
     sandbox = "relaxed";
   };
 
-  description = "Demo Terraflake deployment";
+  description = "Deployments repo";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/release-26.05";
@@ -23,7 +23,7 @@
     arion.url = "github:hercules-ci/arion";
 
     # NixOS version
-    nixos.url = "github:NixOS/nixpkgs/release-25.11";
+    nixos.url = "github:NixOS/nixpkgs/release-26.05";
 
     lgl-site.url = "git+ssh://git@github.com/linusfri/ladugardLive";
     strapi = {
@@ -36,7 +36,7 @@
     github-docs.url = "git+ssh://git@github.com/linusfri/html";
 
     # Mail
-    mailserver.url = "git+https://gitlab.com/simple-nixos-mailserver/nixos-mailserver.git?ref=nixos-25.11";
+    mailserver.url = "git+https://gitlab.com/simple-nixos-mailserver/nixos-mailserver.git?ref=nixos-26.05";
   };
 
   outputs =
@@ -81,22 +81,22 @@
           ];
         };
 
-        # ${stageName} = nixos.lib.nixosSystem {
-        #   inherit system;
-        #   modules = [
-        #     # Add module for local package overlays
-        #     (import ./nixos/servers/hetzvpsstage/overlay.nix {
-        #       inherit (inputs)
-        #         nixpkgs
-        #         ;
-        #     })
-        #     # Module that configures a node
-        #     (import ./nixos/servers/hetzvpsstage/hetzvpsstage.nix {
-        #       flake = self;
-        #       name = stageName;
-        #     })
-        #   ];
-        # };
+        ${stageName} = nixos.lib.nixosSystem {
+          inherit system;
+          modules = [
+            # Add module for local package overlays
+            (import ./nixos/servers/hetzvpsstage/overlay.nix {
+              inherit (inputs)
+                nixpkgs
+                ;
+            })
+            # Module that configures a node
+            (import ./nixos/servers/hetzvpsstage/hetzvpsstage.nix {
+              flake = self;
+              name = stageName;
+            })
+          ];
+        };
       };
 
       # Setup agenix-rekey

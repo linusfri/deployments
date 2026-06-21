@@ -28,6 +28,7 @@ let
     "db.nix"
     "virtualisation.nix"
     "authorized-keys.nix"
+    "nextcloud.nix"
   ];
 
   mkFullPaths = folderPath: fileNames: map (fileName: folderPath + "/${fileName}") fileNames;

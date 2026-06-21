@@ -5,7 +5,7 @@ in
 {
   age.rekey = {
     # Obtain this using `ssh-keyscan` or by looking it up in your ~/.ssh/known_hosts
-    hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGd3ksiZjGXEvqx0p6clQIJWdsM+QqkgT9rZG5FQgkC5";
+    hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPg7vTUzHyNii+o7chA9ZCdGVY0ziv2n7J+SDK0J/rt9";
 
     masterIdentities = import (root + /secrets/master-identity.nix);
 

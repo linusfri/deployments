@@ -33,7 +33,9 @@ output "nodes" {
       ip6      = hcloud_server.nixos_stage.ipv6_address
       ssh_key  = var.ssh_pub
       label    = "friikodstage"
-      domains = {}
+      domains = {
+        nextcloud = "nextcloud-stage.friikod.se"
+      }
     }
   }
 }

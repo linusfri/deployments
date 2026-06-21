@@ -6,7 +6,7 @@ let
   root = ../../..;
   applicationsFolderPath = ../../applications;
 
-  applicationFileNames = [];
+  applicationFileNames = [ ];
 
   moduleFileNames = [
     "common.nix"
@@ -14,6 +14,7 @@ let
     "db.nix"
     "virtualisation.nix"
     "authorized-keys.nix"
+    "nextcloud.nix"
   ];
 
   mkFullPaths = folderPath: fileNames: map (fileName: folderPath + "/${fileName}") fileNames;
