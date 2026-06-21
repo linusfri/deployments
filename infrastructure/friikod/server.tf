@@ -8,7 +8,7 @@ resource "hcloud_server" "nixos" {
   name        = "hetzvps"
   image       = "ubuntu-22.04"
   server_type = "cpx32"
-  datacenter  = "hel1-dc2"
+  location    = "hel1-dc2"
   public_net {
     ipv4_enabled = true
     ipv6_enabled = true
@@ -18,7 +18,7 @@ resource "hcloud_server" "nixos" {
     "label" : "seed"
   }
   lifecycle {
-    ignore_changes  = [ssh_keys]
+    ignore_changes  = [ssh_keys, location]
     prevent_destroy = true
   }
 }
@@ -40,7 +40,7 @@ resource "hcloud_server" "nixos_stage" {
   name        = "hetzvpsstage"
   image       = "ubuntu-24.04"
   server_type = "cpx22"
-  datacenter  = "hel1-dc2"
+  location    = "hel1-dc2"
   public_net {
     ipv4_enabled = true
     ipv6_enabled = true
@@ -50,10 +50,30 @@ resource "hcloud_server" "nixos_stage" {
     "label" : "seed"
   }
   lifecycle {
-    ignore_changes  = [ssh_keys]
+    ignore_changes  = [ssh_keys, location]
     prevent_destroy = true
   }
 }
+
+# Stage2
+# resource "hcloud_server" "nixos_stagesec" {
+#   name        = "hetzvpsstagesec"
+#   image       = "400063552"
+#   server_type = "cpx22"
+#   location    = "hel1"
+#   public_net {
+#     ipv4_enabled = true
+#     ipv6_enabled = true
+#   }
+#   ssh_keys = [hcloud_ssh_key.main.id]
+#   labels = {
+#     "label" : "seed"
+#   }
+#   lifecycle {
+#     ignore_changes  = [ssh_keys, location]
+#     prevent_destroy = false
+#   }
+# }
 
 # Storagebox
 resource "hcloud_storage_box" "backups" {
@@ -71,15 +91,8 @@ resource "hcloud_storage_box" "backups" {
     samba_enabled        = false
     ssh_enabled          = true
     webdav_enabled       = false
-    zfs_enabled          = true
+    zfs_enabled          = false
   }
-
-  # snapshot_plan = {
-  #   max_snapshots = 10
-  #   minute        = 16
-  #   hour          = 18
-  #   day_of_week   = 3
-  # }
 
   delete_protection = true
 }

@@ -6,7 +6,7 @@ terraform {
     }
     hcloud = {
       source  = "opentofu/hcloud"
-      version = "~> 1.49.1"
+      version = "~> 1.66.0"
     }
   }
 }

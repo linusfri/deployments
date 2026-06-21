@@ -41,7 +41,7 @@ mkShell {
         "aws_access_key_id:AWS_ACCESS_KEY_ID"
         "aws_secret_access_key:AWS_SECRET_ACCESS_KEY"
         "aws_region:AWS_REGION"
-        "storagebox_backups_password:STORAGEBOX_BACKUPS_PASSWORD"
+        "storagebox_backups_password:TF_VAR_storagebox_backups_password"
       )
 
       # Overwrite the file each time this is run
