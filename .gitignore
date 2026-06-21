@@ -5,3 +5,4 @@ terraform.tfstate
 secrets/age-key
 .direnv
 .tokens.*
+!.tokens.hash

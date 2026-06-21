@@ -56,3 +56,30 @@ resource "hcloud_server" "nixos_stage" {
 }
 
 # Storagebox
+resource "hcloud_storage_box" "backups" {
+  name             = "storagebox-backups"
+  storage_box_type = "bx11"
+  location         = "hel1"
+  password         = var.storagebox_backups_password
+
+  labels = {
+    "type" : "backups"
+  }
+
+  access_settings = {
+    reachable_externally = true
+    samba_enabled        = false
+    ssh_enabled          = true
+    webdav_enabled       = false
+    zfs_enabled          = true
+  }
+
+  # snapshot_plan = {
+  #   max_snapshots = 10
+  #   minute        = 16
+  #   hour          = 18
+  #   day_of_week   = 3
+  # }
+
+  delete_protection = true
+}

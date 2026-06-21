@@ -41,6 +41,7 @@ mkShell {
         "aws_access_key_id:AWS_ACCESS_KEY_ID"
         "aws_secret_access_key:AWS_SECRET_ACCESS_KEY"
         "aws_region:AWS_REGION"
+        "storagebox_backups_password:STORAGEBOX_BACKUPS_PASSWORD"
       )
 
       # Overwrite the file each time this is run
@@ -53,6 +54,10 @@ mkShell {
         echo "export $env_var=\"$value\"" >> $ROOT_DIR/.tokens.sh
       done
 
+      # Record a hash of the encrypted secrets file so we can detect when new
+      # secrets are added and avoid secrets getting out of sync.
+      sha256sum "$SECRETS" | cut -d' ' -f1 > $ROOT_DIR/.tokens.hash
+
       echo "Tokens exported to .tokens.sh"
     '';
 
@@ -64,8 +69,17 @@ mkShell {
       if [[ -f "$ROOT_DIR/.tokens.sh" ]]; then
         echo -e "''${GREEN}.tokens.sh found, setting environment.''${RESET}"
         source $ROOT_DIR/.tokens.sh
+
+        # Warn if the encrypted secrets have changed since .tokens.sh was generated.
+        if [[ -f "$ROOT_DIR/.tokens.hash" ]]; then
+          current_hash=$(sha256sum "$SECRETS" | cut -d' ' -f1)
+          stored_hash=$(cat "$ROOT_DIR/.tokens.hash")
+          if [[ "$current_hash" != "$stored_hash" ]]; then
+            echo -e "''${RED}Secrets have changed since .tokens.sh was generated, run 'tokens' to refresh.''${RESET}"
+          fi
+        fi
       else
-        echo -e "''${RED}.tokens.sh not found, run 'tokens''${RESET}"
+        echo -e "''${RED}.tokens.sh not found, run 'tokens' ''${RESET}"
       fi
     '';
   };
