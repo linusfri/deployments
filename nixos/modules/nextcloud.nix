@@ -15,7 +15,7 @@ in
 
       package = lib.mkOption {
         type = types.package;
-        default = pkgs.nextcloud32;
+        default = pkgs.nextcloud33;
         description = "The Nextcloud package to use.";
       };
 

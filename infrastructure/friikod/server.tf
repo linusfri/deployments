@@ -54,3 +54,5 @@ resource "hcloud_server" "nixos_stage" {
     prevent_destroy = true
   }
 }
+
+# Storagebox
