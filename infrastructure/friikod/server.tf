@@ -9,6 +9,7 @@ resource "hcloud_server" "nixos" {
   image       = "ubuntu-22.04"
   server_type = "cpx32"
   location    = "hel1-dc2"
+  backups     = true
   public_net {
     ipv4_enabled = true
     ipv6_enabled = true
