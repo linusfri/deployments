@@ -15,7 +15,6 @@ module "friikod" {
 output "terraflake" {
   value = [
     module.friikod.nodes.friikod,
-    module.friikod.nodes.friikodstage
   ]
 }
 output "cloudflare_tunnel_token_friikod" {

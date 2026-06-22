@@ -35,46 +35,6 @@ resource "hcloud_rdns" "rdns6" {
   dns_ptr    = "mail.friikod.se"
 }
 
-# Stage
-resource "hcloud_server" "nixos_stage" {
-  name        = "hetzvpsstage"
-  image       = "ubuntu-24.04"
-  server_type = "cpx22"
-  location    = "hel1-dc2"
-  public_net {
-    ipv4_enabled = true
-    ipv6_enabled = true
-  }
-  ssh_keys = [hcloud_ssh_key.main.id]
-  labels = {
-    "label" : "seed"
-  }
-  lifecycle {
-    ignore_changes  = [ssh_keys, location]
-    prevent_destroy = true
-  }
-}
-
-# Stage2
-# resource "hcloud_server" "nixos_stagesec" {
-#   name        = "hetzvpsstagesec"
-#   image       = "400063552"
-#   server_type = "cpx22"
-#   location    = "hel1"
-#   public_net {
-#     ipv4_enabled = true
-#     ipv6_enabled = true
-#   }
-#   ssh_keys = [hcloud_ssh_key.main.id]
-#   labels = {
-#     "label" : "seed"
-#   }
-#   lifecycle {
-#     ignore_changes  = [ssh_keys, location]
-#     prevent_destroy = false
-#   }
-# }
-
 # Storagebox
 resource "hcloud_storage_box" "backups" {
   name             = "storagebox-backups"

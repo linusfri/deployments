@@ -80,15 +80,6 @@ resource "cloudflare_dns_record" "subdomain-nextcloud" {
   ttl     = 3600
 }
 
-resource "cloudflare_dns_record" "subdomain-nextcloud-stage" {
-  zone_id = cloudflare_zone.default.id
-  name    = "nextcloud-stage.friikod.se"
-  content = hcloud_server.nixos_stage.ipv4_address
-  type    = "A"
-  proxied = false
-  ttl     = 1
-}
-
 resource "cloudflare_dns_record" "subdomain-jellyfin" {
   zone_id = cloudflare_zone.default.id
   name    = "jellyfin.friikod.se"

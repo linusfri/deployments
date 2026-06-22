@@ -54,7 +54,6 @@
       system = "x86_64-linux";
       prodName = "hetzvps";
       stageName = "hetzvpsstage";
-      stageNameSec = "hetzvpsstagesec";
     in
     {
       nixosConfigurations = {
@@ -78,40 +77,6 @@
             (import ./nixos/servers/hetzvps/hetzvps.nix {
               flake = self;
               name = prodName;
-            })
-          ];
-        };
-
-        ${stageName} = nixos.lib.nixosSystem {
-          inherit system;
-          modules = [
-            # Add module for local package overlays
-            (import ./nixos/servers/hetzvpsstage/overlay.nix {
-              inherit (inputs)
-                nixpkgs
-                ;
-            })
-            # Module that configures a node
-            (import ./nixos/servers/hetzvpsstage/hetzvpsstage.nix {
-              flake = self;
-              name = stageName;
-            })
-          ];
-        };
-
-        ${stageNameSec} = nixos.lib.nixosSystem {
-          inherit system;
-          modules = [
-            # Add module for local package overlays
-            (import ./nixos/servers/hetzvpsstagesec/overlay.nix {
-              inherit (inputs)
-                nixpkgs
-                ;
-            })
-            # Module that configures a node
-            (import ./nixos/servers/hetzvpsstagesec/hetzvpsstagesec.nix {
-              flake = self;
-              name = stageNameSec;
             })
           ];
         };
