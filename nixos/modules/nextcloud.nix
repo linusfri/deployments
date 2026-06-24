@@ -116,12 +116,8 @@ in
           onlyoffice
           deck
           polls
+          spreed
           ;
-        spreed = pkgs.fetchNextcloudApp {
-          sha256 = "sha256:fe690208a194a08a91ba65481cbf9f3ca938cb434e91d56f93bd4cce4f3cf413";
-          url = "https://github.com/nextcloud-releases/spreed/releases/download/v22.0.4/spreed-v22.0.4.tar.gz";
-          license = "gpl3";
-        };
       };
       datadir = cfg.dataDir;
       https = true;
