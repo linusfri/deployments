@@ -288,6 +288,17 @@ in
               '';
             };
 
+            # Serve the wp-content (`app`) tree from the persistent content dir
+            # instead of the read-only package root. Plugins/themes installed at
+            # runtime via wp-admin only live here, so static assets (css/js/images)
+            # would otherwise 404 against the Nix store package.
+            locations."/app/" = {
+              alias = "/var/lib/${site.user}/app/";
+              extraConfig = ''
+                try_files $uri $uri/ =404;
+              '';
+            };
+
             locations."@production" = lib.mkIf (site.assetProxy != "") {
               extraConfig = ''
                 resolver 8.8.8.8;

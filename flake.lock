@@ -1118,11 +1118,11 @@
         "utils": "utils_4"
       },
       "locked": {
-        "lastModified": 1782408006,
-        "narHash": "sha256-Fw5azYOwe7YmV8ylf35LhktQpz5i0B6opH9QvkYl+bQ=",
+        "lastModified": 1782412639,
+        "narHash": "sha256-cMy1vN8ENJ7Qd6jGmAHo5Lt20E7YHJij+sar4tMtfoI=",
         "owner": "linusfri",
         "repo": "website-for-friends",
-        "rev": "a072dbedb789a5fe86501b7f0afe26fbe97fce37",
+        "rev": "a55e1b3c463fe9457eb922330911feb4e6e41b34",
         "type": "github"
       },
       "original": {
