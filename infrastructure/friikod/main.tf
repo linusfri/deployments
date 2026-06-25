@@ -20,6 +20,7 @@ output "nodes" {
         "jellyfin"         = "jellyfin.friikod.se"
         "keycloak"         = "keycloak.friikod.se"
         "elin"             = "elin.friikod.se"
+        "anton"            = "anton.friikod.se"
         "ladugardlive-web" = "web.ladugardlive.se"
         "github-docs"      = "docs.friikod.se"
         "plantuml"         = "plantuml.friikod.se"

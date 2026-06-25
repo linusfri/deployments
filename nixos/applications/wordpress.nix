@@ -37,5 +37,31 @@ in
       };
     };
 
+    anton = {
+      appName = "anton";
+      package = pkgs.bedrock-wp; # Replace with your actual package
+      user = "anton";
+      home = "/var/lib/anton";
+      domain = node.domains.anton; # Or use a string like "example.com"
+      dbName = "anton_db";
+      dbPrefix = "wp_";
+      projectDir = "bedrock-wp"; # Adjust based on your package structure
+
+      environment = "production";
+
+      debug = {
+        enabled = false;
+        display = false;
+      };
+
+      ssl = {
+        enable = true;
+        force = true;
+      };
+
+      basicAuth = {
+        enable = false;
+      };
+    };
   };
 }
